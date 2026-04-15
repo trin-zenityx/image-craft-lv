@@ -58,11 +58,13 @@ Run this mentally (or as visible TODO) before every generate call:
 
 Before showing output to user, scan each image for:
 
-1. **Anatomical plausibility** — pod proportions, body in pose, scale of figure vs environment. If a 2m pod looks like a 60cm capsule, flag it.
+1. **Anatomical plausibility** — pod proportions, body in pose, scale of figure vs environment. If a 2m pod looks like a 60cm capsule, flag it. **Quantify ratios, don't eyeball.** Estimate percentages: "face window is X% of pod length, face fills Y% of window".
 2. **Orientation** — does the face point where you intended? Hand pose match ref?
 3. **Design-language drift** — does the opaque-body pod in shot A still look opaque in shot B of the same set? Did the character's robe change color?
 4. **Within-image internal consistency** — is the light direction consistent with the shadows? If a window is to the left, is the rim light coming from the left?
 5. **Intent fulfillment** — reread your own prompt's key phrases. Does the image show "weathered hands with cyan rim"? Or just generic hands?
+
+**CRITICAL — Proportion comparison rule:** When checking "does X match ref Y" for proportions, compare to the **ORIGINAL full-scale ref image**, NOT a zoomed/cropped version. A crop enlarges the target in your field of view, which tricks you into thinking the proportions in the new image are fine when they may be 2-3x too large. Do the comparison at equal zoom levels.
 
 **If anything fails: regenerate with a fix, don't ship the broken version hoping user won't notice.**
 
