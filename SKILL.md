@@ -108,6 +108,18 @@ Concrete mistakes + fixes. Grows over time. Always include: **Tier, Status, Cont
 **Fix:** In any multi-shot prompt set, pick one unambiguous phrase for each surface treatment and use it identically: "completely OPAQUE white ceramic shell along entire body, with face-window as the only transparent surface". Then mirror it exactly in every prompt that features that object.
 **Applied:** #7 v4 (opaque body, face-window only) — matched #6.
 
+### L11 — Tier 1 refs must be designed for VIDEO continuity, not just standalone beauty
+**Tier:** Macro (affects entire downstream pipeline)
+**Status:** `pending (0/5)` — validated on DHYANA Gen 1 (butterfly anatomy break in video)
+**Context:** DHYANA Tier 1 designed 13 standalone "beauty shots" — each optimized to look great individually (#01 Tenzin sitting front, #10 butterfly on extended hand from side). When used together as video refs in Seedance, pose/angle/bg conflicts caused anatomy breaks.
+**Mistake:** Still-image thinking applied to video-pipeline assets. Refs designed without considering how they'd interact IN MOTION within a single video gen.
+**Fix — Tier 1 Design Rules for Video Projects:**
+1. **Per-pose refs:** Don't create just ONE character ref. Create refs for each pose the character will appear in (sitting, standing, walking, hand detail). Label clearly.
+2. **Compatibility matrix:** Before finalizing Tier 1, draw a table: which refs will be used TOGETHER in each gen? Check pose/angle/bg compatibility for every pair.
+3. **Prop refs must match character refs:** If butterfly forms from monk's hands, the butterfly ref must show hands IN THE SAME POSE as the character ref (mudra, not extended). Same camera angle. Same background depth.
+4. **Ask: "Can Seedance smoothly interpolate from ref A to ref B?"** If no → redesign one or both.
+**Applied:** (pending) Creating #14 Tenzin standing + #15 butterfly-on-mudra.
+
 ### L10 — Models have subject-prominence biases that cap how small certain elements can render; know when to stop prompt-tuning
 **Tier:** Macro (changes decision-making on when to stop iterating)
 **Status:** `pending (1/3)` — validated once on DHYANA #07 where 7 regens could not push face-window ratio below 17%; target was 13%
