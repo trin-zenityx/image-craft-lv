@@ -104,6 +104,18 @@ Concrete mistakes + fixes. Grows over time. Always include: **Tier, Status, Cont
 **Fix:** In any multi-shot prompt set, pick one unambiguous phrase for each surface treatment and use it identically: "completely OPAQUE white ceramic shell along entire body, with face-window as the only transparent surface". Then mirror it exactly in every prompt that features that object.
 **Applied:** #7 v4 (opaque body, face-window only) — matched #6.
 
+### L9 — Crop reference images to isolate the target element; full-scene refs introduce noise
+**Tier:** Meso (technique with broad reuse)
+**Status:** `pending (1/3)` — validated once on DHYANA #07 v7; needs 2 more
+**Context:** DHYANA #07 pod detail — multiple regen attempts (v3, v4, v5, v6) all used the full pod corridor image (#06) as reference. Each regen produced pods with different shapes — a bulgy egg, a compact head-only capsule, a disproportioned hybrid — none matched the sleek elongated capsule shape visible in #06.
+**Mistake:** Passed the entire corridor image as ref when only ONE specific object needed to be matched exactly. The model had too much visual information (corridor, water, multiple pods at various angles, background racks) and couldn't decide which element was the "target". It reinterpreted pod shape each generation.
+**Why it happened:** Treated "use reference" as "pass the related image". Did not consider that the ref's job is to anchor a specific visual element, and including unrelated elements dilutes that anchor.
+**Result:** Four failed regens before realizing the problem. User had to point out that the pod looked different each time.
+**Fix:** When a ref needs to lock ONE element (specific object, specific pose, specific color), crop the source image to contain ONLY that element. Use PIL/ImageMagick to extract the tight region. Pass the crop as the primary ref. This gives the model an unambiguous visual target.
+**Broader rule:** A reference image teaches the model what it shows, in proportion to how much of the frame that thing occupies. If the pod is 10% of a scene ref, the pod design is 10% "loud" to the model. If the pod fills the frame of a cropped ref, it is 100% loud.
+**Applied:** #07 v7 generated using a cropped front pod from #06 (1885x1280 crop of 4096x2286 original) — pod silhouette finally matched the corridor reference exactly.
+**Related technique — Nano Banana Pro edit mode:** Per research, Nano Banana Pro treats reference images with edit-style prompting ("match THIS exactly", "preserve the pod in the reference") more restrictively than generation-style prompting ("in the style of..."). Combine cropped refs with edit-style language when you need exact matching.
+
 ### L8 — Palette consistency within same world/time must be explicit; ref images lock composition, not palette
 **Tier:** Meso (cross-shot discipline with narrative consequence)
 **Status:** `pending (1/3)` — validated once on DHYANA #08 v2; needs 2 more
