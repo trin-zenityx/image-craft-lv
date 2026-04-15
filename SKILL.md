@@ -104,6 +104,17 @@ Concrete mistakes + fixes. Grows over time. Always include: **Tier, Status, Cont
 **Fix:** In any multi-shot prompt set, pick one unambiguous phrase for each surface treatment and use it identically: "completely OPAQUE white ceramic shell along entire body, with face-window as the only transparent surface". Then mirror it exactly in every prompt that features that object.
 **Applied:** #7 v4 (opaque body, face-window only) — matched #6.
 
+### L7 — Deliverables must be packaged as reviewable artifacts, not raw file dumps
+**Tier:** Macro (changes delivery workflow)
+**Status:** `pending (0/3)` — just codified from DHYANA Tier 2 review friction
+**Context:** DHYANA Tier 2 — 22 images generated with file names like `g15b.jpeg`, `g19a.jpeg`. User was expected to open each file individually in a folder, match it mentally to which shot it represents in the story, and decide if it was correct.
+**Mistake:** Delivered the batch as "22 files in a folder, here are the paths". No visual summary. No Thai labels. No shot→story mapping. Placed 100% of the review-assembly cost on the user.
+**Why it happened:** Treated "generated and organized" as "delivered". Assumed filenames were self-explanatory. Did not consider the user's actual workflow for reviewing a batch.
+**Result:** User couldn't efficiently review because they had to: (a) open folder, (b) open each file, (c) remember which shot is which, (d) decide if correct. Review became tedious and error-prone.
+**Fix:** For any batch of >3 images/artifacts, package deliverables as a *reviewable artifact* — an HTML storyboard, PDF, Markdown with embedded images, or similar — that presents each image INLINE with: (a) clear label (Act/Scene/Shot), (b) short Thai/user-language description of what it shows, (c) narrative context (where in the story this shot falls), (d) pair grouping for related shots. User opens ONE file, sees everything in order, can review efficiently.
+**Broader rule:** "Delivered" means "user can review without extra assembly work on their part". Raw file dumps are not deliverables. If you generate N images, produce the reviewable artifact that shows all N at once, labeled and contextualized.
+**Applied:** (pending) Building HTML storyboard for DHYANA Tier 1 + Tier 2.
+
 ### L6 — Different characters in similar contexts must be made visibly distinct in the prompt
 **Tier:** Meso (per-shot discipline with narrative consequence)
 **Status:** `pending (1/3)` — validated once on DHYANA g10a v2; needs 2 more
