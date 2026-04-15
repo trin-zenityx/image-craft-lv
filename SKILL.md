@@ -106,6 +106,17 @@ Concrete mistakes + fixes. Grows over time. Always include: **Tier, Status, Cont
 **Fix:** In any multi-shot prompt set, pick one unambiguous phrase for each surface treatment and use it identically: "completely OPAQUE white ceramic shell along entire body, with face-window as the only transparent surface". Then mirror it exactly in every prompt that features that object.
 **Applied:** #7 v4 (opaque body, face-window only) — matched #6.
 
+### L10 — Models have subject-prominence biases that cap how small certain elements can render; know when to stop prompt-tuning
+**Tier:** Macro (changes decision-making on when to stop iterating)
+**Status:** `pending (1/3)` — validated once on DHYANA #07 where 7 regens could not push face-window ratio below 17%; target was 13%
+**Context:** DHYANA #07 pod detail — attempted to shrink the face-window from 31% of pod length to target 13%. Iterated through 7 versions with increasingly explicit prompts (numeric ratios, real-world size metaphors, edit-style instructions, Nano Banana 2 model). Ratio improved 31% → 20% → 19% → 17%, then plateaued. Could not get below 17%.
+**Mistake:** Kept iterating assuming the next prompt tweak would close the gap. Each subsequent regen gave diminishing returns (first attempt -11 points, fifth attempt -0 points).
+**Why it happened:** Image models have semantic priors that bias toward making subjects "readable" — faces in particular render prominently because that's what the model was trained to prioritize. No amount of prompt engineering overrides a learned prior completely. The model will interpret "small face" within a reasonable floor that keeps the face visible.
+**Result:** Wasted several cycles trying to hit exact target. User had to spend review energy on diminishing-return regens.
+**Fix:** When a regen improves the metric but less than the previous attempt did, you are approaching the model's floor. Compare the improvement curve: 11 points → 1 point → 2 points → 0 points = diminishing returns = stop. Either (a) accept the floor as "good enough" with honest measurement and user consent, or (b) move to post-processing / different tool, not more prompt tuning.
+**Broader rule:** Prompt tuning is effective within the model's prior envelope. Beyond the envelope, you need different tools (inpainting, PIL post-process, image-to-image with different model). Recognize diminishing returns quickly (by attempt 3 usually), don't burn 7 rounds chasing 2 percentage points.
+**Applied:** #07 v10 accepted at 17% ratio (target 13%, user's preferred 16%) — declared the Nano floor, logged the bias, moved on.
+
 ### L9 — Crop reference images to isolate the target element; full-scene refs introduce noise
 **Tier:** Meso (technique with broad reuse)
 **Status:** `pending (1/3)` — validated once on DHYANA #07 v7; needs 2 more
