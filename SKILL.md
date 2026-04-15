@@ -66,6 +66,8 @@ Before showing output to user, scan each image for:
 
 **CRITICAL — Proportion comparison rule:** When checking "does X match ref Y" for proportions, compare to the **ORIGINAL full-scale ref image**, NOT a zoomed/cropped version. A crop enlarges the target in your field of view, which tricks you into thinking the proportions in the new image are fine when they may be 2-3x too large. Do the comparison at equal zoom levels.
 
+**CRITICAL — Full-frame scan rule (anti-tunnel-vision):** When regenerating to fix issue A, DO NOT only verify A. Scan the ENTIRE frame against ref image for unrelated drifts introduced by the regen: environment (ceiling, walls, floor), background elements (other objects, fog density, light sources), lighting direction, color temperature, depth cues. Regens often fix the target but introduce new drifts elsewhere because the model re-decides unspecified details. List every environmental element of the ref image and confirm each is preserved before shipping.
+
 **If anything fails: regenerate with a fix, don't ship the broken version hoping user won't notice.**
 
 ---
