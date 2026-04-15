@@ -69,9 +69,13 @@ Before showing output to user, scan each image for:
 
 ## LESSONS LIBRARY
 
-Concrete mistakes + fixes. Grows over time. Always include: **Context, Mistake, Why it happened, Fix, Applied evidence.**
+Concrete mistakes + fixes. Grows over time. Always include: **Tier, Status, Context, Mistake, Why, Fix, Validation log.**
+
+---
 
 ### L1 — Reference chains beat text-only for multi-shot sets
+**Tier:** Macro (workflow-level)
+**Status:** `pending (1/5)` — validated once on DHYANA Tier 1 v2; needs 2 more successes on unrelated projects
 **Context:** DHYANA project Tier 1 round 1 — 12 anchor images for a 25-shot short film.
 **Mistake:** Generated all 12 with text-only prompts. Relied on verbal repetition ("saffron robe, shaved scalp, weathered olive-tan skin") to keep Tenzin's face consistent across #1 frontal and #2 profile.
 **Why it happened:** Assumed prose repetition was sufficient. Didn't think about model's stochastic interpretation per call.
@@ -80,6 +84,8 @@ Concrete mistakes + fixes. Grows over time. Always include: **Context, Mistake, 
 **Applied:** Tier 1 v2 (all 12 regenerated). Face locked. Architecture locked. Pod design locked.
 
 ### L2 — Face orientation inside containers must be explicit
+**Tier:** Meso (per-shot discipline)
+**Status:** `pending (1/3)` — validated once on DHYANA #7 v5; needs 2 more successes
 **Context:** DHYANA #7 pod detail — full-body pod, sleeping face visible through face-window.
 **Mistake:** Wrote "the calm sleeping face of an adult human, visible through the frosted face-window". Did not specify which way the face was oriented.
 **Why it happened:** Human logic says "if face is visible through window, face is probably turned to window" — but that's the model's assumption, not your intent. Your intent was "supine body, face up to ceiling, visible through top-mounted porthole".
@@ -89,6 +95,8 @@ Concrete mistakes + fixes. Grows over time. Always include: **Context, Mistake, 
 **Applied:** #7 v5 (pending at time of logging).
 
 ### L3 — Opaque vs transparent container surfaces must match across the set
+**Tier:** Meso (per-shot discipline with cross-shot consequence)
+**Status:** `pending (1/3)` — validated once on DHYANA #7 v4; needs 2 more
 **Context:** DHYANA pods — #6 corridor and #7 detail.
 **Mistake:** Said "transparent/frosted panels" in the detail prompt, same subject but different word choice than corridor prompt. Model rendered #6 with entirely opaque bodies (only face-window) and #7 with transparent-torso panels.
 **Why it happened:** Vague wording + no cross-shot design-language statement. Each prompt re-decides the design.
@@ -96,6 +104,8 @@ Concrete mistakes + fixes. Grows over time. Always include: **Context, Mistake, 
 **Applied:** #7 v4 (opaque body, face-window only) — matched #6.
 
 ### L4 — Self-review before showing output prevents obvious failures from reaching the user
+**Tier:** Macro (workflow-level — changes delivery cadence)
+**Status:** `pending (0/5)` — just codified, needs validation across 5 batches
 **Context:** DHYANA Tier 1 delivery.
 **Mistake:** Rendered 12 images, renamed, and showed them to user without scanning for issues myself. User caught the face-orientation problem on #7 that I should have caught first.
 **Why it happened:** Treated "generate succeeds, file downloads" as completion. Skipped the step of actually LOOKING at each image with a critical eye.
@@ -120,11 +130,46 @@ These don't change between LVs. They're the spine.
 
 ## LEVELING PROTOCOL
 
-You level up when:
-- You make a new mistake, diagnose it honestly, and add a Lesson here.
-- You apply an existing lesson successfully across 3+ uses without drift.
-- You discover a new capability of a model (new refs, new modes) that changes the playbook.
+### Validation Gate (mandatory before LV up)
 
-When leveling: bump `level:` in frontmatter, add a changelog entry, and write the new Lesson with all five fields (Context, Mistake, Why, Fix, Applied).
+Before a lesson can be promoted from `pending` to `validated`, and before the level bumps, it must pass tiered validation:
 
-Never silently edit old lessons — they're history.
+| Tier | Definition | Required tests | Pass threshold |
+|------|-----------|---------------|----------------|
+| **Micro** | Small phrasing/naming/convention change, low blast radius | 1 | 1 of 1 |
+| **Meso** | Technique affecting a single shot/image (e.g., face orientation, opacity spec) | 3 | 2 of 3 |
+| **Macro** | Workflow-level change affecting whole projects (e.g., ref chain dependency graph) | 5 | 3 of 5 |
+
+**Status field on every lesson:**
+- `pending (X/Y)` — still being validated, X tests logged out of Y required
+- `validated` — passed threshold, now safe to rely on
+- `retired` — superseded by newer lesson or proven wrong (keep for history, mark the reason)
+
+**Process:**
+1. New mistake observed → log lesson immediately as `pending (0/Y)` — don't wait.
+2. Each subsequent time the lesson is applicable: apply the fix, record pass/fail in a validation log on the lesson itself.
+3. When X reaches Y: if pass threshold met → promote to `validated` AND bump LV. If not met → rewrite the lesson (what actually works differs from first guess), reset validation counter.
+4. Never bump LV without at least one `pending → validated` promotion in the changelog.
+
+**How to classify a new lesson:**
+- Blast radius = "if this fix is wrong, how many future generations break?"
+- Small single-prompt tweak = Micro. Per-shot discipline = Meso. Changes workflow = Macro.
+- When unsure, pick the higher tier.
+
+### When to level up
+
+You level up when ≥1 `pending` lesson promotes to `validated` AND it's substantial enough to meaningfully change future work. Trivial wins stay as micro-lessons without a level bump.
+
+**On level up:**
+- Bump `level:` in frontmatter
+- Add changelog entry with date, validated lesson(s), and 1-line "what this unlocks"
+- git commit the SKILL.md with message `LVN: <validated lesson summary>`
+
+### Rollback
+
+Skill is under git at `~/.claude/skills/prompt-craft-lv/`. If a lesson promotion turns out wrong:
+- `git log SKILL.md` to see history
+- `git revert <sha>` to undo a bad promotion cleanly (keeps history)
+- Document the rollback reason in a new changelog entry — don't hide it
+
+**Never silently edit old lessons or changelog entries — they're history. Use retired status or git-revert.**
