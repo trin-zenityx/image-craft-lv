@@ -103,6 +103,17 @@ Concrete mistakes + fixes. Grows over time. Always include: **Tier, Status, Cont
 **Fix:** In any multi-shot prompt set, pick one unambiguous phrase for each surface treatment and use it identically: "completely OPAQUE white ceramic shell along entire body, with face-window as the only transparent surface". Then mirror it exactly in every prompt that features that object.
 **Applied:** #7 v4 (opaque body, face-window only) — matched #6.
 
+### L5 — Back-view character refs cannot lock face identity; create front-view/face anchors separately
+**Tier:** Meso (per-shot discipline with cross-shot consequence)
+**Status:** `pending (0/3)` — just codified from DHYANA Tier 2 g20b failure
+**Context:** DHYANA Tier 2 five shots (g15b, g19a, g19b, g20a, g20b) show the mother's face sleeping inside a pod. All five used `04_mother_back.jpeg` as character reference — but #04 is a BACK-view with hood up, face invisible. Model had no face to lock identity against.
+**Mistake:** Assumed a character ref image is universally usable for identity locking. Didn't check whether the ref actually shows what the new shot needs to match.
+**Why it happened:** Reference-chain thinking at the level of "which character" rather than "which feature of the character". Mother back-view refs wardrobe (indigo wool) but not face. When a future shot needs FACE consistency, a back-view ref is useless for that dimension.
+**Result:** g20a and g20b render two different adult faces in the same pod (different people) — breaks first/last-frame interpolation. Five Tier 2 shots need regeneration.
+**Fix:** For any character who will appear in multiple views (back, profile, front, in container), generate dedicated anchor images per view needed: one front/face anchor, one profile anchor, one back anchor. Ref the RIGHT anchor for each shot based on what feature must be locked. If only back-view ref exists and a future shot needs face, generate the face anchor BEFORE generating that shot.
+**Broader rule:** When planning ref chain, ask "what does this shot need to match — face? wardrobe? pose? location? light?" Then pick refs that actually contain that feature. Back-view refs cannot teach face; macro-light refs cannot teach composition.
+**Applied:** (pending) Creating `13_mother_face_in_pod.jpeg` as Tier 1 face anchor, then regenerating 5 Tier 2 shots with it.
+
 ### L4 — Self-review before showing output prevents obvious failures from reaching the user
 **Tier:** Macro (workflow-level — changes delivery cadence)
 **Status:** `pending (0/5)` — just codified, needs validation across 5 batches
