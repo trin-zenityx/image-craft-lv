@@ -41,6 +41,7 @@ Run this mentally (or as visible TODO) before every generate call:
 - [ ] **Dimensions stated?** "Human-length pod (2.1 m)" reads differently than "pod". Numbers > adjectives.
 - [ ] **Camera angle & lens named?** Not "a shot of X" but "telephoto 85mm low-angle 3/4 view".
 - [ ] **Negative prompts for common drift?** "No text, no watermark, no age-markers, no [specific common failure]"
+- [ ] **Character distinguishability?** If two DIFFERENT characters appear in similar contexts (e.g., two different people both sleeping in pods), have you specified visibly different immutable features (gender, ethnicity, hair color/length, facial structure)? Otherwise model renders both as "generic X" and viewers can't tell them apart, destroying plot beats.
 
 ### C. Reference strategy
 - [ ] **Refs chosen are the MOST relevant?** Not just any Tier 1 image — specifically the ones locking the visual elements in this shot.
@@ -102,6 +103,17 @@ Concrete mistakes + fixes. Grows over time. Always include: **Tier, Status, Cont
 **Why it happened:** Vague wording + no cross-shot design-language statement. Each prompt re-decides the design.
 **Fix:** In any multi-shot prompt set, pick one unambiguous phrase for each surface treatment and use it identically: "completely OPAQUE white ceramic shell along entire body, with face-window as the only transparent surface". Then mirror it exactly in every prompt that features that object.
 **Applied:** #7 v4 (opaque body, face-window only) — matched #6.
+
+### L6 — Different characters in similar contexts must be made visibly distinct in the prompt
+**Tier:** Meso (per-shot discipline with narrative consequence)
+**Status:** `pending (1/3)` — validated once on DHYANA g10a v2; needs 2 more
+**Context:** DHYANA g10a (generic pod sleeper in Act 3) and g15b (specifically the mother's pod in Act 4). Both rendered as "neutral adult face sleeping in pod" — model gave both roughly-similar-looking adult women. User could not distinguish them, which would destroy the Act 4 reveal ("he finds his mother among thousands") because viewers would think he already saw her in Act 3.
+**Mistake:** Assumed "generic neutral adult" description was sufficient for the background character (g10a). Did not specify immutable features to distinguish from the specific character (g15b mother).
+**Why it happened:** When one character is "generic" and another is "specific", prompting only the specific one forces the model to invent features for the generic one — often landing on a similar default, especially when both share context (same pod, same pose, same lighting).
+**Result:** Two characters that should read as clearly different people look like they might be the same person. Plot-critical reveal is at risk.
+**Fix:** Even for "generic" background characters, specify immutable distinguishing features (gender, ethnicity, hair color/length, facial structure) that guarantee a viewer can't confuse them with the specific/important character in the same set. Phrase in negative as well: "this is NOT the [other character] — specifically a man with grey hair, not a woman with dark hair".
+**Broader rule:** The self-review checklist must cross-check pairs of shots featuring different-but-similar-context characters. Not just "does character A stay consistent across A's shots" but "does character A look different from character B".
+**Applied:** g10a v2 — regenerated as adult male with grey hair, clearly different from g15b mother.
 
 ### L5 — Back-view character refs cannot lock face identity; create front-view/face anchors separately
 **Tier:** Meso (per-shot discipline with cross-shot consequence)
