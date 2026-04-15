@@ -113,7 +113,8 @@ Concrete mistakes + fixes. Grows over time. Always include: **Tier, Status, Cont
 **Result:** User couldn't efficiently review because they had to: (a) open folder, (b) open each file, (c) remember which shot is which, (d) decide if correct. Review became tedious and error-prone.
 **Fix:** For any batch of >3 images/artifacts, package deliverables as a *reviewable artifact* — an HTML storyboard, PDF, Markdown with embedded images, or similar — that presents each image INLINE with: (a) clear label (Act/Scene/Shot), (b) short Thai/user-language description of what it shows, (c) narrative context (where in the story this shot falls), (d) pair grouping for related shots. User opens ONE file, sees everything in order, can review efficiently.
 **Broader rule:** "Delivered" means "user can review without extra assembly work on their part". Raw file dumps are not deliverables. If you generate N images, produce the reviewable artifact that shows all N at once, labeled and contextualized.
-**Applied:** (pending) Building HTML storyboard for DHYANA Tier 1 + Tier 2.
+**Applied:** DHYANA Tier 1+2 HTML storyboard (base64-embedded thumbnails, opened via `open` command in browser) — validated once (1/3). Confirmed: browser `open` is the correct delivery; Claude Code preview panel doesn't render base64 the same way.
+**Additional rule:** When producing HTML for user review, default to `open <path>` after write — don't rely on Claude Code preview panel.
 
 ### L6 — Different characters in similar contexts must be made visibly distinct in the prompt
 **Tier:** Meso (per-shot discipline with narrative consequence)
