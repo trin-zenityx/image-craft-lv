@@ -104,6 +104,17 @@ Concrete mistakes + fixes. Grows over time. Always include: **Tier, Status, Cont
 **Fix:** In any multi-shot prompt set, pick one unambiguous phrase for each surface treatment and use it identically: "completely OPAQUE white ceramic shell along entire body, with face-window as the only transparent surface". Then mirror it exactly in every prompt that features that object.
 **Applied:** #7 v4 (opaque body, face-window only) — matched #6.
 
+### L8 — Palette consistency within same world/time must be explicit; ref images lock composition, not palette
+**Tier:** Meso (cross-shot discipline with narrative consequence)
+**Status:** `pending (1/3)` — validated once on DHYANA #08 v2; needs 2 more
+**Context:** DHYANA flashback scenes — #04 (mother walking into upload center) and #08 (upload exterior) both supposed to be the same location at the same pre-dawn moment. User caught that #04 had warm pink-amber memory palette while #08 had cool clinical blue palette — two very different moods for what should be the same scene.
+**Mistake:** When regenerating #04 with #08 as architecture ref, assumed palette would inherit from the ref image. It didn't — model used ref for composition/geometry only, re-decided palette from prompt. Prompt said "pre-dawn" but gave Nano too much latitude.
+**Why it happened:** Confused "reference locks visual identity" with "reference locks EVERY visual attribute". Palette is a separate axis that needs its own anchor or explicit instruction. Vague terms like "pre-dawn" or "dusk" interpret wildly across generations.
+**Result:** Two flashback shots read as different times/moods — audience would be confused about whether they're even the same location.
+**Fix:** Explicit palette statement in prompt: name the exact color gradient ("warm pink fading to pale amber, warm ground fog, NO cold blue") + state what palette should be matched from ref image + negative-state the wrong palette. When using multiple refs, tell the model which ref dictates palette vs. which dictates architecture vs. which dictates character.
+**Broader rule:** A single world-time has a palette. All shots in that world-time must share it. Cross-world-time deliberately differs (e.g., present cyan vs memory amber) — this is cinematography, not drift. When reviewing a set, group shots by world-time first, then check each group internally for palette consistency separately.
+**Applied:** #08 v2 (regenerated warm memory palette matching #04).
+
 ### L7 — Deliverables must be packaged as reviewable artifacts, not raw file dumps
 **Tier:** Macro (changes delivery workflow)
 **Status:** `pending (0/3)` — just codified from DHYANA Tier 2 review friction
