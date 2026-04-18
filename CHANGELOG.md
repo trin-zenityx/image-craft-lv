@@ -12,6 +12,20 @@
 
 - **LV 2.1** (2026-04-16) — **Modular redesign + rename.** Restructured the skill from a single 261-line SKILL.md into an engine (SKILL.md) + themed `lessons/` + append-only `VALIDATION_LEDGER.md` + this CHANGELOG + three templates. Renamed `prompt-craft-lv` → `image-craft-lv` to parallel `seedance-craft-lv` and remove video-scope ambiguity. Ported the Batch Discipline Gate from seedance-craft-lv. Introduced the cross-project validation requirement (meso = ≥2 projects, macro = ≥3 projects) — DHYANA-only wins no longer promote. Promoted the proportion-comparison and full-frame-scan CRITICAL rules into first-class checklist items. No lesson content deleted; all prose preserved in the new lesson files.
 
+- **LV 2.2** (2026-04-17) — **Auto-Leveling Arena.** Added adversarial
+  synthetic-validation system (4 AI roles: 🎲 Generator / 🖌️ Runner
+  (blinded) / ⚖️ Judge / 🕵️ Skeptic). Scenarios must flip ≥3 of 9
+  axes from DHYANA and ≥2 axes from every prior scenario for the
+  same lesson. Pre-registered criteria locked to git before Runner
+  starts. Skeptic's adversarial review gates every ledger entry.
+  Arena trials count toward cross-project validation: `arena:SXX`
+  is a distinct project from `DHYANA` and from other arena scenarios
+  that pass axis-diversity. Enables self-leveling when real projects
+  are scarce. Single human checkpoint at scenario approval; rest is
+  autonomous with a $2/trial cost cap. No lesson promoted in this
+  LV bump — LV 2.2 is the infrastructure release; LV 2.3+ come when
+  the first promotions occur.
+
 ## Leveling Protocol
 
 ### Validation Gate
@@ -25,6 +39,13 @@ Before a lesson can move from `pending` to `validated`, and before the level bum
 | Macro  | Workflow-level change affecting whole projects                    | 3 of 5 attempts | **≥3 distinct projects** (or 3 passes + 1 deliberate counter-test) |
 
 Project-spread is the new (LV 2.1) requirement. It prevents a single origin project from self-validating all of its lessons.
+
+**Axis-diversity (LV 2.2 refinement):** "Distinct project" for arena
+trials means the scenario's axis fingerprint differs from every prior
+arena trial for the same lesson on ≥2 of 9 axes (defined in
+`arena/axes.md`). `DHYANA` and `arena:SXX` are always distinct.
+Trials whose fingerprints do NOT meet this bar can still be run for
+diagnostic value, but cannot be counted toward promotion.
 
 ### Status field
 
