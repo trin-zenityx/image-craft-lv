@@ -131,6 +131,20 @@ Themed index: [lessons/README.md](lessons/README.md). One lesson per file.
 - [`templates/lesson-template.md`](templates/lesson-template.md) — skeleton for new lessons.
 - [`templates/batch-plan-template.md`](templates/batch-plan-template.md) — dependency-graph planner for multi-shot projects.
 
+## ARENA (synthetic validation)
+
+Auto-leveling via adversarial scenarios. See [`arena/README.md`](arena/README.md).
+
+- Run a trial via [`arena/run-playbook.md`](arena/run-playbook.md) — full
+  8-step workflow with a single human checkpoint after Generator.
+- Ledger rows from arena use `Project = arena:SXX`, `Reviewer = AI-jury`.
+- **Distinct-project rule:** a scenario counts toward validation only if
+  it flips ≥3 of 9 axes from DHYANA AND ≥2 axes from any prior arena
+  scenario for the same lesson (see [`arena/axes.md`](arena/axes.md)).
+- Four AI roles: 🎲 Generator → 🖌️ Runner (blinded) → ⚖️ Judge → 🕵️ Skeptic.
+- Lessons that void 3+ trials consecutively get flagged
+  `arena-unresolvable` and must be rewritten or retired.
+
 ## SISTER SKILLS
 
 - **`seedance-craft-lv`** — same leveling pattern, but for video (ByteDance Seedance). If the task involves video, route there.
