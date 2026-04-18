@@ -7,8 +7,13 @@
 2. Outcome must be `pass`, `partial`, or `fail`.
 3. Mirror the row into the lesson's own Validation log table.
 4. When a lesson's row count + pass ratio meets its tier threshold **across ≥2 projects** (meso) or **≥3 projects** (macro), promote it per the protocol in `CHANGELOG.md` and bump LV.
+5. Arena trials use `Project = arena:SXX` (scenario ID from `arena/scenario-bank/README.md`) and `Reviewer = AI-jury`. They count as distinct projects only if their axis fingerprint differs from every prior arena row for the same lesson on ≥2 of 9 axes (see `arena/axes.md`).
+6. `DHYANA` and any `arena:SXX` are always distinct from each other. Arena-to-arena distinctness is governed by the axis rule in item 5.
 
 ## Ledger
+
+> `Project` = `DHYANA` (real) or `arena:S##` (synthetic scenario).
+> `Reviewer` = `self` (real project) or `AI-jury` (arena).
 
 | # | Date       | Project | Shot / Context         | Lesson | Technique applied                                    | Outcome | Notes                               | Reviewer |
 |---|------------|---------|------------------------|--------|------------------------------------------------------|---------|-------------------------------------|----------|
