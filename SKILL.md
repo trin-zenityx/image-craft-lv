@@ -119,10 +119,10 @@ Themed index: [lessons/README.md](lessons/README.md). One lesson per file.
 | L04 | workflow      | pending 0/5 · macro    | Self-review before showing output                                |
 | L05 | references    | pending 0/3 · meso     | Back-view refs cannot lock face identity                         |
 | L06 | character     | pending 1/3 · meso     | Distinguish lookalike characters with immutable features         |
-| L07 | delivery      | pending 1/3 · macro    | Deliverables as reviewable artifacts, not file dumps             |
+| L07 | delivery      | pending 1/5 · macro    | Deliverables as reviewable artifacts, not file dumps             |
 | L08 | consistency   | pending 1/3 · meso     | Palette consistency within same world/time                       |
 | L09 | references    | pending 1/3 · meso     | Crop refs to isolate target element                              |
-| L10 | model-limits  | pending 1/3 · macro    | Recognize prominence floor; stop diminishing-return regens       |
+| L10 | model-limits  | pending 1/5 · macro    | Recognize prominence floor; stop diminishing-return regens       |
 | L11 | references    | pending 0/5 · macro    | Tier-1 refs designed for video-pipeline continuity               |
 
 ## TEMPLATES

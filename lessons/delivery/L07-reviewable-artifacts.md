@@ -4,7 +4,7 @@ title: Deliverables must be packaged as reviewable artifacts, not raw file dumps
 theme: delivery
 tier: macro
 status: pending
-validation: 1/3
+validation: 1/5
 tags: [delivery, storyboard, html, reviewable-artifact, packaging]
 origin_project: DHYANA
 created: 2026-04-16

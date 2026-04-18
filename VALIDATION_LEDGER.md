@@ -19,6 +19,7 @@
 | 5 | 2026-04-16 | DHYANA  | #07 v7                 | L09    | Cropped pod front 1885×1280 used as primary ref      | pass    | Silhouette finally matched          | self     |
 | 6 | 2026-04-16 | DHYANA  | g10a v2                | L06    | Adult male grey hair, distinct from g15b mother      | pass    | Reveal integrity preserved          | self     |
 | 7 | 2026-04-16 | DHYANA  | #07 v10                | L10    | Stopped at 17% face-window ratio (target 13%)        | pass    | 7-regen diminishing curve observed  | self     |
+| 8 | 2026-04-16 | DHYANA  | Tier 1+2 batch         | L07    | HTML storyboard delivered via browser open           | pass    | Confirmed CC preview mismatch       | self     |
 
 ## Pending promotions
 

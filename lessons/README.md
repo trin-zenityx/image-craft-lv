@@ -27,13 +27,13 @@
 - [L06 — Different characters in similar contexts must be made visibly distinct](character/L06-distinguishable-characters.md) · meso · pending 1/3
 
 ### Delivery (1)
-- [L07 — Deliverables must be packaged as reviewable artifacts](delivery/L07-reviewable-artifacts.md) · macro · pending 1/3
+- [L07 — Deliverables must be packaged as reviewable artifacts](delivery/L07-reviewable-artifacts.md) · macro · pending 1/5
 
 ### Workflow (1)
 - [L04 — Self-review before showing output prevents obvious failures](workflow/L04-self-review-protocol.md) · macro · pending 0/5
 
 ### Model-limits (1)
-- [L10 — Recognize prominence floor; stop diminishing-return regens](model-limits/L10-prominence-floor.md) · macro · pending 1/3
+- [L10 — Recognize prominence floor; stop diminishing-return regens](model-limits/L10-prominence-floor.md) · macro · pending 1/5
 
 ## Retrieval cheatsheet
 

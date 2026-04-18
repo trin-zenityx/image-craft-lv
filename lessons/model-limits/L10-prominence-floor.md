@@ -4,7 +4,7 @@ title: Recognize subject-prominence floor; stop diminishing-return regens
 theme: model-limits
 tier: macro
 status: pending
-validation: 1/3
+validation: 1/5
 tags: [model-prior, diminishing-returns, stop-iterating, post-processing, subject-prominence]
 origin_project: DHYANA
 created: 2026-04-16
