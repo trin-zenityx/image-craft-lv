@@ -26,15 +26,16 @@
 | 7 | 2026-04-16 | DHYANA  | #07 v10                | L10    | Stopped at 17% face-window ratio (target 13%)        | pass    | 7-regen diminishing curve observed  | self     |
 | 8 | 2026-04-16 | DHYANA  | Tier 1+2 batch         | L07    | HTML storyboard delivered via browser open           | pass    | Confirmed CC preview mismatch       | self     |
 | 9 | 2026-04-17 | arena:S02 | Iron tsuba A/B (3A vs 3B) | L09 | Cropped ref vs full-ref control, identical sparse text | partial | 3A beat 3B on 2/4 dims (arc dir + overall fidelity); Skeptic adversarial-valid | AI-jury |
+| 10 | 2026-04-17 | arena:S03 | Aztec penacho A/B (3A vs 3B) | L09 | Cropped ref vs full-ref control, 4 directional dims | **pass** | 3A beat 3B on 3/4 dims (left-fan + crown lean + overall fidelity); Skeptic adversarial-valid. **Triggers L09 promotion to validated** | AI-jury |
 
 ## Pending promotions
 
 > Auto-curated. When a lesson meets its tier threshold, list it here until the CHANGELOG promotion entry is written and the lesson's status flips to `validated`.
 
-- (none yet — all current lessons have only single-project coverage; meso/macro requires ≥2 / ≥3 projects)
+- (none pending — L09 was first candidate and has now been promoted per CHANGELOG entry below)
 
 ## Promotion history
 
 > Log each promotion event. Format: `YYYY-MM-DD · LXX · pending (X/Y) → validated · LV bump Z.N → Z.N+1 · reviewer`.
 
-- (none yet)
+- **2026-04-17** · L09 · `pending (1.5/3)` → `validated` · LV bump 2.2 → 2.3 · AI-jury · Evidence: DHYANA row #5 (pass) + arena:S02 row #9 (partial 2/4) + arena:S03 row #10 (pass 3/4)

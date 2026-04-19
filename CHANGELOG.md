@@ -26,6 +26,24 @@
   LV bump — LV 2.2 is the infrastructure release; LV 2.3+ come when
   the first promotions occur.
 
+- **LV 2.3** (2026-04-17) — **First lesson promotion · L09 validated.**
+  L09 (crop refs to isolate target element) promoted from `pending` to
+  `validated` after accumulating 2.5/3 passes across 3 axis-distinct
+  projects: 1 DHYANA pass + 1 arena:S02 partial + 1 arena:S03 pass.
+  S03's Aztec penacho A/B control (all 4 scoring dimensions were
+  directional/asymmetric) produced a clean 3/4 win for crop-ref over
+  full-ref with identical sparse text — the first arena scenario
+  explicitly designed to eliminate S02's "structural tie" problem, and
+  it worked. Total arena cost to reach first promotion: ~$0.93 across
+  3 trials (1 void + 1 partial + 1 pass). Meso promotion rule
+  (2 of 3 passes across ≥2 projects with axis spread) met decisively.
+  First empirical proof the arena system can evolve lessons without
+  real-world projects.
+
+## Promotion history
+
+- **2026-04-17** · L09 · `pending (1.5/3)` → `validated` · LV bump 2.2 → 2.3 · AI-jury (DHYANA + arena:S02 + arena:S03)
+
 ## Leveling Protocol
 
 ### Validation Gate

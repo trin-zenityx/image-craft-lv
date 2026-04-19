@@ -4,8 +4,8 @@
 
 ## Status summary
 
-- **Validated:** 0
-- **Pending:** 11
+- **Validated:** 1 (L09)
+- **Pending:** 10
 - **Retired:** 0
 
 ## By theme
@@ -17,7 +17,7 @@
 
 ### References (3)
 - [L05 — Back-view character refs cannot lock face identity](references/L05-back-view-refs.md) · meso · pending 0/3
-- [L09 — Crop reference images to isolate the target element](references/L09-crop-refs.md) · meso · pending 1.5/3 (1 DHYANA + 1 arena partial)
+- [L09 — Crop reference images to isolate the target element](references/L09-crop-refs.md) · meso · **validated** 2.5/3 (1 DHYANA pass + 1 arena partial + 1 arena pass across 3 projects)
 - [L11 — Tier 1 refs must be designed for video continuity, not just standalone beauty](references/L11-video-continuity-refs.md) · macro · pending 0/5
 
 ### Orientation (1)
