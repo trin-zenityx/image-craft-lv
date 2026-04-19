@@ -25,6 +25,7 @@
 | 6 | 2026-04-16 | DHYANA  | g10a v2                | L06    | Adult male grey hair, distinct from g15b mother      | pass    | Reveal integrity preserved          | self     |
 | 7 | 2026-04-16 | DHYANA  | #07 v10                | L10    | Stopped at 17% face-window ratio (target 13%)        | pass    | 7-regen diminishing curve observed  | self     |
 | 8 | 2026-04-16 | DHYANA  | Tier 1+2 batch         | L07    | HTML storyboard delivered via browser open           | pass    | Confirmed CC preview mismatch       | self     |
+| 9 | 2026-04-17 | arena:S02 | Iron tsuba A/B (3A vs 3B) | L09 | Cropped ref vs full-ref control, identical sparse text | partial | 3A beat 3B on 2/4 dims (arc dir + overall fidelity); Skeptic adversarial-valid | AI-jury |
 
 ## Pending promotions
 

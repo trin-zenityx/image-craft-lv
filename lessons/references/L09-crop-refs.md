@@ -4,7 +4,7 @@ title: Crop reference images to isolate the target element
 theme: references
 tier: meso
 status: pending
-validation: 1/3
+validation: 1.5/3
 tags: [reference-image, cropping, edit-mode, target-anchor]
 origin_project: DHYANA
 created: 2026-04-16
@@ -44,6 +44,7 @@ A reference image teaches the model what it shows, in proportion to how much of 
 | # | Project | Date       | Technique applied                                          | Outcome | Notes                   |
 |---|---------|------------|------------------------------------------------------------|---------|-------------------------|
 | 1 | DHYANA  | 2026-04-16 | Cropped pod front (1885×1280 of 4096×2286) used for #07 v7 | pass    | Silhouette finally matched |
+| 2 | arena:S02 | 2026-04-17 | Iron tsuba A/B control (3A crop-ref vs 3B full-ref, identical sparse text) | partial | 3A beat 3B on 2/4 dimensions (arc + overall); Skeptic adversarial-valid. 7-axis flip from DHYANA |
 
 ## Cross-references
 

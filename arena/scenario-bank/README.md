@@ -18,7 +18,8 @@ culture=east-asian-secular; scale=medium; domain=period-film-still
 
 | ID  | Lesson | Date | Fingerprint summary | Outcome |
 |-----|--------|------|---------------------|---------|
-| (none yet — first trial populates here) |
+| S01 | L09 | 2026-04-17 | 1920s American general store · female shopkeeper · warm earth · commercial-product · small-set (8/9 axes flipped from DHYANA) | **void** · lesson-unnecessary (text over-specified) |
+| S02 | L09 | 2026-04-17 | Feudal Japan tsuba workshop · male artisan · documentary · muted indigo-ochre · editorial · A/B control (7/9 flipped from DHYANA, 7/9 from S01) | **partial** · 3A beat 3B on 2/4 dims · adversarial-valid · ledger row #9 |
 
 ## DHYANA baseline (reference, not an arena scenario)
 
