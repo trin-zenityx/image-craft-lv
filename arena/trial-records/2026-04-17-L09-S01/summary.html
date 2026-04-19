@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Arena Trial 2026-04-17-L09-S01 — VOID (lesson-unnecessary)</title>
+<style>
+  :root { --bg:#0f0f12; --fg:#e8e8ec; --dim:#9aa0a6; --accent:#ffb547; --pass:#7ed6a3; --fail:#ff8a8a; --void:#f0c061; --card:#1a1a1f; --border:#2a2a30; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--fg); font:15px/1.55 -apple-system, system-ui, "Helvetica Neue", sans-serif; padding:32px; max-width:1200px; margin:0 auto; }
+  h1 { font-size:26px; font-weight:700; margin-bottom:4px; }
+  .subtitle { color:var(--dim); margin-bottom:24px; font-size:14px; }
+  .verdict-banner { background:var(--card); border-left:4px solid var(--void); padding:18px 24px; margin-bottom:28px; border-radius:4px; }
+  .verdict-label { color:var(--void); font-weight:700; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px; }
+  .verdict-headline { font-size:18px; font-weight:600; }
+  section { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:22px 26px; margin-bottom:20px; }
+  h2 { font-size:17px; font-weight:600; margin-bottom:14px; color:var(--accent); letter-spacing:0.02em; }
+  h3 { font-size:14px; font-weight:600; margin:14px 0 6px; color:var(--fg); }
+  .meta-grid { display:grid; grid-template-columns:max-content 1fr; gap:6px 16px; font-size:13px; }
+  .meta-grid dt { color:var(--dim); }
+  .meta-grid dd { font-family:"SF Mono", Menlo, monospace; }
+  .fingerprint { font-family:"SF Mono", Menlo, monospace; font-size:12px; background:#121216; padding:10px 14px; border-radius:4px; color:var(--accent); line-height:1.6; margin:8px 0; }
+  .shots { display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-top:10px; }
+  .shot { background:#121216; border:1px solid var(--border); border-radius:6px; padding:10px; }
+  .shot img { width:100%; height:auto; border-radius:4px; display:block; }
+  .shot .label { font-size:12px; color:var(--accent); font-weight:600; margin-bottom:6px; letter-spacing:0.04em; text-transform:uppercase; }
+  .shot .caption { font-size:12px; color:var(--dim); margin-top:6px; line-height:1.5; }
+  .crop-row { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:12px; }
+  .crop-row img { width:100%; border-radius:4px; }
+  .criterion { margin-bottom:14px; padding:12px 16px; background:#121216; border-radius:4px; border-left:3px solid var(--pass); }
+  .criterion.pass { border-left-color:var(--pass); }
+  .criterion.fail { border-left-color:var(--fail); }
+  .criterion .verdict { font-size:11px; color:var(--pass); font-weight:700; text-transform:uppercase; letter-spacing:0.08em; }
+  .criterion.fail .verdict { color:var(--fail); }
+  .criterion .name { font-size:14px; font-weight:600; margin-top:3px; }
+  .criterion .evidence { font-size:13px; color:var(--dim); margin-top:6px; }
+  .q-block { margin-bottom:14px; padding:12px 16px; background:#121216; border-radius:4px; border-left:3px solid var(--void); }
+  .q-block .q-label { font-size:11px; color:var(--void); font-weight:700; text-transform:uppercase; letter-spacing:0.08em; }
+  .q-block .q-title { font-size:14px; font-weight:600; margin:3px 0 8px; }
+  .q-block p { font-size:13px; color:var(--fg); }
+  ol.suggestions { padding-left:20px; margin-top:8px; }
+  ol.suggestions li { margin-bottom:8px; font-size:13px; }
+  .rationale { background:#121216; padding:14px 18px; border-radius:4px; font-size:14px; border-left:3px solid var(--void); margin-top:8px; }
+  .takeaway { background:#1f1f26; border:1px solid var(--accent); border-radius:6px; padding:20px 24px; margin-top:24px; }
+  .takeaway-label { font-size:11px; color:var(--accent); font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px; }
+  .takeaway h3 { color:var(--accent); font-size:16px; margin:0 0 8px; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  footer { color:var(--dim); font-size:12px; text-align:center; margin-top:32px; }
+</style>
+</head>
+<body>
+
+<h1>Arena Trial <code>2026-04-17-L09-S01</code></h1>
+<div class="subtitle">First-ever arena trial · Testing L09 (crop refs to isolate target element) · Scenario S01 "Vintage Radio on a 1920s General-Store Shelf"</div>
+
+<div class="verdict-banner">
+  <div class="verdict-label">🕵️ Skeptic verdict · void-lesson-unnecessary</div>
+  <div class="verdict-headline">Judge said PASS, but Skeptic voided the trial as non-decisive. The anti-Goodhart gate worked as designed.</div>
+</div>
+
+<section>
+  <h2>Trial metadata</h2>
+  <dl class="meta-grid">
+    <dt>Trial ID</dt><dd>2026-04-17-L09-S01</dd>
+    <dt>Lesson tested</dt><dd>L09 — Crop refs to isolate target element</dd>
+    <dt>Lesson tier</dt><dd>meso · pending 1/3</dd>
+    <dt>Runner model</dt><dd>nano-banana-pro</dd>
+    <dt>Images generated</dt><dd>4 shots + 3 crop files</dd>
+    <dt>Total cost</dt><dd>~$0.16 (4 × $0.04) · within $2 hard cap</dd>
+    <dt>Ledger outcome</dt><dd><strong>Voided</strong> — no ledger row · L09 validation stays 1/5</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>🎲 Scenario — axis fingerprint</h2>
+  <div class="fingerprint">
+    char=middle-aged-white-female-shopkeeper; era=1920s-art-deco;<br>
+    genre=slice-of-life; palette=warm-earth; model=nano-banana-pro;<br>
+    modality=small-4-shot-set; culture=western; scale=small-set;<br>
+    domain=commercial-product
+  </div>
+  <p style="font-size:13px;color:var(--dim);">8 of 9 axes flipped from DHYANA (only model retained). Campaign brief: "Hartwell's General Store — Radiola Display Campaign", a 4-shot vintage product shoot where the hero prop is a Bakelite tabletop radio (Radiola Model 8) that must maintain silhouette consistency across wide, medium, hero, and dial-closeup shots.</p>
+</section>
+
+<section>
+  <h2>🖌️ Runner outputs — 4 shots</h2>
+  <div class="shots">
+    <div class="shot">
+      <div class="label">Shot 01 · Wide establishing</div>
+      <img src="images/shot01-wide-establishing.jpeg" alt="Shot 01 — wide establishing of Hartwell's General Store">
+      <div class="caption">Interior store wide. Elspeth behind counter. Radiola ~8% of frame width, surrounded by goods. Used as source for the crop operation.</div>
+    </div>
+    <div class="shot">
+      <div class="label">Shot 02 · Counter medium</div>
+      <img src="images/shot02-counter-medium.jpeg" alt="Shot 02 — counter medium with radio and Elspeth">
+      <div class="caption">Elspeth leans on counter. Radio ~25% of frame. Uses cropped radio ref + Shot 01 as scene/character ref.</div>
+    </div>
+    <div class="shot">
+      <div class="label">Shot 03 · Hero product</div>
+      <img src="images/shot03-hero-product.jpeg" alt="Shot 03 — hero product shot of the Radiola">
+      <div class="caption">Three-quarter front of Radiola. Radio ~80% of frame. Uses cropped ref as primary anchor.</div>
+    </div>
+    <div class="shot">
+      <div class="label">Shot 04 · Detail dial</div>
+      <img src="images/shot04-detail-dial.jpeg" alt="Shot 04 — extreme close-up of dial and grille">
+      <div class="caption">Extreme close-up of tuning dial and burgundy grille cloth. Uses cropped ref for element lock.</div>
+    </div>
+  </div>
+
+  <h3>Crop operation (L09 artifact)</h3>
+  <div class="crop-row">
+    <div class="shot">
+      <div class="label">Crop v1</div>
+      <img src="images/shot01-radio-crop.png" alt="Initial crop attempt">
+    </div>
+    <div class="shot">
+      <div class="label">Crop v2</div>
+      <img src="images/shot01-radio-crop-v2.png" alt="Refined crop">
+    </div>
+    <div class="shot">
+      <div class="label">Crop final · used as ref</div>
+      <img src="images/shot01-radio-crop-final.png" alt="Final crop passed as primary ref for shots 2, 3, 4">
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>⚖️ Judge verdict — PASS (high confidence)</h2>
+
+  <div class="criterion pass">
+    <div class="verdict">Criterion 1 · Target element match · PASS</div>
+    <div class="name">Radiola Model 8 silhouette + dial + grille + trim match across Shots 3 and 4 vs Shot 1.</div>
+    <div class="evidence">No cabinet drift, single centered dial, burgundy grille cloth, ivory pinstripe trim all preserved. No extra dials, no boxy silhouettes, no missing grille.</div>
+  </div>
+
+  <div class="criterion pass">
+    <div class="verdict">Criterion 2 · Crop evidence · PASS</div>
+    <div class="name">Three distinct crop files in <code>images/</code>; Runner log documents PIL operation with pixel coordinates.</div>
+    <div class="evidence">Naive failure mode (passing full Shot 1 as radio ref) was explicitly avoided and documented. <code>shot01-radio-crop-final.png</code> identified as primary anchor for Shots 2–4.</div>
+  </div>
+
+  <p style="font-size:13px; color:var(--dim); margin-top:10px;">Overall: PASS + PASS → <strong>PASS</strong> per criteria table. Judge confidence: high.</p>
+</section>
+
+<section>
+  <h2>🕵️ Skeptic review — void-lesson-unnecessary</h2>
+
+  <div class="q-block">
+    <div class="q-label">Q1 · Was the scenario hard enough?</div>
+    <div class="q-title">Partial — real visual dilution, but text over-specification creates a confound</div>
+    <p>The 8% frame-width radio is genuinely dilutive in Shot 1. But the scenario front-loads an extremely detailed text description (rounded rectangular, single centered dial, burgundy woven grille, ivory pinstripe trim) that Runner echoed in every shot prompt. A naive but text-competent prompt engineer could anchor the design through verbose text alone — making the crop a reinforcement rather than a necessity. No text-only control condition exists to distinguish these mechanisms.</p>
+  </div>
+
+  <div class="q-block">
+    <div class="q-label">Q2 · Was L09 actually necessary?</div>
+    <div class="q-title">No counterfactual run exists — L09 cannot be isolated from co-applied L01/L04/L08</div>
+    <p>Runner applied L09, L01, L04, and L08 simultaneously. Without a "full-ref + same text" counterfactual, we cannot attribute the clean match to the crop operation rather than to rich text anchoring. L09's original DHYANA validation involved a case where text-alone failed across v3–v6 regens — this trial has no equivalent evidence of text-alone failure.</p>
+  </div>
+
+  <div class="q-block">
+    <div class="q-label">Q3 · Were the criteria decisive?</div>
+    <div class="q-title">Partial — Criterion 1 carries interpretive slack ("burgundy", "centered")</div>
+    <p>"Burgundy" is interpretive: the actual grille reads dark maroon/oxblood, which a strict Judge could classify as "shifted toward brown". Dial placement is "centered" in criteria but the images show right-of-center (consistent with scenario description). Criterion 2 (crop file exists) is unambiguously process-verifiable — that part is fine.</p>
+  </div>
+
+  <div class="rationale">
+    <strong>Rationale for void:</strong> The scenario cannot establish that L09 was the decisive factor. The radio's design was over-specified in text across every shot prompt, creating a confound. A trial that passes alongside rich text description does not prove the crop was necessary; it only proves the Runner followed the lesson as directed.
+  </div>
+
+  <h3>Skeptic's suggestions for the next L09 scenario</h3>
+  <ol class="suggestions">
+    <li><strong>Control condition.</strong> Scenario should mandate a paired "naive" version of Shot 3 or 4 using the full Shot 1 as sole ref with the same text — so Judge can compare crop-ref vs full-ref prop consistency directly.</li>
+    <li><strong>Reduce text description of target element.</strong> Strip the radio's brief down to name + 1–2 traits, forcing the model to rely on visual reference for design details.</li>
+    <li><strong>Raise Criterion 2 to a causal check.</strong> Not just "crop file exists" but "crop-ref shot shows meaningfully better element lock than full-ref shot".</li>
+  </ol>
+</section>
+
+<div class="takeaway">
+  <div class="takeaway-label">🎯 Why this void is a healthy first trial</div>
+  <h3>The system caught its own weak test.</h3>
+  <p>Generator wrote a plausible scenario, Runner did clean work, Judge found the criteria met — and yet the Skeptic correctly flagged that the criteria themselves did not prove the lesson was decisive. This is the anti-Goodhart gate working as designed. Had we only used Generator + Runner + Judge, this would have been a fake validation — a <code>pass</code> row in <code>VALIDATION_LEDGER</code> that didn't actually demonstrate cross-project portability of L09. The Skeptic's suggestions now feed back into scenario-bank discipline for the next L09 trial.</p>
+</div>
+
+<footer>
+  Generated 2026-04-17 · image-craft-lv arena · LV 2.2 · <a href="../../../SKILL.md">SKILL.md</a>
+</footer>
+
+</body>
+</html>
