@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Arena S04 — Multi-factor experiment (L09 × crop size)</title>
+<style>
+  :root { --bg:#0f0f12; --fg:#e8e8ec; --dim:#9aa0a6; --accent:#ffb547; --pass:#7ed6a3; --fail:#ff8a8a; --partial:#e8c56b; --card:#1a1a1f; --border:#2a2a30; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--fg); font:15px/1.55 -apple-system, system-ui, sans-serif; padding:32px; max-width:1280px; margin:0 auto; }
+  h1 { font-size:24px; font-weight:700; margin-bottom:4px; }
+  .subtitle { color:var(--dim); margin-bottom:24px; font-size:14px; }
+  .verdict-banner { background:var(--card); border-left:4px solid var(--partial); padding:18px 24px; margin-bottom:28px; border-radius:4px; }
+  .verdict-label { color:var(--partial); font-weight:700; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px; }
+  section { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:22px 26px; margin-bottom:20px; }
+  h2 { font-size:17px; color:var(--accent); margin-bottom:14px; }
+  h3 { font-size:14px; margin:14px 0 6px; }
+  .grid-5 { display:grid; grid-template-columns:repeat(5, 1fr); gap:12px; }
+  .grid-2 { display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; }
+  .variant { background:#121216; border-radius:6px; padding:10px; border-top:3px solid var(--dim); }
+  .variant.winner { border-top-color:var(--pass); }
+  .variant img { width:100%; border-radius:4px; display:block; }
+  .variant .label { font-size:11px; color:var(--accent); font-weight:600; margin-bottom:6px; letter-spacing:0.04em; text-transform:uppercase; }
+  .variant .score { font-size:12px; color:var(--dim); margin-top:6px; }
+  .variant.winner .score { color:var(--pass); font-weight:600; }
+  table { width:100%; border-collapse:collapse; font-size:13px; margin:8px 0; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); }
+  th { color:var(--dim); font-size:11px; text-transform:uppercase; letter-spacing:0.04em; }
+  .pass { color:var(--pass); font-weight:600; }
+  .partial { color:var(--partial); font-weight:600; }
+  .actions { background:#1a2a1f; border:1px solid var(--pass); border-radius:6px; padding:18px 22px; margin-top:16px; }
+  .actions h3 { color:var(--pass); margin-top:0; }
+  .held { background:#2a1f1a; border:1px solid var(--partial); border-radius:6px; padding:18px 22px; margin-top:12px; }
+  .held h3 { color:var(--partial); margin-top:0; }
+  code { background:#121216; padding:2px 6px; border-radius:3px; font-size:12px; }
+  footer { color:var(--dim); font-size:12px; text-align:center; margin-top:32px; }
+  a { color:var(--accent); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<h1>Arena <code>2026-04-17-L09-S04</code> — Multi-factor experiment</h1>
+<div class="subtitle">Victorian laboratory orrery · 6 generations · ref-strategy × crop-size matrix · Spawned L12, narrowed L09, LV 2.3 → 2.4</div>
+
+<div class="verdict-banner">
+  <div class="verdict-label">🕵️ adversarial-valid · Overall: FINDINGS (not pass/fail)</div>
+  <div>H1/H2/H3 PASS · H4 PARTIAL · Skeptic: act on H1+H3, create L12 pending (NOT count as validation), hold on H4 + arena-prompt changes</div>
+</div>
+
+<section>
+  <h2>Why this trial ran</h2>
+  <p>Human review of S03's PASS revealed a blindspot: the crop-ref shot locked the Aztec headdress but <strong>completely re-imagined the surrounding plaza</strong> (different buildings, missing pyramid, different crowd — despite identical prompt). S04 was designed as a 6-gen multi-factor experiment to test whether dual-ref (crop + full-scene) resolves this tradeoff — and whether crop resolution matters.</p>
+</section>
+
+<section>
+  <h2>6 generations + source</h2>
+  <div class="grid-5">
+    <div class="variant"><div class="label">Source · Shot 1</div><img src="images/shot1-full.jpeg" alt=""/><div class="score">baseline scene · crops extracted from this</div></div>
+    <div class="variant"><div class="label">Crop-small (353×512)</div><img src="images/crop-small.png" alt=""/><div class="score">low-res ref</div></div>
+    <div class="variant"><div class="label">Crop-large (2048×1834)</div><img src="images/crop-large.png" alt=""/><div class="score">high-res ref</div></div>
+  </div>
+  <h3>The 5 hero-shot variants (identical prompt, only ref varied)</h3>
+  <div class="grid-5">
+    <div class="variant"><div class="label">3A-small · crop-only</div><img src="images/3A-small.jpeg" alt=""/><div class="score">D3 = 0.250 (worst)</div></div>
+    <div class="variant"><div class="label">3A-large · crop-only</div><img src="images/3A-large.jpeg" alt=""/><div class="score">D3 = 1.500</div></div>
+    <div class="variant"><div class="label">3B · full-only</div><img src="images/3B.jpeg" alt=""/><div class="score">D3 = 1.875</div></div>
+    <div class="variant winner"><div class="label">3D-small · dual-ref 🏆</div><img src="images/3D-small.jpeg" alt=""/><div class="score">D3 = 2.000 (winner)</div></div>
+    <div class="variant"><div class="label">3D-large · dual-ref</div><img src="images/3D-large.jpeg" alt=""/><div class="score">D3 = 1.667</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Hypothesis verdicts</h2>
+  <table>
+    <tr><th>Hypothesis</th><th>Verdict</th><th>Evidence</th></tr>
+    <tr><td>H1 · Crop-only sacrifices scene context</td><td class="pass">PASS</td><td>3A-small D2=0.0, 3A-large D2=1.5, both &lt; 3B D2=3.0</td></tr>
+    <tr><td>H2 · Dual-ref wins composite</td><td class="pass">PASS (fragile)</td><td>3D-small D3=2.000 vs 3B D3=1.875 — margin rests on single half-point call</td></tr>
+    <tr><td>H3 · Larger crop → better target fidelity</td><td class="pass">PASS</td><td>3A-large D1=4.0 vs 3A-small D1=1.0 (dramatic gap)</td></tr>
+    <tr><td>H4 · Dual-ref robust to crop size</td><td class="partial">PARTIAL</td><td>D1 robust (both 4.0) but D2 gap: 3D-small=3.0 vs 3D-large=2.0 · possibly stochastic (N=1)</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--dim);margin-top:10px;"><strong>Unexpected interaction:</strong> In single-ref (3A), larger crop wins. In dual-ref (3D), smaller crop slightly wins. Skeptic: "large crop may compete with full-scene ref for model's reconstruction capacity."</p>
+</section>
+
+<section>
+  <h2>🕵️ Skeptic's 3 flags</h2>
+  <p style="font-size:13px;"><strong>1. Runner drift from spec:</strong> crop-small contained the barometer in upper ~25% (not isolated as specified). This happens to strengthen H1 but diverges from the test design. Spec compliance lesson.</p>
+  <p style="font-size:13px;"><strong>2. H2 margin fragile:</strong> if Judge's F4 half-point call had resolved as tie, 3B ties 3D-small at D3=2.000 and H2 drops to PARTIAL. L12's justification weakens but doesn't disappear.</p>
+  <p style="font-size:13px;"><strong>3. H4 is single-gen noise:</strong> the SE2 sconce dropout in 3D-large is N=1 evidence — needs 1-2 repeat runs before arena guidance about crop-size interaction.</p>
+</section>
+
+<section>
+  <h2>System actions taken</h2>
+
+  <div class="actions">
+    <h3>✅ Acted on now (confident findings)</h3>
+    <ul style="font-size:13px;padding-left:20px;">
+      <li>Created <strong>L12 (dual-ref for context)</strong> · pending 0/3 · origin = arena:S04 · <strong>NOT counted as validation pass</strong> per Skeptic</li>
+      <li>Narrowed <strong>L09</strong> with "Scope limits" section: crop-only insufficient when shot wider than crop; added crop-resolution sub-rule (crop long-side ≥ ½ output long-side)</li>
+      <li>Cross-referenced L09 ↔ L12 (complementary lessons)</li>
+      <li>Updated SKILL.md level: 2.3 → <strong>2.4</strong></li>
+      <li>CHANGELOG entry documenting the methodology finding</li>
+    </ul>
+  </div>
+
+  <div class="held">
+    <h3>🟡 Held (need more evidence)</h3>
+    <ul style="font-size:13px;padding-left:20px;">
+      <li>L12 validation still requires S05+ with axis-distinct scenario showing Pass</li>
+      <li>H4 finding → NOT adding arena Skeptic Q4 side-effect check yet · needs replication</li>
+      <li>3D-small vs 3D-large crop-size preference → marked "tentative" in L12 body</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>🧠 Meta: Why this matters for the arena system itself</h2>
+  <p style="font-size:13px;">This trial demonstrates the full self-improving loop working end-to-end:</p>
+  <ol style="font-size:13px;padding-left:20px;margin-top:8px;">
+    <li><strong>S03 passed</strong> validation of L09 per its criteria.</li>
+    <li><strong>Human review</strong> caught a blindspot the criteria didn't measure (scene drift).</li>
+    <li><strong>S04 was designed</strong> specifically to test whether the blindspot points to a real limitation.</li>
+    <li><strong>Skeptic voided the temptation</strong> to over-claim on N=1 findings — marked L12 as pending, not validated.</li>
+  </ol>
+  <p style="font-size:13px;margin-top:10px;">This is exactly what "self-improving with anti-Goodhart safeguards" means in practice: the system <em>validated</em> L09 honestly, <em>found</em> its limitation through continued scrutiny, and <em>refused to over-claim</em> the fix is validated until more evidence arrives.</p>
+</section>
+
+<footer>
+  Generated 2026-04-17 · image-craft-lv arena trial 4 · LV 2.4 · L12 birth
+  · <a href="../../../SKILL.md">SKILL.md</a>
+  · <a href="../2026-04-17-L09-S03/summary.html">S03 (pass · L09 promoted)</a>
+</footer>
+
+</body>
+</html>
