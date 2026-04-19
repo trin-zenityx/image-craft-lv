@@ -27,6 +27,7 @@
 | 8 | 2026-04-16 | DHYANA  | Tier 1+2 batch         | L07    | HTML storyboard delivered via browser open           | pass    | Confirmed CC preview mismatch       | self     |
 | 9 | 2026-04-17 | arena:S02 | Iron tsuba A/B (3A vs 3B) | L09 | Cropped ref vs full-ref control, identical sparse text | partial | 3A beat 3B on 2/4 dims (arc dir + overall fidelity); Skeptic adversarial-valid | AI-jury |
 | 10 | 2026-04-17 | arena:S03 | Aztec penacho A/B (3A vs 3B) | L09 | Cropped ref vs full-ref control, 4 directional dims | **pass** | 3A beat 3B on 3/4 dims (left-fan + crown lean + overall fidelity); Skeptic adversarial-valid. **Triggers L09 promotion to validated** | AI-jury |
+| 11 | 2026-04-17 | arena:S04 | Victorian orrery multi-factor (6-gen experiment) | L09+L12 | Ref strategy × crop size methodology investigation | **findings** (not pass/fail) | H1 PASS (crop-only loses scene), H2 PASS but margin-fragile (3D-small ranked #1), H3 PASS (larger crop = better target), H4 PARTIAL. Skeptic adversarial-valid with conservative recommendation: act on H1+H3, create L12 pending 0/3 (NOT counting as validation), hold on H4 and arena-prompt changes | AI-jury |
 
 ## Pending promotions
 

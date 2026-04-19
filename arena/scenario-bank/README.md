@@ -21,6 +21,7 @@ culture=east-asian-secular; scale=medium; domain=period-film-still
 | S01 | L09 | 2026-04-17 | 1920s American general store · female shopkeeper · warm earth · commercial-product · small-set (8/9 axes flipped from DHYANA) | **void** · lesson-unnecessary (text over-specified) |
 | S02 | L09 | 2026-04-17 | Feudal Japan tsuba workshop · male artisan · documentary · muted indigo-ochre · editorial · A/B control (7/9 flipped from DHYANA, 7/9 from S01) | **partial** · 3A beat 3B on 2/4 dims · adversarial-valid · ledger row #9 |
 | S03 | L09 | 2026-04-17 | Ancient Aztec temple plaza · elderly priest · fantasy · jade-terracotta · game concept · A/B control all-directional dims (6/9 flipped from DHYANA/S01/S02) | **pass** · 3A beat 3B on 3/4 dims · adversarial-valid · ledger row #10 · **triggered L09 promotion** |
+| S04 | L09+L12 | 2026-04-17 | Victorian steampunk lab · female scientist · editorial · cool-steel-gaslight · scientific-illustration · 6-gen multi-factor (ref strategy × crop size, 8/9 flipped vs DHYANA) | **findings** · H1/H2/H3 PASS + H4 PARTIAL · adversarial-valid · ledger row #11 · **methodology investigation — spawned L12, narrowed L09 scope. NOT a validation pass** |
 
 ## DHYANA baseline (reference, not an arena scenario)
 

@@ -40,6 +40,27 @@
   First empirical proof the arena system can evolve lessons without
   real-world projects.
 
+- **LV 2.4** (2026-04-17) — **Methodology investigation + L12 birth.**
+  Following LV 2.3 (L09 promoted), human review of the S03 crop-ref shot
+  revealed that crop-only references anchor the target element but
+  **completely re-imagine the surrounding scene** (S03 3A lost Templo
+  Mayor pyramid, drum players, crowd — all replaced by different
+  buildings/people despite identical prompt). Arena trial S04
+  (Victorian orrery, 6-gen multi-factor: ref-strategy × crop-size) was
+  designed to test dual-ref (crop + full-scene) as a remedy. Findings:
+  H1 PASS (crop-only sacrifices scene), H2 PASS with fragile margin
+  (3D-small ranked #1 at D3=2.000 vs 3B at 1.875), H3 PASS (larger crop
+  = better target fidelity, dramatic gap), H4 PARTIAL (one scene
+  element dropped in 3D-large, possibly stochastic). Skeptic returned
+  `adversarial-valid` with conservative recommendation: act on H1+H3
+  (narrow L09 scope, create L12 as pending), hold on H4 and arena-prompt
+  changes until replicated. **Actions:** L09 body updated with "Scope
+  limits" section explaining the crop-only tradeoff + crop-resolution
+  sub-rule; new lesson **L12 (dual-ref for context)** created as
+  `pending 0/3` with S04 as origin-experiment (not counted as
+  validation per Skeptic's fragile-margin note). Total arena cost since
+  LV 2.3: ~$0.24 for 6 multi-factor generations.
+
 ## Promotion history
 
 - **2026-04-17** · L09 · `pending (1.5/3)` → `validated` · LV bump 2.2 → 2.3 · AI-jury (DHYANA + arena:S02 + arena:S03)

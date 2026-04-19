@@ -9,7 +9,7 @@ description: >-
   to write/submit/refine a still-image prompt, plan a multi-shot image
   project, or debug drift between related images. DO NOT use for video
   (see seedance-craft-lv) or raw API calls (see kie-nano-banana).
-level: 2.3
+level: 2.4
 updated: 2026-04-17
 sister_skills: [seedance-craft-lv, kie-nano-banana]
 ---
@@ -124,6 +124,7 @@ Themed index: [lessons/README.md](lessons/README.md). One lesson per file.
 | L09 | references    | **validated** · meso   | Crop refs to isolate target element                              |
 | L10 | model-limits  | pending 1/5 · macro    | Recognize prominence floor; stop diminishing-return regens       |
 | L11 | references    | pending 0/5 · macro    | Tier-1 refs designed for video-pipeline continuity               |
+| L12 | references    | pending 0/3 · meso     | Dual-ref (crop + full) locks target AND scene — complements L09  |
 
 ## TEMPLATES
 

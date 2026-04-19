@@ -10,7 +10,7 @@ origin_project: DHYANA
 created: 2026-04-16
 last_updated: 2026-04-16
 supersedes: []
-related: [L01, L05]
+related: [L01, L05, L12]
 ---
 
 # L09 — Crop reference images to isolate the target element
@@ -47,9 +47,15 @@ A reference image teaches the model what it shows, in proportion to how much of 
 | 2 | arena:S02 | 2026-04-17 | Iron tsuba A/B control (3A crop-ref vs 3B full-ref, identical sparse text) | partial | 3A beat 3B on 2/4 dimensions (arc + overall); Skeptic adversarial-valid. 7-axis flip from DHYANA |
 | 3 | arena:S03 | 2026-04-17 | Aztec penacho A/B control (all 4 dims directional/asymmetric) | **pass** | 3A beat 3B on 3/4 dimensions (left-fan + crown lean + overall); Skeptic adversarial-valid. 6-axis flip vs DHYANA/S01/S02. **PROMOTION to validated** |
 
+## Scope limits (added from arena:S04 findings)
+
+**L09 alone is NOT sufficient when the new shot is wider than the crop.** A crop-only ref anchors the target element but unanchors everything else in the frame — model re-imagines bg/character/palette from text prior. For shots that include surrounding context, **combine L09 with L12 (dual-ref)**: pass both the crop and the full-scene source.
+
+**Crop resolution matters.** Arena:S04 found that small crops (< output resolution, e.g. 353×512px feeding a 4K hero shot) can fail to convey fine target detail even when the crop correctly isolates the element. Rule of thumb: **the crop's long side should be ≥ ½ of the output's long side**. Use the native-resolution crop of Shot 1 when possible; downscale the crop only when the generated shot is similarly small.
+
 ## Cross-references
 
-- Related lessons: L01 (ref chains), L05 (back-view refs)
+- Related lessons: L01 (ref chains), L05 (back-view refs), **L12 (dual-ref — use together when new shot wider than crop)**
 - Checklist items affected: pre-submit C.1, C.3
 
 ## Related technique
