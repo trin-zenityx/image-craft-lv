@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>image-craft-lv · บอร์ดสรุปบทเรียน (ภาษาไทย)</title>
+<style>
+  :root {
+    --bg:#0b0c10; --fg:#e8e8ec; --dim:#9aa0a6; --muted:#6b7280;
+    --accent:#ffb547; --pass:#7ed6a3; --fail:#ff8a8a; --partial:#e8c56b;
+    --gold:#f4c04a; --card:#161821; --card2:#1a1d29; --border:#272b3a;
+    --consistency:#7fb3ff; --references:#b388ff; --orientation:#4ecdc4;
+    --character:#ff8fab; --delivery:#ffb347; --workflow:#95e1d3; --model-limits:#ff6b6b;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { background:var(--bg); color:var(--fg); }
+  body {
+    font-family: "IBM Plex Sans Thai", "Sarabun", -apple-system, system-ui, "Prompt", sans-serif;
+    line-height:1.65; padding:40px 24px 60px; max-width:1280px; margin:0 auto;
+  }
+  h1 { font-size:32px; font-weight:700; letter-spacing:-0.01em; }
+  .subtitle { color:var(--dim); font-size:15px; margin-top:6px; margin-bottom:28px; }
+
+  /* Hero */
+  .hero {
+    background:linear-gradient(135deg, #1a1d29 0%, #22202a 100%);
+    border:1px solid var(--border); border-radius:14px; padding:28px 32px; margin-bottom:28px;
+    position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:""; position:absolute; top:-50px; right:-50px; width:200px; height:200px;
+    background:radial-gradient(circle, var(--gold) 0%, transparent 70%); opacity:0.12;
+  }
+  .hero-row { display:flex; align-items:flex-end; gap:40px; flex-wrap:wrap; position:relative; z-index:1; }
+  .lv-badge {
+    font-size:48px; font-weight:800; color:var(--gold);
+    display:inline-block; padding:10px 18px; border-radius:10px;
+    background:rgba(244,192,74,0.1); letter-spacing:-0.02em;
+  }
+  .hero-stats { display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; flex:1; min-width:400px; }
+  .stat-card { }
+  .stat-value { font-size:26px; font-weight:700; color:var(--accent); }
+  .stat-label { font-size:12px; color:var(--dim); text-transform:uppercase; letter-spacing:0.05em; margin-top:2px; }
+  .hero p { font-size:15px; color:var(--fg); margin-top:18px; max-width:720px; }
+
+  /* Sections */
+  section { margin-bottom:36px; }
+  h2 { font-size:22px; font-weight:700; margin-bottom:6px; }
+  h2 .emoji { margin-right:6px; }
+  .section-sub { color:var(--dim); font-size:14px; margin-bottom:16px; }
+
+  /* Journey timeline */
+  .timeline { display:grid; grid-template-columns:repeat(6, 1fr); gap:10px; }
+  .milestone {
+    background:var(--card); border:1px solid var(--border); border-radius:10px;
+    padding:14px; position:relative;
+  }
+  .milestone.current { border-color:var(--gold); background:linear-gradient(135deg, var(--card) 0%, rgba(244,192,74,0.08) 100%); }
+  .milestone .lv { font-family:"SF Mono", Menlo, monospace; font-size:11px; color:var(--gold); font-weight:700; }
+  .milestone .title { font-size:13px; font-weight:600; margin:4px 0 6px; }
+  .milestone .desc { font-size:11px; color:var(--dim); line-height:1.5; }
+
+  /* Theme groups */
+  .theme-block {
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:22px 26px; margin-bottom:18px;
+  }
+  .theme-header { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+  .theme-dot { width:14px; height:14px; border-radius:50%; flex-shrink:0; }
+  .theme-title { font-size:17px; font-weight:700; }
+  .theme-count { font-size:12px; color:var(--dim); }
+  .theme-intro { font-size:13px; color:var(--dim); margin-bottom:14px; line-height:1.6; }
+
+  /* Lesson card */
+  .lesson { background:var(--card2); border-radius:10px; padding:16px 18px; margin-bottom:10px; border-left:3px solid var(--muted); }
+  .lesson.validated { border-left-color:var(--pass); }
+  .lesson.pending { border-left-color:var(--partial); }
+  .lesson.new { border-left-color:var(--gold); }
+  .lesson-head { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:6px; }
+  .lesson-id {
+    font-family:"SF Mono", Menlo, monospace; font-weight:700;
+    background:#272b3a; padding:2px 8px; border-radius:4px; font-size:12px; color:var(--accent);
+  }
+  .lesson-title { font-size:14px; font-weight:600; flex:1; }
+  .lesson-badges { display:flex; gap:6px; flex-wrap:wrap; }
+  .badge {
+    font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px;
+    text-transform:uppercase; letter-spacing:0.05em;
+  }
+  .badge-validated { background:rgba(126,214,163,0.18); color:var(--pass); }
+  .badge-pending { background:rgba(232,197,107,0.18); color:var(--partial); }
+  .badge-new { background:rgba(244,192,74,0.22); color:var(--gold); }
+  .badge-tier { background:#272b3a; color:var(--dim); }
+  .lesson-tldr { font-size:13px; color:var(--fg); margin-top:4px; line-height:1.7; }
+  .lesson-example { font-size:12px; color:var(--dim); margin-top:8px; padding:8px 12px; background:#0f1117; border-radius:6px; border-left:2px solid #272b3a; }
+  .lesson-example .ex-label { color:var(--accent); font-weight:600; margin-right:6px; }
+
+  /* Arena system */
+  .arena-block { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:24px 28px; }
+  .roles-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; margin-top:14px; }
+  .role {
+    background:var(--card2); border-radius:10px; padding:14px;
+    text-align:center; border-top:3px solid;
+  }
+  .role.gen { border-top-color:#64b5f6; }
+  .role.run { border-top-color:#ffb547; }
+  .role.judge { border-top-color:#81c784; }
+  .role.skeptic { border-top-color:#e57373; }
+  .role .icon { font-size:28px; }
+  .role .name { font-size:13px; font-weight:700; margin:4px 0 2px; }
+  .role .job { font-size:11px; color:var(--dim); line-height:1.5; }
+
+  .principles { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:8px; }
+  .principle { background:var(--card2); border-radius:10px; padding:14px; border-left:3px solid var(--accent); }
+  .principle-num { font-size:10px; color:var(--accent); font-weight:700; letter-spacing:0.1em; }
+  .principle-text { font-size:13px; margin-top:2px; line-height:1.6; }
+
+  /* Footer */
+  footer { margin-top:40px; padding-top:20px; border-top:1px solid var(--border); color:var(--dim); font-size:12px; text-align:center; }
+  a { color:var(--accent); text-decoration:none; }
+  code { font-family:"SF Mono", Menlo, monospace; font-size:12px; background:#0f1117; padding:1px 5px; border-radius:3px; color:var(--accent); }
+
+  @media (max-width: 800px) {
+    .hero-stats { grid-template-columns:repeat(2, 1fr); }
+    .timeline { grid-template-columns:1fr 1fr; }
+    .roles-grid { grid-template-columns:1fr 1fr; }
+    .principles { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<h1>📚 image-craft-lv · บอร์ดสรุปบทเรียน</h1>
+<div class="subtitle">สกิล Claude ที่เรียนรู้และเลเวลอัปได้เอง สำหรับการ prompt ภาพนิ่ง · สรุป ณ 17 เม.ย. 2026 · LV 2.4</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-row">
+    <div>
+      <div class="lv-badge">LV 2.4</div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card"><div class="stat-value">12</div><div class="stat-label">บทเรียนทั้งหมด</div></div>
+      <div class="stat-card"><div class="stat-value" style="color:var(--pass)">1</div><div class="stat-label">Validated ✓</div></div>
+      <div class="stat-card"><div class="stat-value" style="color:var(--partial)">11</div><div class="stat-label">Pending (รอพิสูจน์)</div></div>
+      <div class="stat-card"><div class="stat-value">~$1.17</div><div class="stat-label">Arena cost รวม</div></div>
+    </div>
+  </div>
+  <p>สกิลนี้ไม่ใช่แค่คู่มือตายๆ — เป็นระบบที่ <strong>เรียนรู้จากความผิดพลาด</strong> ทุกครั้งที่เจน แล้ว <strong>เลเวลอัปด้วยหลักฐาน</strong> (ต้องผ่านการทดสอบข้าม ≥2 โปรเจกต์จริงถึงจะเลื่อนระดับ) · ระบบ arena ที่เราสร้างช่วยให้เลเวลอัปได้แม้ไม่มีโปรเจกต์จริง ด้วย 4 AI roles ที่กันโกงกันเอง</p>
+</div>
+
+<!-- JOURNEY -->
+<section>
+  <h2><span class="emoji">📖</span>เส้นทางวิวัฒนาการ (LV 1 → LV 2.4)</h2>
+  <div class="section-sub">แต่ละเลเวลไม่ใช่แค่เพิ่มบทเรียน แต่คือ <em>โครงสร้างใหม่</em> ที่ทำให้สกิลทำงานดีขึ้น</div>
+  <div class="timeline">
+    <div class="milestone">
+      <div class="lv">LV 1</div>
+      <div class="title">Text-only era</div>
+      <div class="desc">ใช้ prompt ยาวๆ อย่างเดียว เชื่อว่าโมเดลจะตีความเหมือนเดิมทุกครั้ง · ไม่มี discipline</div>
+    </div>
+    <div class="milestone">
+      <div class="lv">LV 2</div>
+      <div class="title">Lessons + Validation</div>
+      <div class="desc">เกิดบทเรียน 11 อันจากโปรเจกต์ DHYANA · ตั้ง Validation Gate (micro/meso/macro tiers)</div>
+    </div>
+    <div class="milestone">
+      <div class="lv">LV 2.1</div>
+      <div class="title">Modular redesign</div>
+      <div class="desc">รีดไซน์เป็น engine + lessons/ + ledger · เพิ่มกฎ <strong>cross-project</strong> (ต้องผ่าน ≥2 projects)</div>
+    </div>
+    <div class="milestone">
+      <div class="lv">LV 2.2</div>
+      <div class="title">Arena birth</div>
+      <div class="desc">สร้างระบบทดสอบสังเคราะห์ 4 AI roles + anti-Goodhart · เลเวลอัปได้แม้ไม่มีโปรเจกต์จริง</div>
+    </div>
+    <div class="milestone">
+      <div class="lv">LV 2.3</div>
+      <div class="title">First promotion</div>
+      <div class="desc"><strong>L09 ได้ validated!</strong> · 2.5/3 passes ข้าม 3 projects (DHYANA+S02+S03) · arena loop ปิดครบวง</div>
+    </div>
+    <div class="milestone current">
+      <div class="lv">LV 2.4 ← ตอนนี้</div>
+      <div class="title">L12 born</div>
+      <div class="desc">Review หลัง L09 pass เจอ blindspot · S04 พิสูจน์ว่า dual-ref เสริม L09 · L12 เกิดใหม่</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section>
+  <h2><span class="emoji">⚡</span>6 หลักการพื้นฐาน (ไม่เปลี่ยนตาม LV)</h2>
+  <div class="section-sub">เป็นสันกระดูกของสกิล — บทเรียนทั้งหมดขยายจาก 6 ข้อนี้</div>
+  <div class="principles">
+    <div class="principle">
+      <div class="principle-num">หลักที่ 1</div>
+      <div class="principle-text"><strong>ภาพที่ match กันพอใช้ดีกว่าภาพสวยที่ไม่ match</strong> — คุมให้ทุก shot ดูเป็นโลกเดียวกันก่อนค่อยทำให้สวย</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">หลักที่ 2</div>
+      <div class="principle-text"><strong>ความกำกวม = โมเดลเลือกเอง ไม่ใช่คุณ</strong> — ทุกรายละเอียดที่ไม่ได้บอก = สุ่ม จงบอกทุกอย่างที่สำคัญ</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">หลักที่ 3</div>
+      <div class="principle-text"><strong>Reference ภาพไม่ใช่ของเสริม — เป็นพื้นฐาน</strong> — โปรเจกต์หลายช็อตต้องออกแบบ ref chain ก่อนเจนภาพแรก</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">หลักที่ 4</div>
+      <div class="principle-text"><strong>ตัวเลข &gt; คำคุณศัพท์</strong> — "2.1 เมตร" ไม่ใช่ "ยาว" · "85mm" ไม่ใช่ "telephoto" · "40 คอลัมน์" ไม่ใช่ "เยอะ"</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">หลักที่ 5</div>
+      <div class="principle-text"><strong>Negative-state ความล้มเหลวที่พบบ่อย</strong> — "no age markers, no text, no watermark, no [failure mode ที่เคยเจอ]"</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">หลักที่ 6</div>
+      <div class="principle-text"><strong>Self-review ไม่ใช่ optional</strong> — เป็นขั้นสุดท้ายของการเจน ไม่ใช่ "nice-to-have"</div>
+    </div>
+  </div>
+</section>
+
+<!-- LESSONS: grouped by theme -->
+<section>
+  <h2><span class="emoji">📚</span>12 บทเรียน จัดกลุ่มตามธีม</h2>
+  <div class="section-sub">สีซ้ายบอกสถานะ: <span style="color:var(--pass)">●</span> validated · <span style="color:var(--partial)">●</span> pending · <span style="color:var(--gold)">●</span> ใหม่</div>
+
+  <!-- References -->
+  <div class="theme-block">
+    <div class="theme-header">
+      <div class="theme-dot" style="background:var(--references)"></div>
+      <div class="theme-title">🔗 References (การใช้ภาพ reference)</div>
+      <div class="theme-count">· 4 บทเรียน (1 validated, 3 pending)</div>
+    </div>
+    <div class="theme-intro">หัวใจของการคุมความสม่ำเสมอใน multi-shot projects — ทุกบทเรียนในกลุ่มนี้ว่าด้วย "ใช้ ref ยังไงให้ถูกวิธี"</div>
+
+    <div class="lesson validated">
+      <div class="lesson-head">
+        <span class="lesson-id">L09</span>
+        <div class="lesson-title">ถ้าต้อง lock element เฉพาะ — crop ภาพ ref ให้เห็นแค่ element นั้น</div>
+        <div class="lesson-badges">
+          <span class="badge badge-validated">Validated 2.5/3</span>
+          <span class="badge badge-tier">meso</span>
+        </div>
+      </div>
+      <div class="lesson-tldr">การส่ง ref เป็นภาพฉากเต็มทำให้ model สับสน (ต้อง "เลือก" element เอง) · ครอปไว้ให้ element นั้นเต็มเฟรม = สัญญาณชัดเจน 100%</div>
+      <div class="lesson-example"><span class="ex-label">ตัวอย่าง:</span> ถ้าจะให้วิทยุตัวนี้โผล่ในทุกช็อต — ครอปวิทยุจากภาพแรกไว้ แล้วส่ง "ภาพครอป" เป็น ref · ห้ามส่งภาพฉากร้านทั้งภาพ</div>
+    </div>
+
+    <div class="lesson new">
+      <div class="lesson-head">
+        <span class="lesson-id">L12</span>
+        <div class="lesson-title">ถ้าช็อตกว้างกว่าครอป — ใช้ dual-ref (ครอป + ภาพฉากเต็ม)</div>
+        <div class="lesson-badges">
+          <span class="badge badge-new">เพิ่งสร้าง</span>
+          <span class="badge badge-pending">Pending 0/3</span>
+          <span class="badge badge-tier">meso</span>
+        </div>
+      </div>
+      <div class="lesson-tldr">L09 ครอปช่วย lock element แต่ background รอบๆ <strong>สูญเสีย</strong> ไปด้วย (โมเดล "คิดใหม่") · แก้โดยส่ง <strong>2 refs</strong>: ครอป + ภาพฉากเต็ม</div>
+      <div class="lesson-example"><span class="ex-label">ค้นพบได้ไง:</span> หลัง L09 ผ่าน arena · คุณรีวิวภาพ 3A แล้วเห็นว่าฉากเปลี่ยนไป (ไม่มีพีระมิดแล้ว!) · S04 ทดสอบ 6 generations พิสูจน์ว่า dual-ref ดีกว่าจริง</div>
+    </div>
+
+    <div class="lesson pending">
+      <div class="lesson-head">
+        <span class="lesson-id">L05</span>
+        <div class="lesson-title">Ref มุมหลังตัวละคร ใช้ lock หน้าไม่ได้</div>
+        <div class="lesson-badges">
+          <span class="badge badge-pending">Pending 0/3</span>
+          <span class="badge badge-tier">meso</span>
+        </div>
+      </div>
+      <div class="lesson-tldr">ตัวละครที่โผล่หลายมุม (หน้า/ข้าง/หลัง/ในตู้) ต้อง <strong>มี anchor ภาพต่อมุม</strong> · ภาพ back-view บอกแค่เสื้อผ้า/ท่า ไม่บอกหน้า</div>
+      <div class="lesson-example"><span class="ex-label">ตัวอย่าง:</span> DHYANA มีภาพแม่มุมหลัง (หุม) ใช้เป็น ref · ตอนจะเจนหน้าแม่ในโพด → หน้าออกมาคนละคน (model ไม่เห็นหน้าจาก back-view)</div>
+    </div>
+
+    <div class="lesson pending">
+      <div class="lesson-head">
+        <span class="lesson-id">L11</span>
+        <div class="lesson-title">Tier-1 refs สำหรับวิดีโอ ต้องออกแบบให้เข้ากันระหว่าง ref ด้วย</div>
+        <div class="lesson-badges">
+          <span class="badge badge-pending">Pending 0/5</span>
+          <span class="badge badge-tier">macro</span>
+        </div>
+      </div>
+      <div class="lesson-tldr">ภาพ ref สวยแยกกันไม่พอ — ใน video มันต้อง <strong>interpolate</strong> ระหว่างกัน · pose/angle/bg ต้อง compatible ทุกคู่ที่จะใช้รวมกัน</div>
+      <div class="lesson-example"><span class="ex-label">ตัวอย่าง:</span> DHYANA ผีเสื้อ + มือพระ · ภาพมือในท่า mudra vs ภาพยื่นมือ → Seedance interpolate ไม่ได้ → anatomy break</div>
+    </div>
+  </div>
+
+  <!-- Consistency -->
+  <div class="theme-block">
+    <div class="theme-header">
+      <div class="theme-dot" style="background:var(--consistency)"></div>
+      <div class="theme-title">🎨 Consistency (ความสม่ำเสมอข้ามช็อต)</div>
+      <div class="theme-count">· 3 บทเรียน (ทั้งหมด pending)</div>
+    </div>
+    <div class="theme-intro">ทำให้ "โลกเดียวกัน" ดูเป็นโลกเดียวกันทุกช็อต — ไม่ว่าจะคน/สถานที่/สี/ผิวสัมผัส</div>
+
+    <div class="lesson pending">
+      <div class="lesson-head">
+        <span class="lesson-id">L01</span>
+        <div class="lesson-title">Ref chain ดีกว่า text-only สำหรับ multi-shot</div>
+        <div class="lesson-badges">
+          <span class="badge badge-pending">Pending 1/5</span>
+          <span class="badge badge-tier">macro</span>
+        </div>
+      </div>
+      <div class="lesson-tldr">ใช้ข้อความบรรยายซ้ำๆ ไม่พอ — ต้องทำ <strong>dependency graph</strong> · master anchors ก่อน → secondary อ้าง master → tertiary อ้างทั้งสอง</div>
+      <div class="lesson-example"><span class="ex-label">ตัวอย่าง:</span> DHYANA shot #1 กับ #2 ของพระ Tenzin — prompt เดียวกันก็ออกมาคนละคน เพราะ model ตีความ "face, shaved scalp, saffron robe" ต่างกันทุกครั้ง · ต้องใช้ภาพ ref</div>
+    </div>
+
+    <div class="lesson pending">
+      <div class="lesson-head">
+        <span class="lesson-id">L03</span>
+        <div class="lesson-title">Opaque vs transparent — ต้องใช้คำศัพท์ตรงกันทุกช็อต</div>
+        <div class="lesson-badges">
+          <span class="badge badge-pending">Pending 1/3</span>
+          <span class="badge badge-tier">meso</span>
+        </div>
+      </div>
+      <div class="lesson-tldr">คำว่า "frosted panels" กับ "opaque body with face-window" → โมเดลเจนต่างกันคนละแบบ · ต้อง <strong>ล็อคคำศัพท์ design-language</strong> ใช้เหมือนกันทุกที่</div>
+      <div class="lesson-example"><span class="ex-label">ตัวอย่าง:</span> DHYANA pod — บางช็อตใช้ "transparent panels" บางช็อตใช้ "frosted" → บางช็อตตัวโปร่ง บางช็อตตัวทึบ → ไม่ match</div>
+    </div>
+
+    <div class="lesson pending">
+      <div class="lesson-head">
+        <span class="lesson-id">L08</span>
+        <div class="lesson-title">Palette ใน world-time เดียวกัน ต้อง state ชัดเจน</div>
+        <div class="lesson-badges">
+          <span class="badge badge-pending">Pending 1/3</span>
+          <span class="badge badge-tier">meso</span>
+        </div>
+      </div>
+      <div class="lesson-tldr">ฉาก "flashback อดีต" กับ "ปัจจุบัน" ต้องตั้งใจให้ palette ต่าง — แต่ <strong>ภายใน flashback ทุกช็อต ต้องตรงกัน</strong> · "dusk" ไม่พอ · ต้องใช้ "warm pink fading to amber"</div>
+      <div class="lesson-example"><span class="ex-label">ตัวอย่าง:</span> DHYANA #04 ฉาก memory (warm amber) vs #08 ฉากเดียวกัน (cool blue) → ดูเหมือนคนละสถานที่</div>
+    </div>
+  </div>
+
+  <!-- Orientation -->
+  <div class="theme-block">
+    <div class="theme-header">
+      <div class="theme-dot" style="background:var(--orientation)"></div>
+      <div class="theme-title">🧭 Orientation (ทิศทางและมุม)</div>
+      <div class="theme-count">· 1 บทเรียน (pending)</div>
+    </div>
+
+    <div class="lesson pending">
+      <div class="lesson-head">
+        <span class="lesson-id">L02</span>
+        <div class="lesson-title">หน้า/ตัว ที่อยู่ในกล่องหรือกระจก — ต้องบอกทิศทางชัดเจน</div>
+        <div class="lesson-badges">
+          <span class="badge badge-pending">Pending 1/3</span>
+          <span class="badge badge-tier">meso</span>
+        </div>
+      </div>
+      <div class="lesson-tldr">โมเดล default = "หน้าหันไปทางช่องแก้ว" (human-logic) · ถ้าอยากให้หันทางอื่น → ต้องบอก: (1) subject orientation (2) camera position (3) ผู้ชมเห็นอะไรผ่านกระจก</div>
+      <div class="lesson-example"><span class="ex-label">ตัวอย่าง:</span> DHYANA #7 หน้าพระใน pod → สั่งแค่ "face visible through window" → หน้าหันออกด้านข้างทุกเวอร์ชัน · แก้โดย "face UPWARD to ceiling, body supine, camera top-mounted"</div>
+    </div>
+  </div>
+
+  <!-- Character -->
+  <div class="theme-block">
+    <div class="theme-header">
+      <div class="theme-dot" style="background:var(--character)"></div>
+      <div class="theme-title">🧑 Character (ตัวละคร)</div>
+      <div class="theme-count">· 1 บทเรียน (pending)</div>
+    </div>
+
+    <div class="lesson pending">
+      <div class="lesson-head">
+        <span class="lesson-id">L06</span>
+        <div class="lesson-title">ตัวละคร 2 คนใน context คล้ายกัน — ต้องบอก immutable features ให้ชัด</div>
+        <div class="lesson-badges">
+          <span class="badge badge-pending">Pending 1/3</span>
+          <span class="badge badge-tier">meso</span>
+        </div>
+      </div>
+      <div class="lesson-tldr">ถ้าเรา prompt ไม่ระบุ model จะเจน "หน้า default" ซึ่งมักซ้ำกัน · ต้องบอก gender + ethnicity + hair + facial structure ทุกคน · แม้แต่ "ตัวประกอบ"</div>
+      <div class="lesson-example"><span class="ex-label">ตัวอย่าง:</span> DHYANA g10a (ตัวประกอบ นอนใน pod Act 3) vs g15b (แม่พระเอก Act 4) → ทั้งคู่ออกมาเป็น "ผู้หญิงผมดำ" คล้ายกัน → ทำลาย reveal</div>
+    </div>
+  </div>
+
+  <!-- Delivery -->
+  <div class="theme-block">
+    <div class="theme-header">
+      <div class="theme-dot" style="background:var(--delivery)"></div>
+      <div class="theme-title">📦 Delivery (การส่งมอบงาน)</div>
+      <div class="theme-count">· 1 บทเรียน (pending)</div>
+    </div>
+
+    <div class="lesson pending">
+      <div class="lesson-head">
+        <span class="lesson-id">L07</span>
+        <div class="lesson-title">ถ้าเจนเกิน 3 ภาพ — ต้องห่อเป็น reviewable artifact (HTML, PDF)</div>
+        <div class="lesson-badges">
+          <span class="badge badge-pending">Pending 1/5</span>
+          <span class="badge badge-tier">macro</span>
+        </div>
+      </div>
+      <div class="lesson-tldr">อย่าส่งเป็น "20 ไฟล์ในโฟลเดอร์" ให้ user เปิดทีละไฟล์ · ห่อเป็น HTML storyboard 1 ไฟล์ที่มีทุกภาพ + label + caption → เปิดครั้งเดียว review ได้หมด</div>
+      <div class="lesson-example"><span class="ex-label">ตัวอย่าง:</span> DHYANA Tier 1+2 22 ภาพ · ส่งเป็น folder → user ต้องเปิดทีละไฟล์ แล้วจำว่าภาพไหน scene ไหน · แก้โดยทำ HTML embedded thumbnails · เปิดด้วย <code>open path.html</code></div>
+    </div>
+  </div>
+
+  <!-- Workflow -->
+  <div class="theme-block">
+    <div class="theme-header">
+      <div class="theme-dot" style="background:var(--workflow)"></div>
+      <div class="theme-title">🔁 Workflow (ขั้นตอนการทำงาน)</div>
+      <div class="theme-count">· 1 บทเรียน (pending)</div>
+    </div>
+
+    <div class="lesson pending">
+      <div class="lesson-head">
+        <span class="lesson-id">L04</span>
+        <div class="lesson-title">Self-review ทุกภาพก่อนส่ง — อย่าให้ user เป็นคนเจอ bug</div>
+        <div class="lesson-badges">
+          <span class="badge badge-pending">Pending 0/5</span>
+          <span class="badge badge-tier">macro</span>
+        </div>
+      </div>
+      <div class="lesson-tldr">หลังเจนเสร็จ ต้องรัน Post-generate Self-review 7 ข้อ: anatomical / orientation / design-drift / internal consistency / intent fulfillment / <strong>proportion vs ORIGINAL ref</strong> / <strong>full-frame scan หลัง regen</strong></div>
+      <div class="lesson-example"><span class="ex-label">ตัวอย่าง:</span> DHYANA Tier 1 เจน 12 ภาพ · ไม่รีวิวก่อนส่ง · user เจอ #7 หน้าหันผิดก่อน → เสียเวลารอบที่ 2 · แก้โดย AI ตรวจตาเองก่อนเสมอ</div>
+    </div>
+  </div>
+
+  <!-- Model-limits -->
+  <div class="theme-block">
+    <div class="theme-header">
+      <div class="theme-dot" style="background:var(--model-limits)"></div>
+      <div class="theme-title">🛑 Model Limits (ข้อจำกัดของโมเดล)</div>
+      <div class="theme-count">· 1 บทเรียน (pending)</div>
+    </div>
+
+    <div class="lesson pending">
+      <div class="lesson-head">
+        <span class="lesson-id">L10</span>
+        <div class="lesson-title">รู้จัก model's floor — หยุด regen เมื่อ improvement เริ่มลด</div>
+        <div class="lesson-badges">
+          <span class="badge badge-pending">Pending 1/5</span>
+          <span class="badge badge-tier">macro</span>
+        </div>
+      </div>
+      <div class="lesson-tldr">โมเดลมี semantic prior (เช่น "หน้าต้อง readable") ที่ prompt tuning ชนะไม่ได้ · ถ้า regen ครั้งล่าสุดปรับปรุงน้อยกว่าครั้งก่อน = ใกล้ floor · <strong>หยุด, ไม่พยายามต่อ</strong></div>
+      <div class="lesson-example"><span class="ex-label">ตัวอย่าง:</span> DHYANA #07 ต้องการ face-window = 13% · พยายาม 7 regens · ผลคือ 31% → 20% → 19% → 17% (หยุดที่ 17%) · burn เครดิต 7 รอบเพื่อได้ 2% ไม่คุ้ม</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARENA SYSTEM -->
+<section>
+  <h2><span class="emoji">🏟️</span>Arena System — ระบบทดสอบที่ทำให้เลเวลอัปได้เอง</h2>
+  <div class="section-sub">ระบบใหม่ที่เราสร้างใน LV 2.2 — จำลองโปรเจกต์สังเคราะห์เพื่อ validate lesson โดยไม่ต้องมีโปรเจกต์จริง</div>
+  <div class="arena-block">
+    <p style="font-size:14px;line-height:1.7;">Lesson จะ <strong>promote</strong> จาก pending → validated ได้ต่อเมื่อ: meso tier = 2 passes ข้าม ≥2 projects · macro tier = 3 passes ข้าม ≥3 projects · Arena สร้าง "projects สังเคราะห์" ที่ต่างจาก DHYANA เดิม ≥3 แกน (จาก 9 แกน: character/era/genre/palette/model/modality/culture/scale/domain)</p>
+
+    <div class="roles-grid">
+      <div class="role gen">
+        <div class="icon">🎲</div>
+        <div class="name">Generator</div>
+        <div class="job">ออกแบบ scenario ใหม่ให้ต่างจากโปรเจกต์เดิม ≥3 แกน + เขียน pass criteria ล็อคไว้ก่อน</div>
+      </div>
+      <div class="role run">
+        <div class="icon">🖌️</div>
+        <div class="name">Runner (blinded)</div>
+        <div class="job">ทำงานเหมือน client จริง ไม่รู้ว่าทดสอบ lesson ไหน · เรียก API สร้างภาพจริง</div>
+      </div>
+      <div class="role judge">
+        <div class="icon">⚖️</div>
+        <div class="name">Judge</div>
+        <div class="job">ให้คะแนนผลลัพธ์ตาม criteria ที่ล็อคไว้ · ห้ามแก้ criteria ย้อนหลัง</div>
+      </div>
+      <div class="role skeptic">
+        <div class="icon">🕵️</div>
+        <div class="name">Skeptic (anti-Goodhart)</div>
+        <div class="job">ตั้งคำถาม "test ยากพอไหม" "lesson จำเป็นจริงไหม" · void trial ได้แม้ Judge ให้ pass</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; padding:16px 18px; background:var(--card2); border-radius:10px; font-size:13px; line-height:1.7;">
+      <strong style="color:var(--accent);">จุดแข็งของระบบ:</strong> 4 roles ต้อง "เห็นด้วย" ถึงจะนับเป็น pass · Skeptic คือกำแพงกัน Goodhart (เราไม่อยาก validate lesson ปลอมเพราะ scenario ออกแบบง่ายเกิน) · ทุก scenario ต้อง <strong>flip ≥3 แกน</strong> จาก baseline เดิมเพื่อให้เป็น "project ต่าง" จริง
+    </div>
+
+    <div style="margin-top:12px; padding:16px 18px; background:var(--card2); border-radius:10px; font-size:13px; line-height:1.7;">
+      <strong style="color:var(--accent);">4 trials ที่รันไปแล้ว:</strong>
+      <ul style="padding-left:20px; margin-top:8px;">
+        <li><strong>S01</strong> (ร้านของชำ 1920s) → <span style="color:var(--partial)">void</span> · Skeptic จับได้ว่า text บรรยายเยอะเกิน แยกไม่ออกว่าเพราะ crop หรือเพราะ text</li>
+        <li><strong>S02</strong> (tsuba ญี่ปุ่น) → <span style="color:var(--partial)">partial</span> · มี A/B control + text น้อยลง · 3A ชนะ 3B 2/4 dims</li>
+        <li><strong>S03</strong> (หัวนักบวช Aztec) → <span style="color:var(--pass)">PASS</span> · 4 dimensions เป็น directional/asymmetric · 3A ชนะ 3/4 · <strong>L09 promote</strong></li>
+        <li><strong>S04</strong> (Victorian orrery) → <span style="color:var(--partial)">findings</span> · 6-gen multi-factor · H1/H2/H3 pass + H4 partial · <strong>L12 เกิด</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SUMMARY -->
+<section>
+  <h2><span class="emoji">🎯</span>สรุป — สิ่งที่สกิลเรียนรู้แล้วและยังเรียนรู้อยู่</h2>
+
+  <div style="background:linear-gradient(135deg, rgba(126,214,163,0.08) 0%, rgba(244,192,74,0.04) 100%); border:1px solid var(--pass); border-radius:14px; padding:22px 26px; margin-bottom:16px;">
+    <h3 style="color:var(--pass); font-size:16px; margin-bottom:10px;">✅ เรียนรู้และพิสูจน์แล้ว — L09</h3>
+    <p style="font-size:13px; line-height:1.7;">Crop ref image ให้ target element เต็มเฟรม = สัญญาณชัดเจน · ผ่าน <strong>3 projects</strong> (DHYANA + arena:S02 + arena:S03) · แต่มี <strong>scope limit</strong> ที่ค้นพบภายหลัง: ถ้าช็อตใหม่กว้างกว่า crop → bg drift · แก้ด้วย L12</p>
+  </div>
+
+  <div style="background:linear-gradient(135deg, rgba(232,197,107,0.08) 0%, rgba(244,192,74,0.04) 100%); border:1px solid var(--partial); border-radius:14px; padding:22px 26px;">
+    <h3 style="color:var(--partial); font-size:16px; margin-bottom:10px;">🟡 เรียนรู้แล้ว รอพิสูจน์ — 11 บทเรียน</h3>
+    <p style="font-size:13px; line-height:1.7;">ทั้ง 11 ข้อที่เหลือมีหลักฐาน "เคยได้ผลใน DHYANA" แต่ยังไม่ผ่าน cross-project validation · ระบบ <strong>ไม่ยอม upgrade</strong> ระดับจนกว่าจะมีหลักฐานจาก project ≥2 อัน · นี่คือกฎที่ป้องกันการ over-claim</p>
+
+    <div style="margin-top:12px; font-size:13px;">
+      <strong style="color:var(--accent);">ใกล้ promote ที่สุด (meso, มี 1 pass แล้ว):</strong>
+      <span style="color:var(--dim);">L02, L03, L06, L08, L09 (validated) · ขาดแค่ 1 pass อีกจาก project ที่ 2</span>
+    </div>
+    <div style="margin-top:6px; font-size:13px;">
+      <strong style="color:var(--accent);">ต้องการข้อมูลมากกว่า:</strong>
+      <span style="color:var(--dim);">L01 (macro 1/5) · L07, L10 (macro 1/5) · L04, L11 (macro 0/5) · L05, L12 (meso 0/3)</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>image-craft-lv · <a href="https://github.com/trin-zenityx/image-craft-lv">github.com/trin-zenityx/image-craft-lv</a> · LV 2.4 · 12 lessons · 4 arena trials · Generated 2026-04-17</div>
+  <div style="margin-top:6px;"><a href="SKILL.md">SKILL.md</a> · <a href="CHANGELOG.md">CHANGELOG</a> · <a href="VALIDATION_LEDGER.md">Validation Ledger</a> · <a href="arena/README.md">Arena</a></div>
+</footer>
+
+</body>
+</html>
