@@ -4,11 +4,11 @@ title: Reference chains beat text-only for multi-shot sets
 theme: consistency
 tier: macro
 status: pending
-validation: 1/5
+validation: 2/5
 tags: [multi-shot, reference-chain, dependency-graph, character, location]
 origin_project: DHYANA
 created: 2026-04-15
-last_updated: 2026-04-15
+last_updated: 2026-05-05
 supersedes: []
 related: [L05, L09, L11]
 ---
@@ -44,6 +44,7 @@ Build dependency graph before the first generation. Generate master anchors with
 | # | Project | Date       | Technique applied                                | Outcome | Notes                |
 |---|---------|------------|--------------------------------------------------|---------|----------------------|
 | 1 | DHYANA  | 2026-04-15 | Ref chain for Tier 1 v2 (12 regenerated images)  | pass    | Face + arch locked   |
+| 2 | Jira / Mila photobooks (KIE state file evidence) | 2026-05-05 | Audit of `~/.kie/tasks/*.json` confirmed 2-ref `master + hero` chain across Jira Set A/B/C and Mila Set B (9-13 plates each). Cross-validated against Alisa session. | pass | KIE state files show the 2-ref pattern was used and held identity across multi-plate sets in 2 distinct projects (Jira, Mila). Counts as cross-project validation evidence for the macro tier. |
 
 ## Cross-references
 

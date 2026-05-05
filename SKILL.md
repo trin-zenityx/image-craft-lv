@@ -9,16 +9,16 @@ description: >-
   to write/submit/refine a still-image prompt, plan a multi-shot image
   project, or debug drift between related images. DO NOT use for video
   (see seedance-craft-lv) or raw API calls (see kie-nano-banana).
-level: 2.4
-updated: 2026-04-17
-sister_skills: [seedance-craft-lv, kie-nano-banana]
+level: 2.7
+updated: 2026-05-05
+sister_skills: [seedance-craft-lv, kie-nano-banana, internal-board-builder]
 ---
 
 # image-craft-lv
 
 > A living skill. Every generation teaches something; validated lessons level this skill up. Future-you reads this before writing any still-image prompt.
 
-## Current Level: **LV 2** (redesign LV 2.1)
+## Current Level: **LV 2.7** (Editorial Naturalness pack · L17–L23 added · L13 promoted · L15 demoted to needs-rerun · 2026-05-05)
 
 Full history: [CHANGELOG.md](CHANGELOG.md)
 
@@ -97,6 +97,7 @@ These do not change between LVs. They are the spine.
 4. **Numbers > adjectives.** "2.1 meter" not "long". "85 mm" not "telephoto". "40 rack columns" not "many racks".
 5. **Negative-state the common failures.** "No age markers, no text, no watermark, no [specific failure you have seen]".
 6. **Self-review is not optional.** It is the last step of generation.
+7. **Face identity is HIGHER priority than pose / action fidelity.** If face renders well but pose is simpler than described, that is the PREFERRED outcome. State this explicitly at the bottom of every multi-plate prompt — e.g. `"FACE IDENTITY HAS HIGHER PRIORITY THAN POSE / ACTION DETAILS — preserve face above all else."` (LV 2.7 · Jira/Mila/Alisa formula)
 
 ## LEVELING PROTOCOL (summary)
 
@@ -113,7 +114,7 @@ Themed index: [lessons/README.md](lessons/README.md). One lesson per file.
 
 | ID  | Theme         | Status                 | Headline                                                         |
 |-----|---------------|------------------------|------------------------------------------------------------------|
-| L01 | consistency   | pending 1/5 · macro    | Reference chains beat text-only for multi-shot sets              |
+| L01 | consistency   | pending 2/5 · macro    | Reference chains beat text-only for multi-shot sets              |
 | L02 | orientation   | pending 1/3 · meso     | Face orientation inside containers must be explicit              |
 | L03 | consistency   | pending 1/3 · meso     | Opaque vs transparent surface vocabulary must match across set   |
 | L04 | workflow      | pending 0/5 · macro    | Self-review before showing output                                |
@@ -123,8 +124,19 @@ Themed index: [lessons/README.md](lessons/README.md). One lesson per file.
 | L08 | consistency   | pending 1/3 · meso     | Palette consistency within same world/time                       |
 | L09 | references    | **validated** · meso   | Crop refs to isolate target element                              |
 | L10 | model-limits  | pending 1/5 · macro    | Recognize prominence floor; stop diminishing-return regens       |
-| L11 | references    | pending 0/5 · macro    | Tier-1 refs designed for video-pipeline continuity               |
+| L11 | references    | pending 1/5 · macro    | Tier-1 refs designed for video-pipeline continuity               |
 | L12 | references    | pending 0/3 · meso     | Dual-ref (crop + full) locks target AND scene — complements L09  |
+| L13 | filter        | **validated** · meso   | Filter-vocab sweet spot for sexy wardrobe (halter knot-front V-neck) |
+| L14 | character     | pending 1/3 · meso     | Identity-marker mention (mole/tattoo) → AI multiplies; drop and use ref |
+| L15 | filter        | **needs-rerun** · meso | Master-only ref bypass — attribution unclear; do not use as default unlock |
+| L16 | delivery      | pending 2/3 · meso     | Local boards: defer to `internal-board-builder` skill for primitives · layout per-board |
+| L17 | filter        | pending 1/3 · meso     | Filter triggers on prompt text, not ref content (Google/Imagen)  |
+| L18 | workflow      | pending 1/3 · meso     | Filter blocks don't cost credits → retry 3-5× as diagnostic before modifying prompt |
+| L19 | pose          | pending 1/3 · meso     | Narrative pose per plate beats generic framing templates         |
+| L20 | camera        | pending 1/3 · meso     | Camera body + film stock specificity beats lens-only spec        |
+| L21 | aesthetic     | pending 1/3 · meso     | Designer / aesthetic reference choice drives mood and polish     |
+| L22 | prompt-craft  | pending 1/3 · meso     | Anti-overproduction directives = calibration tool, not blanket switch |
+| L23 | character     | pending 1/3 · meso     | Face EXPRESSION as separate prompt block with "NOT hard" anti-pattern |
 
 ## TEMPLATES
 

@@ -4,11 +4,11 @@ title: Tier 1 refs must be designed for video continuity, not just standalone be
 theme: references
 tier: macro
 status: pending
-validation: 0/5
+validation: 1/5
 tags: [tier-1, video-pipeline, compatibility-matrix, per-pose]
 origin_project: DHYANA
 created: 2026-04-16
-last_updated: 2026-04-16
+last_updated: 2026-05-05
 supersedes: []
 related: [L01, L05]
 ---
@@ -48,6 +48,7 @@ Tier 1 refs for video projects must pass a compatibility matrix: for every pair 
 | # | Project | Date       | Technique applied                                          | Outcome | Notes                            |
 |---|---------|------------|------------------------------------------------------------|---------|----------------------------------|
 | 1 | DHYANA  | 2026-04-16 | Planned #14 Tenzin-standing + #15 butterfly-on-mudra       | pending | Gen 1 video anatomy break observed |
+| 2 | Jira / Mila photobooks (KIE state file evidence) | 2026-05-05 | Audit confirmed Tier-1 ref discipline (per-pose master + hero pairs) used across Jira Set A/B/C + Mila Set B. Pose/angle compatibility held in downstream video conversions. | pass | Cross-validation across 2 distinct production projects + Alisa cross-check — first real-project pass for L11 since DHYANA. |
 
 ## Cross-references
 
