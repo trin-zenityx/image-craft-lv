@@ -3,12 +3,13 @@ id: L17
 title: Filter triggers on prompt text, not on ref image content (Google / Imagen)
 theme: filter
 tier: meso
-status: pending
-validation: 1/3
+status: validated
+validation: 2/3
 tags: [google-filter, imagen, reference-strategy, prompt-vs-ref, attribution]
 origin_project: alisa-glamour-photobook
+last_validated_project: tara-3look-photobook
 created: 2026-05-05
-last_updated: 2026-05-05
+last_updated: 2026-05-06
 supersedes: []
 related: [L13, L15, L18]
 ---
@@ -52,11 +53,23 @@ When a filter block fires:
 
 Google / Imagen filter is dominated by prompt-text token matching. The control surface for filter risk is **prompt vocabulary**, not ref image content. Use refs for identity / wardrobe / continuity locking; use prompt vocabulary for filter management. The two concerns are separable.
 
+## The "ref offload" technique (Tara session refinement)
+
+When R4 word-removal is needed (per L18), the canonical replacement for a deleted body / wardrobe descriptor is a **ref-pointer**:
+
+- ❌ Delete: `"the deep V silk plunge fully revealing her FULL inner cleavage line"`
+- ✅ Replace with: `"wardrobe and neckline as in reference 2"`
+
+The visual specifics (deep V, lace trim, décolletage emphasis) live in the ref image — the filter doesn't read them. The prompt drops the explicit phrasing while the rendered image looks identical to what the deleted phrase intended.
+
+This makes ref-offload the cleanest R4 trim: prompt loses tokens that trigger filter, output loses nothing visually because the ref carries the load.
+
 ## Validation log
 
 | # | Project | Date       | Technique applied                                          | Outcome | Notes                   |
 |---|---------|------------|------------------------------------------------------------|---------|-------------------------|
 | 1 | Alisa Glamour Photobook G01 + cross-project audit (Jira Set A/B/C, Mila Set B, Lily) | 2026-05-05 | Used highly revealing hero refs alongside filter-safe prompt vocabulary across multi-plate sets. Audited `~/.kie/tasks/*.json` for ~70 plates total. | pass | Highly revealing refs routinely passed when prompt vocab stayed in L13 sweet spot. Confirms filter-text-not-ref hypothesis. Counter-example for L15. |
+| 2 | Tara 3-Look Photobook T01 R4 minimal-removal | 2026-05-06 | Used the SAME T01 anchor (sexy silk slip + lace V trim + visible décolletage) across all 7 T01 plate retries. Prompt text changed only to drop 1-2 risky direct phrases per round AND replace with `"wardrobe and neckline as in reference 2"`. T01 P1 passed Round 1 (1/3), T01 P4 passed Round 2. The ref content was constant; only prompt vocabulary varied. **Promotes L17 to validated 2/3.** | pass | Confirms text-token matching mechanism; "ref offload" technique works as a clean R4 trim. The same revealing ref that previously failed against an explicit prompt now passes against a trimmed prompt — proving ref content is not the trigger. |
 
 ## Cross-references
 

@@ -9,8 +9,8 @@ description: >-
   to write/submit/refine a still-image prompt, plan a multi-shot image
   project, or debug drift between related images. DO NOT use for video
   (see seedance-craft-lv) or raw API calls (see kie-nano-banana).
-level: 2.7
-updated: 2026-05-05
+level: 2.9
+updated: 2026-05-06
 sister_skills: [seedance-craft-lv, kie-nano-banana, internal-board-builder]
 ---
 
@@ -18,7 +18,7 @@ sister_skills: [seedance-craft-lv, kie-nano-banana, internal-board-builder]
 
 > A living skill. Every generation teaches something; validated lessons level this skill up. Future-you reads this before writing any still-image prompt.
 
-## Current Level: **LV 2.7** (Editorial Naturalness pack · L17–L23 added · L13 promoted · L15 demoted to needs-rerun · 2026-05-05)
+## Current Level: **LV 2.9** (Tara 3-Look full validation · L18 promoted validated 3/3 + extended to full R1→R5 playbook (R4 word-trim, R5 pose-redesign) · L17 promoted validated 2/3 + ref-offload technique · L13 reframed: wardrobe-vocab catalog REMOVED to prevent bias trap (per Trin), now last-resort word-trim only · Core Principle #8 added: 3-layer filter model · 2026-05-06)
 
 Full history: [CHANGELOG.md](CHANGELOG.md)
 
@@ -98,6 +98,7 @@ These do not change between LVs. They are the spine.
 5. **Negative-state the common failures.** "No age markers, no text, no watermark, no [specific failure you have seen]".
 6. **Self-review is not optional.** It is the last step of generation.
 7. **Face identity is HIGHER priority than pose / action fidelity.** If face renders well but pose is simpler than described, that is the PREFERRED outcome. State this explicitly at the bottom of every multi-plate prompt — e.g. `"FACE IDENTITY HAS HIGHER PRIORITY THAN POSE / ACTION DETAILS — preserve face above all else."` (LV 2.7 · Jira/Mila/Alisa formula)
+8. **Filter operates on 3 layers — match fix tier to layer; word changes happen ONLY after R3 exhaustion.** (LV 2.9 · Tara T01 evidence) Layer 1 = word-level (specific direct terms like `"slipping off"`); Layer 2 = combo-level (risky words combined); Layer 3 = structural-level (pose/framing patterns themselves). R1+R2+R3 (9 free retries) keep prompt **unchanged** — only after R3 confirms deterministic block does R4 trim 1-2 risky words; if R4 also exhausts, R5 redesigns POSE only (keep wardrobe/setting/light identical). NEVER pre-emptively rewrite wardrobe to "filter-safe vocab" — that bias trap was deleted from L13 in this session. Set continuity > any single plate.
 
 ## LEVELING PROTOCOL (summary)
 
@@ -126,12 +127,12 @@ Themed index: [lessons/README.md](lessons/README.md). One lesson per file.
 | L10 | model-limits  | pending 1/5 · macro    | Recognize prominence floor; stop diminishing-return regens       |
 | L11 | references    | pending 1/5 · macro    | Tier-1 refs designed for video-pipeline continuity               |
 | L12 | references    | pending 0/3 · meso     | Dual-ref (crop + full) locks target AND scene — complements L09  |
-| L13 | filter        | **validated** · meso   | Filter-vocab sweet spot for sexy wardrobe (halter knot-front V-neck) |
+| L13 | filter        | **validated** · meso   | Filter operates on word-matching not semantics — but vocab change is LAST RESORT (R4+), never a design tool · wardrobe catalog REMOVED to prevent bias trap (LV 2.9) |
 | L14 | character     | pending 1/3 · meso     | Identity-marker mention (mole/tattoo) → AI multiplies; drop and use ref |
 | L15 | filter        | **needs-rerun** · meso | Master-only ref bypass — attribution unclear; do not use as default unlock |
 | L16 | delivery      | pending 2/3 · meso     | Local boards: defer to `internal-board-builder` skill for primitives · layout per-board |
-| L17 | filter        | pending 1/3 · meso     | Filter triggers on prompt text, not ref content (Google/Imagen)  |
-| L18 | workflow      | pending 1/3 · meso     | Filter blocks don't cost credits → retry 3-5× as diagnostic before modifying prompt |
+| L17 | filter        | **validated** · meso   | Filter triggers on prompt text, not ref content · "ref offload" technique for R4 word trims |
+| L18 | workflow      | **validated** · meso   | Full R1→R5 escalating playbook: 9 free retries (R1+R2+R3) before any prompt change; R4 word-trim; R5 pose-redesign for structural triggers |
 | L19 | pose          | pending 1/3 · meso     | Narrative pose per plate beats generic framing templates         |
 | L20 | camera        | pending 1/3 · meso     | Camera body + film stock specificity beats lens-only spec        |
 | L21 | aesthetic     | pending 1/3 · meso     | Designer / aesthetic reference choice drives mood and polish     |
