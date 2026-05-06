@@ -4,6 +4,49 @@
 
 ## Level history
 
+- **LV 2.10** (2026-05-06) — **Filter-word tier registry · L13 rewritten as single source of truth · L18 R3/R4 protocol changes · L15 RETIRED · feedback memory DEPRECATED.**
+
+  Co-design with Trin. Goal: replace the scattered filter-word lists (L13 wardrobe catalog, feedback memory list, L18 suspicion ranking, L13 negative-example archive) with **one canonical tier registry** that all other lessons reference.
+
+  **Tier definitions (per Trin):**
+  - **Tier 1** (high confidence) — never include in any prompt; excluded by design at R1
+  - **Tier 2** (medium confidence) — included in R1+R2; dropped at R3
+  - **Tier 3** (low confidence) — included in R1+R2+R3; dropped at R4
+  - **Tier 0** — always safe; documented for reference only
+
+  **L18 protocol changes:**
+  - **R3 changed** from "5 parallel of same prompt" → "drop Tier 2 + 5 parallel" (first vocab change in playbook; was previously the 9th retry of identical prompt).
+  - **R4 changed** from "drop 1-2 risky words/round + 3 parallel × max 3 rounds" → "drop Tier 3 ALSO (Tier 2 stays dropped) + 3 parallel × max 3 rounds, dropping more aggressively each round."
+  - **R5 unchanged** (pose redesign for layer-3 structural triggers).
+
+  **Tier-up / tier-down protocol** (in L13): if a word in a lower tier triggers filter repeatedly across 2-3 sessions, Claude proposes promotion to Trin. Never silent updates. Trin approves before any tier change is committed.
+
+  **L15 master-only-ref-bypass — RETIRED** (was `needs-rerun` since LV 2.7). The L13 + L17 + L18 system replaces it entirely. Original content preserved as historical archive in the file; status changed to `retired` and removed from active lessons in SKILL.md table.
+
+  **`feedback_google_filter_prompt_vs_ref.md` — DEPRECATED.** Content rewritten to be a pointer file: the principle (prompt is choke point, not refs) lives in L17; the word lists live in L13; the playbook lives in L18. The original content was overly aggressive ("put it in REF, not prompt") in a way that conflicted with creative-freedom preservation; the modern playbook uses ref-offload only at R4 not as a default design choice.
+
+  **Tier 1 final list** (after Trin review — per session conversation):
+  - 1A direct sexual/explicit terms only: `lingerie`, `underwear`, `panties`, `bra`, `thong`, `barely-there`, `skimpy`
+  - Items proposed for Tier 1 but moved to Tier 2 after Trin review: `young/youthful/teen` (1B), undressing-completion phrases (`slipping fully off`, `hanging loose at upper arms`, `hem riding up to mid-thigh`) (1D)
+  - Items proposed for Tier 1 but DELETED after Trin review: `preserve THIS specific person`, `Hyperreal unretouched` (1C)
+
+  **Tier 2 final list** (after Trin review):
+  - 2A anatomy + intensifier combos · 2B `robe slipping off` (only severe undressing-motion verb that stayed) · 2C `sexy/sensual/seductive` direct adjectives · 2D body-framing percentages · 2E suggestive setting + wardrobe combos (Tara T01 4-word combo) · 2F underage / age-flag triggers · 2G direct undressing-completion
+  - Items moved from Tier 2 to Tier 3 after Trin review: `bare shoulders / collarbone exposed`, `slipping off her shoulders`, `strap halfway off the shoulder`, `bare shoulder skin exposed`, `intimate`, `1962 Bardot pin-up moment`
+
+  **Tier 3 final list** (after Trin review):
+  - 3A borderline wardrobe (incl. `slip dress`, `bikini top`/`swim top`, `spaghetti-strap cami` combos, `low-rise + side-tie at hips`) · 3B borderline mood (incl. `intimate`, `1962 Bardot pin-up moment`, `smoldering`, `seduction`, `body chain`) · 3C context-dependent settings (`boudoir` alone) · 3D body-clinical descriptors · 3E single body-exposure / motion verbs (the items moved from Tier 2 above)
+
+  **Files changed:**
+  - `lessons/filter/L13-filter-vocab-sweet-spot.md` — full rewrite as tier registry (single source of truth). Tier 0/1/2/3 lists, tier-up protocol, anti-patterns, validation log entry #3. Removes wardrobe catalog and "principle + anti-pattern" framing from LV 2.9.
+  - `lessons/workflow/L18-filter-retry-diagnostic.md` — R3 protocol section + R4 protocol section rewritten to reference L13 tiers explicitly. The "hard rule" section restated to align with tier system. Worst-case time and cost framing unchanged.
+  - `lessons/filter/L15-master-only-ref-bypass.md` — frontmatter updated to `status: retired`, retirement notice added at top. Original content preserved below as historical archive.
+  - `~/.claude/projects/-Users-trin/memory/feedback_google_filter_prompt_vs_ref.md` — fully rewritten as deprecation pointer to L13/L17/L18; canonical_sources list added in frontmatter.
+  - `SKILL.md` — frontmatter `level: 2.9 → 2.10`, Current Level line, lessons table (L13 / L15 / L18 rows updated), Core Principle #8 rewritten to mention tiers + L13 explicitly.
+  - `CHANGELOG.md` — this entry.
+
+  **Tier:** Minor — restructuring of existing lessons (no new lessons added); validation increments + protocol extension within current scope; one retirement (L15) and one memory deprecation (feedback file). No breaking changes to validated lessons; protocol changes documented per-round.
+
 - **LV 2.9** (2026-05-06) — **Tara 3-Look full validation · L13 reframed to remove wardrobe-vocab catalog (anti-bias) · L17 promoted validated 2/3 · L18 promoted validated 3/3 + extended to full R1→R5 playbook · Core Principle #8 added (3-layer filter model).**
 
   Driven by the Tara 3-Look Photobook session (T01 Champagne Boudoir + T04 Bordeaux Velvet + T05 Marble Bath = 21 plates). Key learnings:

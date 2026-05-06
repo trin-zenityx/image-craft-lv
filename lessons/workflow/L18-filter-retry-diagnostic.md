@@ -22,11 +22,11 @@ Filter-blocked generations on Google / Imagen do **not** consume credits. Exploi
 
 | Round | Strategy | What changes | Wall time | Cumulative coverage* |
 |-------|----------|--------------|-----------|----------------------|
-| **R1** | 1 attempt | nothing | 60-90s | ~50-70% |
+| **R1** | 1 attempt | nothing — Tier 1 already excluded by design (per L13) | 60-90s | ~50-70% |
 | **R2** (if R1 blocks) | **3 parallel** | nothing — same exact prompt + refs | +60-90s | ~87-99% |
-| **R3** (if R2 all block) | **5 parallel** | nothing — same exact prompt + refs | +60-90s | ~96-99.8% |
-| **R4** (if R3 all block) | Drop 1-2 most-risky words/round, **3 parallel × max 3 rounds** | minimal vocab trim — keep wardrobe / setting / mood / camera | +60-300s | resolves layer 1 + layer 2 blocks |
-| **R5** (if R4 all block) | Pose redesign keeping wardrobe/setting/light/camera, **3 parallel × max 2 rounds** | only the pose / framing | +60-180s | resolves layer 3 blocks |
+| **R3** (if R2 all block) | **DROP Tier 2 words (per L13) + 5 parallel** | first vocab change — drop all Tier 2 words present in the prompt | +60-90s | resolves Tier-2-grade triggers |
+| **R4** (if R3 all block) | **DROP Tier 3 words (per L13) ALSO + 3 parallel × up to 3 rounds** | drop Tier 3 in addition to Tier 2; ref-offload (per L17) for any visual specificity removed | +60-300s | resolves remaining word-level + combo triggers |
+| **R5** (if R4 all block) | Pose redesign keeping wardrobe/setting/light/camera, **3 parallel × max 2 rounds** | only the pose / framing | +60-180s | resolves layer-3 structural triggers |
 | STOP | Surface to user | concept needs human rethink | — | — |
 
 \* assumes typical Google/Imagen output filter pass rate 30-50% per attempt
@@ -35,15 +35,21 @@ Filter-blocked generations on Google / Imagen do **not** consume credits. Exploi
 
 The escalation philosophy: **be persistent with free retries before paying the prompt-rewrite cost** (which can degrade output and introduce new bugs); when prompt-rewrite IS needed, trim minimally before redesigning structurally.
 
-## The hard rule: NO prompt change before R3 exhaustion
+## The hard rule: vocab trimming starts AT R3, not before
 
-> "เริ่มตัดเมื่อผ่าน R3" — Trin, 2026-05-06
+> "เลี่ยงตั้งแต่ R3" — Trin, 2026-05-06
 
-R1, R2, R3 are **9 cumulative free retries of the user's original prompt**. The prompt does NOT change in any of those rounds. Editing earlier means rewriting a prompt that would have passed on attempt 5-9 — and a worse rewrite is permanent damage to the recipe / set continuity.
+The filter-word tier registry (L13) defines three tiers of risky vocabulary. Each tier maps to a specific round in this playbook:
 
-R3 exhaustion (all 9 attempts blocked) is the diagnostic signal that the block is **deterministic** — not stochastic output filter, but an actual input-filter trigger that needs prompt intervention.
+- **Tier 1 (high confidence)** — never included in any prompt; excluded by design at R1
+- **Tier 2 (medium confidence)** — included in R1+R2; **dropped at R3** (R3 = "drop Tier 2 + 5 parallel")
+- **Tier 3 (low confidence)** — included in R1+R2+R3; **dropped at R4** (R4 = "drop Tier 2 + Tier 3 + 3 parallel")
 
-Only after R3 exhaustion does word trimming (R4) become justified.
+R1 and R2 are 4 cumulative free retries of the user's exact original prompt (with Tier 1 words excluded by design). The prompt does NOT change in those two rounds — only the parallel batch size changes (1 → 3). This catches stochastic output-filter rejections without paying any prompt-edit cost.
+
+R3 is where the **first vocabulary change** happens: drop all Tier 2 words present in the prompt, then submit 5 parallel. If R3 also blocks, R4 escalates to dropping Tier 3 words as well.
+
+R5 (pose redesign) is reserved for layer-3 structural triggers — when even Tier 2 + Tier 3 word removal cannot rescue the prompt, the pose / framing itself is the trigger and vocab cannot fix it (per Tara T01 P2/P5/P7 finding).
 
 ## The 3-layer filter model — match fix tier to layer
 
@@ -59,29 +65,29 @@ If R3 passes: stochastic output rejection — no fix needed.
 If R4 fixes: layer 1 or 2 — surface vocab issue.
 If R5 needed: layer 3 — pose / composition problem; vocab won't help.
 
-## R4 — minimal word trimming protocol
+## R3 — drop Tier 2 protocol
 
-**Trigger:** R1+R2+R3 exhausted (9 cumulative free attempts all blocked → deterministic).
+**Trigger:** R1 + R2 blocked (4 cumulative free attempts of original prompt failed).
 
-**Strategy:** Drop the 1-2 most-direct / most-explicit phrases from the prompt — DO NOT rewrite the concept. Keep wardrobe word, setting, mood, camera, aesthetic blocks unchanged. Use [L17](../filter/L17-filter-text-not-ref.md) ref-offload technique as the canonical replacement.
+**Strategy:** Identify all Tier 2 words/phrases (per L13) present in the prompt and remove them. Use ref-offload (`"as in reference N"`, per L17) as the canonical replacement when removing a phrase loses needed visual specificity. Submit **5 parallel**.
 
-**Per-round structure (max 3 rounds):**
-- **Round 1:** Identify the 1-2 phrases most likely to be direct filter triggers. Delete or replace with `"as in reference N"`. Submit 3 parallel.
-- **Round 2:** If Round 1 blocks, drop the next 1-2 most-suspicious phrases. Submit 3 parallel.
-- **Round 3:** If Round 2 blocks, drop more aggressively (verbs of motion, body-part words). Submit 3 parallel.
+**What R3 used to be (LV 2.9 and earlier):** "5 parallel of same prompt." This was retired in LV 2.10 when the tier registry made it possible to do a structured drop instead of more identical retries.
 
-**Suspicion ranking heuristics (drop highest first):**
+**Single round only.** If 5 parallel of "Tier-2-trimmed prompt" all block, escalate to R4.
 
-1. **Undressing-motion verbs** — `"slipping off"`, `"strap halfway off"`, `"hanging loose"`, `"hem riding up"`, `"robe slipping fully off"`. These almost always trigger.
-2. **Direct anatomy + adjective combinations** — `"FULL inner cleavage line"`, `"FULL voluminous décolletage"`, `"deep V plunge revealing"`. The "FULL" / "DEEP" / "revealing" intensifiers around body words are stronger triggers than the body words alone.
-3. **Explicit framing / coverage percentages** — `"face fills 35% of frame and FULL décolletage area fills 35%"`. The percentage formulation reads as "I am instructing you about body coverage" → triggers.
-4. **The word `"intimate"`** as a modifier — especially `"intimate detail"` + close-up framings. High trigger rate.
-5. **Era / pin-up + body framing combos** — `"1962 Bardot pin-up moment"` + reclined pose. The pin-up reference adds suggestive load.
-6. **Direct lingerie / swim domain terms** — `"bikini top"`, `"swim top"`, `"lingerie"`. (Variable — `"slip dress"` passes in some contexts.)
+## R4 — drop Tier 2 + Tier 3 protocol
 
-**Rule of thumb:** if you can delete a phrase and replace it with `"as in reference N"` without losing visual specificity, do that first — the ref carries the visual without text-token risk.
+**Trigger:** R3 blocked (Tier 2 already removed; still failing).
 
-**STOP R4 after 3 rounds.** If Round 3 blocks all attempts, the trigger is structural (layer 3) and word trimming will not fix it. Escalate to R5.
+**Strategy:** Keep Tier 2 dropped (don't add them back) AND additionally drop all Tier 3 words/phrases present in the prompt. Use ref-offload as needed. Submit **3 parallel × up to 3 rounds**, dropping more aggressively each round if blocks persist:
+
+- **Round 1:** Drop all Tier 3 words listed in L13. Submit 3 parallel.
+- **Round 2:** If Round 1 blocks, also drop any borderline phrases not yet in the registry (suspicious combos, intensifiers around body words). Submit 3 parallel. If a new word triggers reliably across 2-3 sessions, propose tier-up to user (per L13 protocol).
+- **Round 3:** If Round 2 blocks, drop most aggressively — body-part nouns, suggestive adjectives. Submit 3 parallel.
+
+**Rule of thumb:** if removing a phrase loses needed visual specificity, replace with `"as in reference N"` — the ref carries the visual without prompt-token risk.
+
+**STOP R4 after 3 rounds.** If Round 3 all blocked, the trigger is structural (layer 3) and word trimming will not fix it. Escalate to R5.
 
 ## R5 — structural pose redesign protocol
 
@@ -151,33 +157,29 @@ The economic asymmetry isn't intuitive either: most paid APIs charge for any att
 When a single plate hits a filter block:
 
 ```
-R1. Submit 1 — usually passes (~50-70% of cases done here)
+R1. Submit 1 — Tier 1 already excluded by design (per L13).
+    Usually passes (~50-70% of cases done here).
     │ block
     ▼
-R2. Parallel batch of 3 (same exact prompt + refs)
+R2. Parallel batch of 3 (same exact prompt + refs).
     ├─ ≥1 passes → pick best, done (~87-99% covered after R1+R2)
     │ all 3 block
     ▼
-R3. Parallel batch of 5 (same exact prompt)
-    ├─ ≥1 passes → done (~96-99.8% covered after R1+R2+R3)
-    │ all 5 block — DETERMINISTIC BLOCK CONFIRMED
+R3. Drop all Tier 2 words (per L13) + parallel batch of 5.
+    First vocab change in the playbook.
+    ├─ ≥1 passes → log dropped Tier 2 words, done
+    │ all 5 block
     ▼
-R4. Word trimming — drop 1-2 most-risky direct phrases, keep wardrobe/setting/etc.
-    Use ref-offload ("as in reference 2") as canonical replacement (per L17).
-    Submit 3 parallel.
-    ├─ ≥1 passes → log the trimmed phrase(s), done
-    │ all 3 block
-    ▼ next round
-    Drop next-most-risky phrases, submit 3 parallel
-    ├─ ≥1 passes → done
-    │ all block — REPEAT up to 3 rounds
-    │
+R4. Drop all Tier 3 words also (Tier 2 stays dropped) + parallel batch of 3.
+    Up to 3 rounds, dropping more aggressively each round.
+    Use ref-offload ("as in reference N") for any visual specificity lost.
+    ├─ ≥1 passes → log all dropped phrases, done
     │ all 3 rounds × 3 parallel = 9 attempts blocked → STRUCTURAL TRIGGER
     ▼
 R5. Pose redesign — keep wardrobe + setting + lighting + camera identical;
-    redesign pose/framing to break structural trigger (e.g. tight close-up
-    → medium 3/4, off-shoulder → frontal stance, undressing-motion-verbs
-    → static editorial gesture). Submit 3 parallel.
+    redesign pose/framing to break structural trigger (tight close-up →
+    medium 3/4; off-shoulder → frontal stance; undressing-motion-verbs →
+    static editorial gesture). Submit 3 parallel × max 2 rounds.
     ├─ ≥1 passes → done
     │ all block → simplify pose further, submit 3 parallel (Round 2)
     │ all block

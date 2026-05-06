@@ -1,17 +1,25 @@
 ---
 id: L15
-title: For filter-risky plates, master-only ref (less revealing than hero) bypasses filter while preserving identity
+title: "[RETIRED] Master-only ref bypass — replaced by L18 R4 word-trim + R5 pose-redesign"
 theme: filter
 tier: meso
-status: needs-rerun
+status: retired
 validation: 0/3
-tags: [google-filter, reference-strategy, swimwear, lingerie, full-body-shots, bypass, attribution-unclear]
+tags: [google-filter, reference-strategy, retired, replaced]
 origin_project: zenityx-Lily-swim-board
+retired_date: 2026-05-06
+retired_in: LV 2.10
 created: 2026-05-01
-last_updated: 2026-05-05
+last_updated: 2026-05-06
 supersedes: []
-related: [L13, L05, L17]
+related: [L13, L17, L18]
 ---
+
+> **STATUS — RETIRED (2026-05-06 · LV 2.10).** Per Trin instruction during the filter-word tier system redesign. The "drop hero ref to bypass filter" recipe was misattributed (the original Lily L1 P1 v3→v5 trial changed two variables simultaneously — hero ref dropped + pose changed — so causality could not be isolated to the ref drop). L17 (validated) established that filter triggers on prompt text, not ref content; the modern playbook handles the same problem via L18 R4 word trim + R5 pose redesign. **Do not use master-only ref as a filter-bypass technique** — it sacrifices identity / wardrobe / continuity for a fix that solves the wrong problem.
+>
+> The L13 + L17 + L18 system replaces this lesson. The original content below is preserved as historical archive only.
+>
+> ---
 
 > **STATUS — needs-rerun · attribution unclear (2026-05-05).** Demoted from `pending 1/3` after Alisa Glamour Photobook session. The original Lily L1 P1 v3→v5 trial that fed the single validation count had **two variables changed simultaneously** (hero ref dropped + pose changed from front-facing to 3/4 turn-back), so causality between "drop hero ref" and "filter pass" was not isolated. User field testing during Alisa session showed refs (including highly revealing hero refs) rarely trigger the filter on their own — see new lesson **L17 (filter triggers on prompt text, not ref content)**. The filter pass on Lily v5 is more parsimoniously explained by the pose change alone. Counter-evidence from Alisa: master-only generation introduced wardrobe / face / continuity drift across plates that the standard 2-ref recipe avoided. **Do not use the master-only ref as a default unlock.** Re-test with single-variable design (drop ref OR change pose, never both) before re-promoting. Validation counter reset 1/3 → 0/3.
 

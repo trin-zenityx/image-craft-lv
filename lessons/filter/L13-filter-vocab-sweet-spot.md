@@ -1,11 +1,11 @@
 ---
 id: L13
-title: Google filter operates on word-matching not semantics — but vocabulary choice is the LAST resort, not the design tool
+title: Filter-word tier registry — single source of truth for Google/Imagen prompt-token triggers (Tier 0/1/2/3)
 theme: filter
 tier: meso
 status: validated
-validation: 2/3
-tags: [google-filter, vocabulary, prompt-engineering, escape-hatch]
+validation: 3/3
+tags: [google-filter, vocabulary, tier-registry, filter-word-tiers, prompt-engineering]
 origin_project: zenityx-Lily-swim-board
 last_validated_project: tara-3look-photobook
 created: 2026-05-01
@@ -14,133 +14,172 @@ supersedes: []
 related: [L17, L18]
 ---
 
-# L13 — Google filter operates on word-matching not semantics — but vocabulary choice is the LAST resort, not the design tool
+# L13 — Filter-word tier registry (single source of truth)
 
 ## TL;DR
 
-Two facts that must be held together:
+Google / Imagen filter operates on **direct prompt-token matching**, not semantic understanding. This lesson is the **single canonical registry** of which words / phrases trigger filter and at what tier they should be avoided. Every other lesson, memory file, and skill that mentions filter-trigger words **points here** rather than carrying its own list.
 
-1. **The mechanism:** Google / Imagen filter does direct token-matching for known sexual / explicit terms. It does NOT understand semantics. So a "filter-safe" word can render the same garment as a blocked word — the filter only sees the surface tokens.
+## How the tier system works
 
-2. **The discipline:** Knowing this mechanism does NOT mean you should pre-emptively rewrite wardrobe / setting / pose into "filter-safe" alternatives. Doing so kills creative choice and makes every project converge on the same flavor. **Vocabulary substitution is the LAST resort after free retries (R1+R2+R3 per L18) confirm a deterministic block.**
+Tiers map to L18 escalation rounds: each tier is dropped at a specific point in the playbook, NOT pre-emptively rewritten into the design.
 
-## What this lesson does NOT do
+| Tier | Confidence | When to avoid | L18 round |
+|---|---|---|---|
+| **Tier 0** | safe | never (informational only) | always usable |
+| **Tier 1** | high (90%+ trigger) | **from R1** — never include in any prompt | excluded at design |
+| **Tier 2** | medium (often trigger, sometimes pass) | **from R3** — included R1+R2, dropped at R3 | R3 changes from "5 same-prompt parallel" → "drop Tier 2 + 5 parallel" |
+| **Tier 3** | low (sometimes trigger) | **from R4** — included R1+R2+R3, dropped at R4 | R4 = "drop Tier 3 also + 3 parallel" |
 
-**This lesson explicitly refuses to maintain a "validated wardrobe vocabulary catalog."** Earlier versions of L13 (LV 2.7 and below) listed specific patterns ("halter knot-front V-neck", "bandeau cropped top", "asymmetric silk wrap") as proven safe. That catalog has been removed by user instruction (Trin, 2026-05-06):
+**Hard rule (Trin, 2026-05-06):** vocabulary changes start at R3 only. R1 + R2 keep the user's original prompt unchanged (Tier 1 already excluded by design). The tier registry is consulted **defensively at design time** for Tier 1, **diagnostically at R3+** for Tier 2/3.
+
+## Tier 0 — Always safe (informational only)
+
+| Category | Examples |
+|---|---|
+| Skin tone | `fair-porcelain`, `warm-medium`, `golden-tan` |
+| Negative anchors | `NOT tan`, `NOT olive`, `NOT pale` |
+| Face structure | `almond eyes`, `slim oval face`, `Cupid's bow lips` |
+| Pose verbs | `3/4 turn`, `back to camera`, `head-and-shoulders`, `seated`, `standing` |
+| Camera / lens | `85mm`, `Hasselblad X2D`, `Portra 400`, `f/1.9` |
+| Setting nouns (alone) | `brass bed`, `marble bath`, `Parisian window`, `golden hour` |
+| Ref-offload pointer | `wardrobe and silhouette as in reference 2` (per L17) |
+
+These are documented for reference only — they have been validated through repeated use. They do NOT need to be avoided at any round.
+
+## Tier 1 — High confidence (NEVER include · avoid from R1)
+
+### 1A. Direct sexual / explicit terms
+- `lingerie`
+- `underwear`
+- `panties`
+- `bra`
+- `thong`
+- `barely-there`
+- `skimpy`
+
+(That is the entire Tier 1 as of LV 2.10 · 2026-05-06. Other categories that were proposed for Tier 1 were down-tiered or removed by Trin during the design review.)
+
+## Tier 2 — Medium confidence (drop at R3)
+
+### 2A. Anatomy + intensifier combos
+- `DEEP V plunge falls open`
+- `FULL inner cleavage line`
+- `FULL voluminous décolletage`
+- `décolletage fully visible`
+
+### 2B. Undressing-motion verbs (severe)
+- `robe slipping off`
+
+### 2C. Mood / intent direct adjectives
+- `sexy` (as direct adjective in prompt)
+- `sensual` (as direct adjective in prompt)
+- `seductive` (as direct adjective in prompt)
+
+### 2D. Explicit body-framing percentages
+- `face fills X% of frame and FULL [body part] fills X%`
+- `chest area dominates the frame`
+
+### 2E. Suggestive setting + wardrobe combos
+- `boudoir` + `bed` + `slip dress` + `petals` — when ALL FOUR present in one prompt (each alone is Tier 3 or Tier 0; the combination is the trigger)
+
+### 2F. Underage / age-flag triggers
+- `young` + person descriptor (e.g. `young Asian woman`)
+- `youthful` + specific age (e.g. `youthful 19`)
+- `teen` (in person context)
+
+### 2G. Direct undressing-completion
+- `slipping fully off [shoulders/garment]`
+- `hanging loose at upper arms`
+- `hem riding up to mid-thigh`
+
+## Tier 3 — Low confidence (drop at R4)
+
+### 3A. Borderline wardrobe terms
+- `slip dress`
+- `bikini top`
+- `swim top`
+- `spaghetti-strap cami` + `thin shoulder straps` (when combined)
+- `low-rise` + `side-tie at hips` (combo trigger)
+
+### 3B. Borderline mood / intensifiers
+- `smoldering`
+- `seduction`
+- `body chain`
+- `intimate`
+- `1962 Bardot pin-up moment`
+
+### 3C. Context-dependent settings
+- `boudoir` (alone — combo is Tier 2 per 2E)
+- `lingerie reference` (aesthetic ref descriptor, not wardrobe word)
+
+### 3D. Body-clinical descriptors
+- `freshly-cleansed satin-matte`
+- `subtle vellus hair`
+- `pores naturally visible`
+- `CRITICAL SKIN:` (uppercase emphasis marker — escalation flag)
+- `casting-card portrait` + body description
+
+### 3E. Single body-exposure / motion verbs
+- `bare shoulders / collarbone exposed`
+- `slipping off her shoulders`
+- `strap halfway off the shoulder`
+- `bare shoulder skin exposed`
+
+## Cross-tier note: "Combo escalation"
+
+Some words individually live in Tier 0 or Tier 3 but escalate to Tier 2 when combined. The Tara T01 finding (2E above) is the canonical example: `boudoir`, `bed`, `slip dress`, `petals` are each tolerable; together they form a Tier 2 trigger. When R3 fires, drop ONE of the combo words first (any one — usually the most-suggestive in context, e.g. `petals`) before going further.
+
+## Tier-up / tier-down protocol
+
+If during real use a word in a lower tier appears to trigger filter repeatedly (across 2-3 consecutive sessions), Claude proposes a tier promotion to Trin. **Never silent updates.**
+
+```
+Claude observes Tier 3 word triggering at R3 in 2-3 consecutive sessions
+  ↓
+Claude proposes: "Word X seems to trigger more often than Tier 3 implies. Promote 3 → 2?"
+  ↓
+Trin reviews + decides
+  ↓ approved
+Claude updates L13 (tier list + validation log) + commits
+  ↓ rejected / "give it one more session"
+Claude keeps current tier; logs the observation for next time
+```
+
+Same flow for: 2 → 1 promotion, 3 → 0 demotion (word turned out safe), 1 → 2 demotion (word turned out tolerable in modern test).
+
+**No standalone caveat:** the registry is the only authoritative list. If you see a Tier hint elsewhere (memory file, other skill, old prompt template), it is stale — confirm against this file.
+
+## What replaced the old "wardrobe vocabulary catalog"
+
+Earlier L13 versions (LV 2.7 and below) listed specific "filter-safe wardrobe vocabulary" patterns ("halter knot-front V-neck", etc.) as defaults to use for sexy / revealing wardrobe. **That catalog has been deleted permanently** by Trin instruction (2026-05-06):
 
 > "ส่วนของชุด อยากให้ตัดคำแนะนำชุดออกไปเลย มันจะขัดความคิดสร้างสรรค์"
 > *"Cut out the wardrobe suggestions entirely — it constrains creativity."*
 
-The catalog created a bias trap: Claude would default to the validated patterns whenever a project mentioned "sexy / glamour / revealing", producing visually-uniform output across unrelated projects (Tara T01 R4 was the case study — Claude switched a slip-dress set into halter top + midi skirt mid-set, breaking continuity and the user's narrative intent).
+The catalog was a bias trap: Claude defaulted to the same "safe vocabulary" across unrelated projects, producing visually-uniform output and overriding user wardrobe intent. The Tara T01 R4 case study (Claude switching a silk-slip set to halter top + midi skirt to "validate" safe vocab) was the trigger.
 
-## When L13 actually applies
+The replacement is the tier registry above + the L18 R1→R5 playbook. Wardrobe is designed by user intent; if filter blocks, R1+R2+R3 free retries handle stochastic blocks; only at R3 do we drop Tier 2 words; only at R4 do we drop Tier 3 words. The user's wardrobe vocabulary itself is preserved unless the user approves a change.
 
-You consult L13 only when **L18 has already exhausted R1+R2+R3** (9 free retries with the original prompt) AND the user has confirmed they want to attempt vocab changes vs. accepting the loss. The decision tree:
+## Anti-patterns
 
-```
-Plate fails R1 (1 attempt)
-  ↓
-Plate fails R2 (3 parallel)
-  ↓
-Plate fails R3 (5 parallel) — 9 cumulative free attempts confirm deterministic block
-  ↓
-[L13 entry point: NOT before this gate]
-  ↓
-R4 (per L18): Drop 1-2 most-risky words from the prompt — DO NOT rewrite the
-              concept. Use the user's wardrobe / setting / mood unchanged
-              everywhere it isn't a filter trigger.
-              Test 3 parallel. If pass → done.
-  ↓ if still blocked
-R5 (per L18): Structural pose redesign (keep wardrobe + setting + lighting +
-              camera; change pose framing only). NOT a vocab problem at this
-              point — the filter has caught a structural pattern (close-up
-              framing, undressing-motion verbs, off-shoulder + silhouette).
-              Test 3 parallel. If pass → done.
-  ↓ if still blocked
-STOP. Surface to user. Concept needs human rethink.
-```
-
-## The 3-layer filter model (post-Tara session understanding)
-
-Filter triggers operate on three increasingly hard-to-fix layers:
-
-| Layer | What triggers it | Fix tier |
-|---|---|---|
-| **Word-level** | Specific direct terms ("intimate", "slipping off", "DEEP V plunge revealing FULL inner cleavage line") | L18 R4 — drop 1-2 words |
-| **Combo-level** | Risky words combined with risky setting ("boudoir" + "slip dress" + "bed" + "petals") — each word alone safe, the combination is loaded | L18 R4 — drop one word from the combo, often enough |
-| **Structural-level** | Pose / framing patterns (tight chest-up + V-neckline = filter sees "suggestive close" regardless of words; off-shoulder + silhouette + window halo) | L18 R5 — pose redesign (NOT solvable by vocab alone) |
-
-If 9 free retries pass: the prompt is fine, you got unlucky on output-filter stochastic. No fix needed.
-If R4 word removal fixes it: layer 1 or 2 — original prompt had a removable trigger.
-If R5 pose redesign is required: layer 3 — vocab won't save it; the composition itself is the trigger.
-
-## Mistake (the bias trap that this rewrite prevents)
-
-The validated-catalog format from earlier L13 versions caused Claude to:
-
-1. Read "halter knot-front V-neck" as `validated · meso` at session start
-2. Default to that vocabulary whenever a project asked for sexy / revealing wardrobe
-3. Produce visually-similar output across unrelated projects (Lily, Alisa, Tara converging on similar silhouettes)
-4. **Override user wardrobe intent** without asking — Tara T01 R4: switched silk slip dress to halter top + midi skirt mid-set to "validate" the safe vocab, which broke set continuity and the user had to delete and restart
-
-**The catalog encouraged Claude to use L13 as a design tool ("here's a safe wardrobe pattern, let me use it") instead of an escape hatch ("let's first try the user's wardrobe; only retreat to a safe alternative if blocked").**
-
-## Why the principle still holds, even without the catalog
-
-The mechanism is real and useful diagnostically:
-
-- A filter block does NOT mean "this concept is unrenderable." It means "this exact phrasing tripped the matcher."
-- A filter block does NOT mean "Tara can't be in a slip dress on a brass bed." Tara P3 + P6 of the same silk slip + brass bed combo passed at R3 — the trigger was specific phrasings in P1/P2/P4/P5/P7 prompts.
-- A filter block does NOT require concept rewriting — vocabulary trimming or pose adjustment is usually enough.
-
-Carrying this principle without a catalog: when blocked, identify the most-direct-explicit phrase in the prompt and try removing just that. Don't pre-emptively swap entire concepts.
-
-## Anti-pattern (codified from Tara T01 R4)
-
-❌ **DO NOT** read L13 at session start and pre-emptively rewrite the user's wardrobe choice into a "validated safe vocabulary" before generation begins.
-
-❌ **DO NOT** change wardrobe mid-set (e.g. plates 1-3 use slip, plates 4-7 use halter) to bypass filter — this destroys set continuity, which matters more than any one plate passing.
-
-❌ **DO NOT** propose "let me redesign this look using filter-safe vocab" without R3 having confirmed deterministic block AND user explicitly approving the wardrobe change.
-
-✅ **DO** generate the user's actual concept. Let R1+R2+R3 (9 free retries) decide whether the filter is even an issue.
-
-✅ **DO** drop 1-2 most-risky direct phrases at R4 if R3 exhausts — keep the wardrobe word itself unless the user has approved changing it.
-
-✅ **DO** consider structural pose redesign (R5) before changing wardrobe vocabulary — pose change preserves continuity better than wardrobe change.
-
-✅ **DO** ask the user before switching wardrobe vocabulary mid-project. Set continuity > any single plate.
-
-## What replaced the catalog (negative examples only — patterns to AVOID)
-
-This list is anti-vocabulary — phrasings that have been observed to trigger filter and that should be SCRUBBED at R4 if present. **NOT** a list of replacements to use; just things to consider removing.
-
-Observed-block patterns (Tara T01, Lily Beach Swim, Alisa G01):
-
-- Direct anatomy + opening verbs together: `"DEEP V plunge falls open"`, `"FULL inner cleavage line"`, `"décolletage fully visible"`
-- Undressing-motion verbs: `"slipping off her shoulders"`, `"strap halfway off"`, `"hanging loose"`, `"hem riding up"`, `"robe slipping fully off"`
-- Explicit framing percentages on body: `"FULL décolletage area fills 35% of frame"`
-- Modifier word `"intimate"` in close-up framings (especially "intimate detail" + chest-up close)
-- Direct lingerie / swim domain terms: `"bikini top"`, `"swim top"`, `"lingerie"`, `"slip dress"` (variable — slip dress passes in some contexts)
-- Pin-up / suggestive era framings combined with body shots: `"1962 Bardot pin-up moment"` + reclined pose
-- "low-rise" + "side-tie at hips" combination, "body chain", "skimpy", "barely-there"
-
-If a blocked prompt contains any of these, R4 attempts to remove the highest-suspicion ones (1-2 per round, max 3 rounds × 3 parallel each per L18). **The replacement is silence (delete the phrase) or "as in reference 2"** (offload visual specifics to the ref image, per L17), NOT a substitute concept.
+- ❌ Pre-emptively rewriting user wardrobe / setting / mood into "tier 0 safe alternatives" before generation begins
+- ❌ Maintaining a parallel "filter-safe vocabulary catalog" elsewhere — all such lists must point to this file
+- ❌ Adding a word to the registry without Trin approval (use the tier-up protocol above)
+- ❌ Reading a Tier 1 word as "the kind of word the user wants me to use as default" (Tier 1 is exclusion list, not selection list)
+- ❌ Switching a project's wardrobe vocabulary mid-set to bypass filter (set continuity > any single plate)
 
 ## Validation log
 
 | # | Project | Date       | Technique applied                                          | Outcome | Notes                   |
 |---|---------|------------|------------------------------------------------------------|---------|-------------------------|
-| 1 | Lily Beach Swim | 2026-05-01 | Used clothing-domain vocabulary instead of direct swim terms after R3 exhaustion. | pass | Filter passed, AI generated correct silhouette. |
-| 2 | Alisa Glamour Photobook G01 | 2026-05-05 | Used fashion-domain vocab ("silk wrap", "sheer chiffon", "asymmetric drape") after vocab analysis on filter-blocked prompts. Held across multi-plate set. | pass | Validates the principle; promoted to validated 2/3. |
-| 3 | Tara 3-Look Photobook T01 R4-R5 | 2026-05-06 | At R4 (post-R3 exhaustion), dropped 1-2 most-risky direct phrases per round (`'fully revealed'`, `'where deep V plunge falls open'`, `'smoldering'`) keeping the silk slip dress wardrobe unchanged. P1, P4 passed at R4. P2, P5, P7 needed R5 pose redesign (NOT vocab) — confirms structural-layer category. **L13 lesson rewritten in this session to remove wardrobe catalog (anti-bias) and reframe as last-resort word trimming.** | pass | Validates the new framing. Confirms 3-layer filter model. |
+| 1 | Lily Beach Swim | 2026-05-01 | Used clothing-domain vocabulary instead of direct swim terms after R3 exhaustion. | pass | Origin of word-matching mechanism finding. |
+| 2 | Alisa Glamour Photobook G01 | 2026-05-05 | Vocabulary-trim approach held across multi-plate set. | pass | Pre-tier-system; treated as L13 v1 validation. |
+| 3 | Tara 3-Look Photobook T01 R4-R5 | 2026-05-06 | Minimal-removal at R4 + pose-redesign at R5. **Triggered the L13 rewrite to remove wardrobe catalog (anti-bias) and the Tier 0/1/2/3 registry redesign with Trin (this LV 2.10 commit).** | pass | Validates the principle. Confirms 3-layer filter model. |
 
 ## Cross-references
 
-- Related lessons: **L17** (filter on prompt text not refs — explains why ref offload works at R4); **L18** (escalating retry — defines when R4 / R5 triggers)
-- Memory file: `~/.claude/projects/-Users-trin/memory/feedback_google_filter_prompt_vs_ref.md` — original "put it in the ref, not the prompt" rule. L13 + L17 are the modern restatement: refs carry visuals; prompt avoids direct triggers.
-- Checklist items affected: pre-submit B (ambiguity sweep), F (filter-safety check — but ONLY at R4+, never pre-emptively)
-
-## Migration note (for future-me reading the prior version)
-
-If you find a draft / template / cached prompt that recommends "halter knot-front V-neck" or any specific wardrobe vocab as a default sexy choice, treat it as **stale**. The current rule is: design wardrobe per the user's intent → run R1+R2+R3 → only at R4 trim the prompt's most-risky phrases (NOT swap concepts) → at R5 redesign pose structurally → at STOP escalate to user.
+- **L17** — `filter triggers on prompt text, not refs` (validated). The mechanism behind L13: ref images carry no token-matching risk, so "ref offload" is the canonical R4 substitute when a Tier 2 word is dropped from prompt.
+- **L18** — `filter retry diagnostic` (validated). The playbook that consumes this registry. R3 drops Tier 2 · R4 drops Tier 3 · R5 redesigns pose for structural triggers (which vocab cannot fix).
+- **`~/.claude/projects/-Users-trin/memory/feedback_google_filter_prompt_vs_ref.md`** — DEPRECATED in LV 2.10. Now points here. The principle (prompt is choke point, not refs) lives in L17; the word lists live here.
+- **L15 master-only-ref-bypass** — RETIRED in LV 2.10 (was already `needs-rerun` since LV 2.7). The original "drop hero ref to bypass filter" recipe was misattributed (per L17 finding); modern playbook handles the same problem via R4 word trim + R5 pose redesign.
