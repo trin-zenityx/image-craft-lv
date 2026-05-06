@@ -4,6 +4,8 @@
 
 ## Level history
 
+- **LV 2.11** (2026-05-07) — **L25 added · color-grade-first protocol for color-only drift.** Trin observation during Tara Vol 04 P2 fix: had spent ~5 min + 3 KIE calls regenerating P2 to fix a color drift (sapphire blue → warm amber + teal balance). Trin: *"รอบหน้าคุณลองเกลี่ยสีดูเองก่อนก็ได้นะ เผื่อมันได้เลย จะได้ไม่ต้องเจนใหม่"* — when only color is wrong (composition + face + pose + wardrobe all correct), grade with sips / ImageMagick / Pillow first; regen as fallback. Saves ~3-5 min wall time + 0 API cost vs regen. New lesson L25 (workflow / micro · pending 1/1) with full ImageMagick recipes for warm/cool shifts, histogram match, anti-patterns, and decision protocol. **Files changed:** `lessons/workflow/L25-color-grade-first.md` (new), `SKILL.md` frontmatter + Current Level line + lessons table row, `CHANGELOG.md` (this entry). Tier: Minor (additive lesson, no breaking changes).
+
 - **LV 2.10** (2026-05-06) — **Filter-word tier registry · L13 rewritten as single source of truth · L18 R3/R4 protocol changes · L15 RETIRED · feedback memory DEPRECATED.**
 
   Co-design with Trin. Goal: replace the scattered filter-word lists (L13 wardrobe catalog, feedback memory list, L18 suspicion ranking, L13 negative-example archive) with **one canonical tier registry** that all other lessons reference.

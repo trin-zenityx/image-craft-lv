@@ -9,8 +9,8 @@ description: >-
   to write/submit/refine a still-image prompt, plan a multi-shot image
   project, or debug drift between related images. DO NOT use for video
   (see seedance-craft-lv) or raw API calls (see kie-nano-banana).
-level: 2.10
-updated: 2026-05-06
+level: 2.11
+updated: 2026-05-07
 sister_skills: [seedance-craft-lv, kie-nano-banana, internal-board-builder]
 ---
 
@@ -18,7 +18,7 @@ sister_skills: [seedance-craft-lv, kie-nano-banana, internal-board-builder]
 
 > A living skill. Every generation teaches something; validated lessons level this skill up. Future-you reads this before writing any still-image prompt.
 
-## Current Level: **LV 2.10** (Filter-word tier registry · L13 rewritten as the single source of truth — Tier 0/1/2/3 lists + tier-up protocol · L18 R3 changes to "drop Tier 2 + 5 parallel" (was "5 same-prompt") · L18 R4 changes to "drop Tier 3 also + 3 parallel × 3 rounds" · L15 RETIRED · feedback_google_filter_prompt_vs_ref.md DEPRECATED, points to L13/L17/L18 · 2026-05-06)
+## Current Level: **LV 2.11** (L25 added · color-grade first before regen for color-only drift (Trin · Tara Vol 04 P2 case) · sips / ImageMagick / Pillow recipes · 2026-05-07)
 
 Full history: [CHANGELOG.md](CHANGELOG.md)
 
@@ -142,6 +142,7 @@ Themed index: [lessons/README.md](lessons/README.md). One lesson per file.
 | L21 | aesthetic     | pending 1/3 · meso     | Designer / aesthetic reference choice drives mood and polish     |
 | L22 | prompt-craft  | pending 1/3 · meso     | Anti-overproduction directives = calibration tool, not blanket switch |
 | L23 | character     | pending 1/3 · meso     | Face EXPRESSION as separate prompt block with "NOT hard" anti-pattern |
+| L25 | workflow      | pending 1/1 · micro    | Color-grade first (sips / ImageMagick / Pillow) before regen for color-only drift |
 
 ## TEMPLATES
 
