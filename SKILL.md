@@ -9,7 +9,7 @@ description: >-
   to write/submit/refine a still-image prompt, plan a multi-shot image
   project, or debug drift between related images. DO NOT use for video
   (see seedance-craft-lv) or raw API calls (see kie-nano-banana).
-level: 2.11
+level: 2.12
 updated: 2026-05-07
 sister_skills: [seedance-craft-lv, kie-nano-banana, internal-board-builder]
 ---
@@ -18,7 +18,7 @@ sister_skills: [seedance-craft-lv, kie-nano-banana, internal-board-builder]
 
 > A living skill. Every generation teaches something; validated lessons level this skill up. Future-you reads this before writing any still-image prompt.
 
-## Current Level: **LV 2.11** (L25 added · color-grade first before regen for color-only drift (Trin · Tara Vol 04 P2 case) · sips / ImageMagick / Pillow recipes · 2026-05-07)
+## Current Level: **LV 2.12** (Jira Wanderlust Vol 06 lesson pack · L26 diversity matrix · L27 avoid disembodied details · L28 distance + motion = face drift · L29 Lifestyle vs Editorial recipes don't mix · 2026-05-07)
 
 Full history: [CHANGELOG.md](CHANGELOG.md)
 
@@ -143,6 +143,10 @@ Themed index: [lessons/README.md](lessons/README.md). One lesson per file.
 | L22 | prompt-craft  | pending 1/3 · meso     | Anti-overproduction directives = calibration tool, not blanket switch |
 | L23 | character     | pending 1/3 · meso     | Face EXPRESSION as separate prompt block with "NOT hard" anti-pattern |
 | L25 | workflow      | pending 1/1 · micro    | Color-grade first (sips / ImageMagick / Pillow) before regen for color-only drift |
+| L26 | workflow      | pending 1/3 · meso     | Diversity matrix per plate BEFORE generation (camera distance / angle / pose / action axes) |
+| L27 | pose          | pending 1/1 · micro    | Avoid disembodied detail shots — keep partial body context as identity anchor |
+| L28 | character     | pending 1/1 · micro    | Distance + motion = face drift risk · stop motion or bring closer (FACE_LOCK can't compensate) |
+| L29 | prompt-craft  | pending 1/3 · meso     | Lifestyle vs Editorial recipes — choose ONE entire vocabulary set; never mix |
 
 ## TEMPLATES
 
