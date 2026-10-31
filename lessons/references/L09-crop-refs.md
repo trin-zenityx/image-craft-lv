@@ -2,11 +2,8 @@
 id: L09
 title: Crop reference images to isolate the target element
 theme: references
-tier: meso
-status: validated
-validation: 2.5/3
+added_at_lv: 1.0
 tags: [reference-image, cropping, edit-mode, target-anchor]
-origin_project: DHYANA
 created: 2026-04-16
 last_updated: 2026-04-16
 supersedes: []
@@ -39,14 +36,6 @@ When a ref needs to lock ONE element (specific object, specific pose, specific c
 
 A reference image teaches the model what it shows, in proportion to how much of the frame that thing occupies. If the pod is 10% of a scene ref, the pod design is 10% "loud" to the model. If the pod fills the frame of a cropped ref, it is 100% loud.
 
-## Validation log
-
-| # | Project | Date       | Technique applied                                          | Outcome | Notes                   |
-|---|---------|------------|------------------------------------------------------------|---------|-------------------------|
-| 1 | DHYANA  | 2026-04-16 | Cropped pod front (1885×1280 of 4096×2286) used for #07 v7 | pass    | Silhouette finally matched |
-| 2 | arena:S02 | 2026-04-17 | Iron tsuba A/B control (3A crop-ref vs 3B full-ref, identical sparse text) | partial | 3A beat 3B on 2/4 dimensions (arc + overall); Skeptic adversarial-valid. 7-axis flip from DHYANA |
-| 3 | arena:S03 | 2026-04-17 | Aztec penacho A/B control (all 4 dims directional/asymmetric) | **pass** | 3A beat 3B on 3/4 dimensions (left-fan + crown lean + overall); Skeptic adversarial-valid. 6-axis flip vs DHYANA/S01/S02. **PROMOTION to validated** |
-
 ## Scope limits (added from arena:S04 findings)
 
 **L09 alone is NOT sufficient when the new shot is wider than the crop.** A crop-only ref anchors the target element but unanchors everything else in the frame — model re-imagines bg/character/palette from text prior. For shots that include surrounding context, **combine L09 with L12 (dual-ref)**: pass both the crop and the full-scene source.
@@ -61,3 +50,45 @@ A reference image teaches the model what it shows, in proportion to how much of 
 ## Related technique
 
 Per research, Nano Banana Pro treats reference images with edit-style prompting ("match THIS exactly", "preserve the pod in the reference") more restrictively than generation-style prompting ("in the style of..."). Combine cropped refs with edit-style language when you need exact matching.
+
+## Reinforcement (added 2026-05-04 from Mila Power Suit session)
+
+**Center the crop on the actual feature — don't use fixed-percentage coordinates from image edges.**
+
+A common mistake when applying L09 to face-cropping (per L17, L18, character-sheet-builder L18): using formulaic coordinates like `left=20%`, `top=10%`, `width=55%`, `height=30%` from image edges. This produces an off-center crop where the face takes only ~40% of the frame and 30% is empty background.
+
+**Effect of off-center crop:**
+- Face dominance in frame: ~40% (weak identity signal)
+- AI gets ambiguous anchor — must choose between empty-frame interpretation and the actual face
+- Even when paired with master full-body ref, the face-crop's signal is diluted
+
+**Correct approach:**
+1. **Estimate the feature's center** in the source image (for portraits: face center ≈ x:50%, y:18-25% from top)
+2. **Crop around that center**, not from image edges
+3. Aspect ratio: 3:4 portrait works well for face+shoulders refs
+4. Verify after cropping: face should fill ≥60% of crop area, centered
+
+**Python pattern (validated):**
+```python
+from PIL import Image
+img = Image.open(master_path)
+w, h = img.size
+
+# Estimate face center for typical portrait
+face_x = int(w * 0.50)  # horizontally centered
+face_y = int(h * 0.22)  # eye-line at ~22% from top
+
+# Crop dimensions (face+shoulders)
+crop_w = int(w * 0.55)
+crop_h = int(crop_w * 4 / 3)  # 3:4 portrait
+
+# Center crop on face point
+left = max(0, face_x - crop_w // 2)
+top = max(0, face_y - int(crop_h * 0.40))  # 40% above center, 60% below
+
+face_crop = img.crop((left, top, left + crop_w, top + crop_h))
+```
+
+**Validated on:** Mila Power Suit master_face_crop v2 (2026-05-04). v1 used fixed-percentage coords → off-center, face at right portion of frame, ~30% empty space on left → may have contributed to identity drift in plates that used it. v2 face-centered → cleaner anchor.
+
+**Skill-level implication:** When a downstream lesson (L17, L18, character-sheet-builder L18) prescribes "use master_face_crop", it implicitly requires this centered-crop discipline. Off-center crops violate the spirit of L09.

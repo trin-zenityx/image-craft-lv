@@ -2,11 +2,8 @@
 id: L25
 title: For color/tone drift only, color-grade first (sips / ImageMagick) before regenerating
 theme: workflow
-tier: micro
-status: pending
-validation: 1/1
+added_at_lv: 2.11
 tags: [color-grading, sips, imagemagick, post-processing, regen-cost-avoidance, tone-drift]
-origin_project: tara-sun-and-water-vol04
 created: 2026-05-07
 last_updated: 2026-05-07
 supersedes: []
@@ -145,12 +142,6 @@ When a plate has color/tone drift:
 - ❌ Apply grade without backup (always `.v1.png` backup before destructive grade)
 - ❌ Over-saturate to "punch up" warmth (introduces banding / artifacts)
 - ❌ Use `sips` for hue shift (doesn't support it — use ImageMagick instead)
-
-## Validation log
-
-| # | Project | Date | Technique | Outcome | Notes |
-|---|---------|------|-----------|---------|-------|
-| 1 | Tara Sun & Water Vol 04 (T03 P2) | 2026-05-07 | Originally regenerated 3 candidates with color-fix prompt; passed but spent ~5 min wall time + 3 KIE calls. Trin observation: *"รอบหน้าคุณลองเกลี่ยสีดูเองก่อนก็ได้นะ เผื่อมันได้เลย จะได้ไม่ต้องเจนใหม่"* — codified as L25. Lesson would have applied: P2 had face + composition + pose + wardrobe ALL correct, only twilight color drifted from teal+amber balance to pure sapphire blue. ImageMagick `magick -modulate -channel R/B` could likely have warmed it up in seconds. | pending validation | First instance — codified, not yet applied to a fix. Will validate next time a color-only drift appears. |
 
 ## Cross-references
 

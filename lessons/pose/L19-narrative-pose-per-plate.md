@@ -2,11 +2,8 @@
 id: L19
 title: Narrative pose per plate beats generic framing templates for variety
 theme: pose
-tier: meso
-status: pending
-validation: 1/3
+added_at_lv: 2.7
 tags: [pose, narrative, multi-plate, variety, framing, prompt-engineering]
-origin_project: alisa-glamour-photobook
 created: 2026-05-05
 last_updated: 2026-05-05
 supersedes: []
@@ -67,12 +64,6 @@ Counter-pattern to avoid: "P1 Hero full-body, P2 Beauty close-up, P3 Profile, P4
 For any multi-plate set where pose variety is the goal, write each plate as a narrative micro-scene with action, prop, location, body interaction, and camera framing. Generic framing labels are insufficient instructions for pose variation.
 
 This generalizes beyond glamour / photobook work: ad shoots, character sheets (when the goal is varied poses, not identity locking), and any storyboard where the figure must do something different in each frame.
-
-## Validation log
-
-| # | Project | Date       | Technique applied                                          | Outcome | Notes                   |
-|---|---------|------------|------------------------------------------------------------|---------|-------------------------|
-| 1 | Alisa Glamour Photobook v2-v4 + cross-validation against Jira Set A/B/C and Mila Set B prompt archives | 2026-05-05 | Rewrote v1's generic-framing prompts as narrative-pose-per-plate (5 elements per plate). Cross-validated against `~/.kie/tasks/*.json` for Jira / Mila plates. | pass | v1 (counter-example): mono-angle output with generic templates. v2-v4 (validation): genuinely varied compositions. Jira / Mila prompt archives independently use the same narrative-pose-per-plate pattern. |
 
 ## Cross-references
 

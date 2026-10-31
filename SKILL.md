@@ -1,40 +1,26 @@
 ---
 name: image-craft-lv
 description: >-
-  Self-improving discipline layer for STILL-IMAGE prompt engineering
-  (Nano Banana, Midjourney, DALL·E, Stable Diffusion, Flux). Enforces
-  a Pre-submit Checklist, Batch Gate, and Post-generate Self-review
-  before/after any still-image generation. Maintains a lessons library
-  that levels up with validated outcomes. Auto-invoke whenever about
-  to write/submit/refine a still-image prompt, plan a multi-shot image
-  project, or debug drift between related images. DO NOT use for video
-  (see seedance-craft-lv) or raw API calls (see kie-nano-banana).
-level: 2.12
-updated: 2026-05-07
-sister_skills: [seedance-craft-lv, kie-nano-banana, internal-board-builder]
+  Discipline layer for STILL-IMAGE prompt engineering (Nano Banana, Midjourney,
+  DALL·E, Stable Diffusion, Flux). Enforces a Pre-submit Checklist, Batch Gate,
+  and Post-generate Self-review before/after any still-image generation.
+  Maintains a lessons library; Claude proposes new lessons + LV bumps with
+  reasoning, user decides. Auto-invoke whenever about to write/submit/refine a
+  still-image prompt, plan a multi-shot image project, or debug drift between
+  related images. DO NOT use for video prompting or raw API
+  calls (see kie-craft-lv).
+level: 2.15
+updated: 2026-08-12
+sister_skills: [kie-craft-lv, internal-board-builder]
 ---
 
 # image-craft-lv
 
-> A living skill. Every generation teaches something; validated lessons level this skill up. Future-you reads this before writing any still-image prompt.
+> Living skill. Lessons accumulate in `lessons/`. Claude proposes; user decides. Single source of truth for the level is the `level:` field above.
 
-## Current Level: **LV 2.12** (Jira Wanderlust Vol 06 lesson pack · L26 diversity matrix · L27 avoid disembodied details · L28 distance + motion = face drift · L29 Lifestyle vs Editorial recipes don't mix · 2026-05-07)
+## THE RULE
 
-Full history: [CHANGELOG.md](CHANGELOG.md)
-
-## THE RULE (non-negotiable)
-
-**Before submitting ANY still-image prompt, run the Batch Gate, then the Pre-submit Checklist. Before showing generated output to the user, run the Post-generate Self-review. No exceptions. Skipping = LV regression.**
-
-## ENTRY PROTOCOL (Claude reads first)
-
-Run `templates/session-kickoff.md` at the start of any session that will touch still-image generation. In short:
-
-1. Identify project context (name, shot count, reused assets, model).
-2. Retrieve relevant lesson themes from `lessons/` per the cheatsheet in `lessons/README.md`.
-3. Warn about any `pending` lessons that will be exercised.
-4. Convert the Pre-submit Checklist into TodoWrite items.
-5. Confirm the Batch Gate before any multi-shot submission.
+**Before submitting ANY still-image prompt, run the Batch Gate, then the Pre-submit Checklist. Before showing generated output to the user, run the Post-generate Self-review.**
 
 ## BATCH DISCIPLINE GATE
 
@@ -48,8 +34,6 @@ Still-image gens are cheaper than video but batching 20 shots with a systemic er
 Anti-pattern: submitting 20 gens before confirming the first 1–3 work.
 
 ## PRE-SUBMIT CHECKLIST
-
-Convert every item below into a TodoWrite entry at session start. Tick each before submitting.
 
 ### A. Consistency audit
 - [ ] Recurring character? Ref image attached, or master anchor generated first?
@@ -66,7 +50,7 @@ Convert every item below into a TodoWrite entry at session start. Tick each befo
 
 ### C. Reference strategy
 - [ ] Refs chosen are the MOST relevant to what this shot must lock (not just "related").
-- [ ] Under the model's ref limit (Nano Banana Pro: 8; Nano Banana 2: 14; Seedance Omni: 9).
+- [ ] Under the model's ref limit (Nano Banana 2.1: 10; Nano Banana Pro: 8; Nano Banana 2: 14; Seedance Omni: 9).
 - [ ] Chain order correct: master anchors first, secondary with master refs, tertiary with both.
 
 ### D. Phase planning (multi-shot projects)
@@ -89,86 +73,37 @@ Run every image through these seven checks before showing the user.
 
 ## CORE PRINCIPLES
 
-These do not change between LVs. They are the spine.
-
 1. **Mismatch between shots beats beauty per shot.** Two adequate matched shots > a perfect #1 and a perfect #2 that don't match.
 2. **Ambiguity = model's choice, not yours.** Every unstated detail is a coin-flip. State everything that matters; accept the rest as generative surprise.
 3. **Reference images are not optional polish — they are foundational.** For any multi-shot project, ref chains are designed BEFORE the first generation.
 4. **Numbers > adjectives.** "2.1 meter" not "long". "85 mm" not "telephoto". "40 rack columns" not "many racks".
 5. **Negative-state the common failures.** "No age markers, no text, no watermark, no [specific failure you have seen]".
 6. **Self-review is not optional.** It is the last step of generation.
-7. **Face identity is HIGHER priority than pose / action fidelity.** If face renders well but pose is simpler than described, that is the PREFERRED outcome. State this explicitly at the bottom of every multi-plate prompt — e.g. `"FACE IDENTITY HAS HIGHER PRIORITY THAN POSE / ACTION DETAILS — preserve face above all else."` (LV 2.7 · Jira/Mila/Alisa formula)
-8. **Filter has 3 layers + 4 vocabulary tiers — match fix tier to layer.** (LV 2.10 · Trin co-design)
-   - **Layers** = word-level / combo-level / structural-level (the diagnostic frame).
-   - **Tiers** = Tier 1 (avoid R1) / Tier 2 (drop at R3) / Tier 3 (drop at R4) / Tier 0 (always safe). Single source of truth in **L13 (filter-word tier registry)**.
-   - **L18 playbook:** R1+R2 = same prompt (Tier 1 already excluded by design). R3 = drop Tier 2 + 5 parallel (first vocab change). R4 = drop Tier 3 also + 3 parallel × max 3 rounds. R5 = pose redesign for structural triggers (vocab cannot fix layer 3).
-   - **Never silent additions** — discovering a new triggering word means proposing tier assignment to Trin via the L13 tier-up protocol. Never pre-emptively rewrite wardrobe to "filter-safe vocab" — set continuity > any single plate.
-
-## LEVELING PROTOCOL (summary)
-
-- **Status** per lesson: `pending (X/Y)` → `validated` → `retired`.
-- **Tier thresholds:** Micro 1/1 · Meso 2/3 · Macro 3/5.
-- **Project spread (LV 2.1):** Meso requires passes across ≥2 projects; Macro requires ≥3.
-- **Promotion:** flips status, bumps LV, adds CHANGELOG entry, commits.
-- **Full protocol + rollback procedure:** [CHANGELOG.md](CHANGELOG.md#leveling-protocol).
-- **Validation log of record:** [VALIDATION_LEDGER.md](VALIDATION_LEDGER.md).
+7. **Face identity is HIGHER priority than pose / action fidelity.** If face renders well but pose is simpler than described, that is the PREFERRED outcome. State this explicitly at the bottom of every multi-plate prompt — e.g. `"FACE IDENTITY HAS HIGHER PRIORITY THAN POSE / ACTION DETAILS — preserve face above all else."`
+8. **Filter problems are diagnosed by layer (word / combo / structural) and fixed by tier.** The full system — classify-first, R1→R5 playbook, vocab tier registry, error taxonomy — now lives in the standalone **`filter-craft-lv`** skill (migrated from L13/L17/L18). Invoke it whenever a generation fails or edgy wardrobe is going out. Never silently rewrite wardrobe to "filter-safe vocab" — propose a tier assignment for any new triggering word per `filter-craft-lv/VOCAB.md`.
 
 ## LESSONS LIBRARY
 
-Themed index: [lessons/README.md](lessons/README.md). One lesson per file.
+Index + headlines: [lessons/README.md](lessons/README.md). One lesson per file under themed folders.
 
-| ID  | Theme         | Status                 | Headline                                                         |
-|-----|---------------|------------------------|------------------------------------------------------------------|
-| L01 | consistency   | pending 2/5 · macro    | Reference chains beat text-only for multi-shot sets              |
-| L02 | orientation   | pending 1/3 · meso     | Face orientation inside containers must be explicit              |
-| L03 | consistency   | pending 1/3 · meso     | Opaque vs transparent surface vocabulary must match across set   |
-| L04 | workflow      | pending 0/5 · macro    | Self-review before showing output                                |
-| L05 | references    | pending 0/3 · meso     | Back-view refs cannot lock face identity                         |
-| L06 | character     | pending 1/3 · meso     | Distinguish lookalike characters with immutable features         |
-| L07 | delivery      | pending 1/5 · macro    | Deliverables as reviewable artifacts, not file dumps             |
-| L08 | consistency   | pending 1/3 · meso     | Palette consistency within same world/time                       |
-| L09 | references    | **validated** · meso   | Crop refs to isolate target element                              |
-| L10 | model-limits  | pending 1/5 · macro    | Recognize prominence floor; stop diminishing-return regens       |
-| L11 | references    | pending 1/5 · macro    | Tier-1 refs designed for video-pipeline continuity               |
-| L12 | references    | pending 0/3 · meso     | Dual-ref (crop + full) locks target AND scene — complements L09  |
-| L13 | filter        | **validated** · meso   | Filter-word tier registry (single source of truth) — Tier 0/1/2/3 + tier-up protocol (LV 2.10) |
-| L14 | character     | pending 1/3 · meso     | Identity-marker mention (mole/tattoo) → AI multiplies; drop and use ref |
-| L15 | filter        | **RETIRED** · meso     | Master-only ref bypass — retired LV 2.10; replaced by L18 R4 word-trim + R5 pose-redesign |
-| L16 | delivery      | pending 2/3 · meso     | Local boards: defer to `internal-board-builder` skill for primitives · layout per-board |
-| L17 | filter        | **validated** · meso   | Filter triggers on prompt text, not ref content · "ref offload" technique for R4 word trims |
-| L18 | workflow      | **validated** · meso   | Full R1→R5 escalating playbook · R3 = drop Tier 2 (per L13) + 5 parallel · R4 = drop Tier 3 also + 3 parallel × 3 rounds · R5 = pose redesign for structural triggers |
-| L19 | pose          | pending 1/3 · meso     | Narrative pose per plate beats generic framing templates         |
-| L20 | camera        | pending 1/3 · meso     | Camera body + film stock specificity beats lens-only spec        |
-| L21 | aesthetic     | pending 1/3 · meso     | Designer / aesthetic reference choice drives mood and polish     |
-| L22 | prompt-craft  | pending 1/3 · meso     | Anti-overproduction directives = calibration tool, not blanket switch |
-| L23 | character     | pending 1/3 · meso     | Face EXPRESSION as separate prompt block with "NOT hard" anti-pattern |
-| L25 | workflow      | pending 1/1 · micro    | Color-grade first (sips / ImageMagick / Pillow) before regen for color-only drift |
-| L26 | workflow      | pending 1/3 · meso     | Diversity matrix per plate BEFORE generation (camera distance / angle / pose / action axes) |
-| L27 | pose          | pending 1/1 · micro    | Avoid disembodied detail shots — keep partial body context as identity anchor |
-| L28 | character     | pending 1/1 · micro    | Distance + motion = face drift risk · stop motion or bring closer (FACE_LOCK can't compensate) |
-| L29 | prompt-craft  | pending 1/3 · meso     | Lifestyle vs Editorial recipes — choose ONE entire vocabulary set; never mix |
+Loading rule: at task start, glance at the README cheatsheet and load only the themes relevant to the current task — not every lesson every time.
+
+## LEVELING (simple version)
+
+No point system, no thresholds, no "session-end review". The flow:
+
+- **New lesson** — when Claude observes a pattern, failure, or insight worth keeping: propose to the user with reasoning. User says yes (add to library), edit (revise then add), or no (drop).
+- **LV bump** — when active lessons have accumulated enough that they meaningfully change behavior: Claude proposes a bump with reasoning. User says yes/no.
+- **Archive** — when a lesson is no longer useful (superseded, model changed, false): move file to `lessons/archive/` and note in `lessons/README.md`. The lesson file is kept for reference, just not loaded.
+
+The `level:` in the frontmatter is the single source of truth. Body text doesn't repeat it. Level history lives in [CHANGELOG.md](CHANGELOG.md). Notable outcomes worth narrating live in [OUTCOMES_HISTORY.md](OUTCOMES_HISTORY.md) (audit only — not used for promotion).
 
 ## TEMPLATES
 
-- [`templates/session-kickoff.md`](templates/session-kickoff.md) — 5-step intro Claude runs at session start.
 - [`templates/lesson-template.md`](templates/lesson-template.md) — skeleton for new lessons.
 - [`templates/batch-plan-template.md`](templates/batch-plan-template.md) — dependency-graph planner for multi-shot projects.
 
-## ARENA (synthetic validation)
-
-Auto-leveling via adversarial scenarios. See [`arena/README.md`](arena/README.md).
-
-- Run a trial via [`arena/run-playbook.md`](arena/run-playbook.md) — full
-  8-step workflow with a single human checkpoint after Generator.
-- Ledger rows from arena use `Project = arena:SXX`, `Reviewer = AI-jury`.
-- **Distinct-project rule:** a scenario counts toward validation only if
-  it flips ≥3 of 9 axes from DHYANA AND ≥2 axes from any prior arena
-  scenario for the same lesson (see [`arena/axes.md`](arena/axes.md)).
-- Four AI roles: 🎲 Generator → 🖌️ Runner (blinded) → ⚖️ Judge → 🕵️ Skeptic.
-- Lessons that void 3+ trials consecutively get flagged
-  `arena-unresolvable` and must be rewritten or retired.
-
 ## SISTER SKILLS
 
-- **`seedance-craft-lv`** — same leveling pattern, but for video (ByteDance Seedance). If the task involves video, route there.
-- **`kie-nano-banana`** — raw KIE API calls. This skill is the strategy layer above it; that one is the execution layer.
+- **`kie-craft-lv`** — raw KIE API calls (image AND video incl. Seedance submission). This skill is the strategy layer above it; that one is the execution layer. (The former `seedance-craft-lv` video-prompting sister was retired 2026-06-12, rebuild planned — archived at `~/.claude/skills/_backups/seedance-craft-lv-removed-*/`.)
+- **`internal-board-builder`** — for building local HTML review boards (L16's home).

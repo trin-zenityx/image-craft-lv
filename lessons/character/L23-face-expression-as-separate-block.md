@@ -2,11 +2,8 @@
 id: L23
 title: Face EXPRESSION as separate prompt block, with explicit "NOT hard, NOT stiff" anti-pattern
 theme: character
-tier: meso
-status: pending
-validation: 1/3
+added_at_lv: 2.7
 tags: [face, expression, prompt-engineering, naturalness, emotion]
-origin_project: alisa-glamour-photobook
 created: 2026-05-05
 last_updated: 2026-05-05
 supersedes: []
@@ -61,12 +58,6 @@ Place the block adjacent to (but separate from) the pose block. The visual separ
 For any prompt where face / expression rendering matters, isolate the expression spec into its own prompt block, with both positive descriptors and explicit anti-pattern. Don't bury expression inside pose, mood, or framing — it loses priority weight.
 
 This is a specific instance of a more general prompt-craft rule: **first-class concerns deserve first-class prompt blocks**. Burying a concern inside an unrelated block downgrades its attention weight.
-
-## Validation log
-
-| # | Project | Date       | Technique applied                                          | Outcome | Notes                   |
-|---|---------|------------|------------------------------------------------------------|---------|-------------------------|
-| 1 | Alisa Glamour Photobook v3-v4 | 2026-05-05 | Pulled face EXPRESSION into a dedicated prompt block with positive descriptors + "NOT hard, NOT stiff" anti-pattern. Compared against v2 where expression was buried in pose. | pass | v2 (counter-example): hard AI fashion-model resting face. v3-v4 (validation): natural, expressive, on-brief faces across the full plate set. |
 
 ## Cross-references
 

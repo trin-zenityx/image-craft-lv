@@ -2,11 +2,8 @@
 id: L12
 title: Dual-ref (crop + full-scene) locks target AND scene context; crop-ref alone loses context
 theme: references
-tier: meso
-status: pending
-validation: 0/3
+added_at_lv: 2.0
 tags: [reference-image, dual-ref, cropping, scene-context, complement-to-L09]
-origin_project: arena:S04
 created: 2026-04-17
 last_updated: 2026-04-17
 supersedes: []
@@ -55,12 +52,6 @@ For shots where the new frame is wider than the target-isolating crop:
 ## Broader rule
 
 Match the reference to what you want it to anchor. If you want one thing locked, use one ref; if you want target + scene BOTH locked, use two. Crop isolation (L09) and scene preservation are not in conflict — they are complementary, and the model supports both simultaneously through multi-ref input.
-
-## Validation log
-
-| # | Project | Date | Technique applied | Outcome | Notes |
-|---|---------|------|-------------------|---------|-------|
-| 1 | arena:S04 | 2026-04-17 | Dual-ref (small crop + full Shot 1) in Victorian-lab hero shot | pending (origin-experiment) | 3D-small ranked #1 at D3=2.000 vs best single-ref at D3=1.875. Skeptic flagged margin as fragile and S04 as methodology origin, NOT counted as arena validation pass. Requires S05 (different scenario) for first real validation entry. |
 
 ## Cross-references
 

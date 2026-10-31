@@ -2,11 +2,8 @@
 id: L21
 title: Designer / aesthetic reference choice drives mood and polish level
 theme: aesthetic
-tier: meso
-status: pending
-validation: 1/3
+added_at_lv: 2.7
 tags: [aesthetic, designer-reference, mood, polish, glamour, natural, sculptural]
-origin_project: alisa-glamour-photobook
 created: 2026-05-05
 last_updated: 2026-05-05
 supersedes: []
@@ -63,12 +60,6 @@ Maintain a small "aesthetic palette" memory of which anchor combinations have wo
 Named designer / publication / photographer references are high-leverage prompt anchors that set mood, polish, and the entire imaging signature joint distribution. Use them deliberately — and prefer blends of two anchors over single anchors when nuance matters.
 
 This generalizes to any creative-direction prompt: invoke named clusters (artists, eras, movements) over generic adjectives. "Wes Anderson × Tarkovsky" beats "stylized cinematic"; "Saul Bass × early Pixar" beats "graphic animation."
-
-## Validation log
-
-| # | Project | Date       | Technique applied                                          | Outcome | Notes                   |
-|---|---------|------------|------------------------------------------------------------|---------|-------------------------|
-| 1 | Alisa Glamour Photobook v1 → v4 progression | 2026-05-05 | Tested four aesthetic anchors: none, Newton-only, Khaite-only, Newton×Khaite hybrid. v4 hybrid locked the brief. | pass | v1 (counter-example): no anchor → generic AI-glamour. v2-v4 (validation): each anchor produced a distinct, on-brief mood. Hybrid anchors produced richer output than single anchors. |
 
 ## Cross-references
 

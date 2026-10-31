@@ -2,11 +2,8 @@
 id: L26
 title: For multi-plate sets, build an explicit diversity matrix BEFORE generating to prevent visual repetition
 theme: workflow
-tier: meso
-status: pending
-validation: 1/3
+added_at_lv: 2.12
 tags: [photobook, multi-plate, diversity, narrative-arc, planning]
-origin_project: jira-wanderlust-vol06
 created: 2026-05-07
 last_updated: 2026-05-07
 supersedes: []
@@ -56,12 +53,6 @@ M03 White Bustier · 7 plates · diversity matrix:
 ```
 
 Each row differs from every other row on 2+ axes. Then translate each row into a prompt with explicit pose vocabulary (mermaid sit / power stance / kneeling on floor / walking AWAY look-back).
-
-## Validation log
-
-| # | Project | Date | Technique | Outcome | Notes |
-|---|---------|------|-----------|---------|-------|
-| 1 | Jira Wanderlust Vol 06 (J02 cafe + J05 drive) | 2026-05-07 | Built diversity matrix as first design step before any prompt writing. 14 plates across 2 looks: each plate distinct on 2+ axes. | pass | Trin feedback after Mila session: *"รอบครอบหน่อยระวังอย่าให้ภาพมีท่าทางมุมถ่ายซ้ำกันเกินไป หลากหลายหน่อย"* — direct instruction codified as L26. Result: zero "looks the same" complaints in J02+J05 review. Original 14/14 R1 PASS, narrative variety preserved. |
 
 ## Anti-patterns
 

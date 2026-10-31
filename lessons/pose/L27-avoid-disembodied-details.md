@@ -2,11 +2,8 @@
 id: L27
 title: Detail shots should keep at least partial body context — avoid disembodied details that read as stock photo
 theme: pose
-tier: micro
-status: pending
-validation: 1/1
+added_at_lv: 2.12
 tags: [composition, detail-shot, body-context, identity-anchor]
-origin_project: jira-wanderlust-vol06
 created: 2026-05-07
 last_updated: 2026-05-07
 supersedes: []
@@ -60,12 +57,6 @@ Detail framing is fine; **isolated body parts are not**.
 
 ✅ "Chest-up close-up with hands lifting a glass to her lips, eyes meeting camera over the rim"
 ✅ "Detail of fingertips at her own collarbone, jaw and lower face partially visible"
-
-## Validation log
-
-| # | Project | Date | Technique | Outcome | Notes |
-|---|---------|------|-----------|---------|-------|
-| 1 | Jira Wanderlust Vol 06 J05-P5 redesign | 2026-05-07 | Replaced disembodied "hands on wheel" detail with "Jira in driver's seat with face + hand + interior context". | pass | First instance — codified after Trin's "ใครขับ" complaint. Validates the partial-body-context rule. |
 
 ## Cross-references
 

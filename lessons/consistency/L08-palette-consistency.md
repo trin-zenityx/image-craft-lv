@@ -2,11 +2,8 @@
 id: L08
 title: Palette consistency within same world/time must be explicit
 theme: consistency
-tier: meso
-status: pending
-validation: 1/3
+added_at_lv: 1.0
 tags: [palette, color, world-time, cross-shot, cinematography]
-origin_project: DHYANA
 created: 2026-04-16
 last_updated: 2026-04-16
 supersedes: []
@@ -38,12 +35,6 @@ Explicit palette statement in prompt: name the exact color gradient ("warm pink 
 ## Broader rule
 
 A single world-time has a palette. All shots in that world-time must share it explicitly. Cross-world-time deliberately differs (cinematography). Group shots by world-time and check each group's palette consistency separately.
-
-## Validation log
-
-| # | Project | Date       | Technique applied                                         | Outcome | Notes                        |
-|---|---------|------------|-----------------------------------------------------------|---------|------------------------------|
-| 1 | DHYANA  | 2026-04-16 | Regenerated #08 v2 warm-amber palette matching #04        | pass    | Memory flashback cohesion    |
 
 ## Cross-references
 

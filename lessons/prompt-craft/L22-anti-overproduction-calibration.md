@@ -2,11 +2,8 @@
 id: L22
 title: Anti-overproduction directives are calibration tools, not blanket switches
 theme: prompt-craft
-tier: meso
-status: pending
-validation: 1/3
+added_at_lv: 2.7
 tags: [anti-prompt, calibration, overproduction, sensuality, glamour, natural]
-origin_project: alisa-glamour-photobook
 created: 2026-05-05
 last_updated: 2026-05-05
 supersedes: []
@@ -51,12 +48,6 @@ Default to fewer, more surgical anti-directives. When in doubt, use a positive d
 Negative prompts down-weight clusters in the model's prior. Stacking many of them shrinks the available distribution of outputs and can push past the target. Use anti-directives surgically, paired with positive replacements, and audit which ones are actually load-bearing.
 
 This generalizes: any specification-by-negation system (negative regex, exclusion filters, blocklists) has the same failure mode — over-broad rules subtract from the target along with the noise.
-
-## Validation log
-
-| # | Project | Date       | Technique applied                                          | Outcome | Notes                   |
-|---|---------|------------|------------------------------------------------------------|---------|-------------------------|
-| 1 | Alisa Glamour Photobook v3 → v4 | 2026-05-05 | v3 stacked 4 anti-directives → over-corrected output (modest, unsensual). v4 reduced to 1 anti-directive + positive replacements → on-brief glamour-natural. | pass | Validated by direct A/B comparison. Anti-directive count reduced 4→1 and mood landed correctly. |
 
 ## Cross-references
 

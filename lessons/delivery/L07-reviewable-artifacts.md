@@ -2,11 +2,8 @@
 id: L07
 title: Deliverables must be packaged as reviewable artifacts, not raw file dumps
 theme: delivery
-tier: macro
-status: pending
-validation: 1/5
+added_at_lv: 1.0
 tags: [delivery, storyboard, html, reviewable-artifact, packaging]
-origin_project: DHYANA
 created: 2026-04-16
 last_updated: 2026-04-16
 supersedes: []
@@ -38,12 +35,6 @@ For any batch of >3 images/artifacts, package deliverables as a *reviewable arti
 ## Broader rule
 
 "Delivered" means "user can review without extra assembly work on their part". Raw file dumps are not deliverables. If you generate N images, produce the reviewable artifact that shows all N at once, labeled and contextualized.
-
-## Validation log
-
-| # | Project | Date       | Technique applied                                       | Outcome | Notes                             |
-|---|---------|------------|---------------------------------------------------------|---------|-----------------------------------|
-| 1 | DHYANA  | 2026-04-16 | Tier 1+2 HTML storyboard delivered via browser open     | pass    | Confirmed CC preview mismatch     |
 
 ## Cross-references
 

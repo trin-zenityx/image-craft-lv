@@ -2,11 +2,8 @@
 id: L06
 title: Different characters in similar contexts must be made visibly distinct
 theme: character
-tier: meso
-status: pending
-validation: 1/3
+added_at_lv: 1.0
 tags: [characters, distinguishable-features, plot-integrity, generic-vs-specific]
-origin_project: DHYANA
 created: 2026-04-16
 last_updated: 2026-04-16
 supersedes: []
@@ -38,12 +35,6 @@ Even for "generic" background characters, specify immutable distinguishing featu
 ## Broader rule
 
 The self-review checklist must cross-check pairs of shots featuring different-but-similar-context characters. Not just "does character A stay consistent across A's shots" but "does character A look different from character B".
-
-## Validation log
-
-| # | Project | Date       | Technique applied                                         | Outcome | Notes                   |
-|---|---------|------------|-----------------------------------------------------------|---------|-------------------------|
-| 1 | DHYANA  | 2026-04-16 | g10a v2: adult male grey hair, distinct from g15b mother  | pass    | Reveal integrity preserved |
 
 ## Cross-references
 

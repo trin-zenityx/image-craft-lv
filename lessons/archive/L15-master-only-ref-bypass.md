@@ -79,12 +79,6 @@ The trade-off: you lose some hero-driven wardrobe detail accuracy, but gain filt
 For close-ups (P2/P3) which usually pass filter: stick with 2 or 3-ref.
 For full-body (P1/P4) of revealing wardrobe: master-only is the unlock.
 
-## Validation log
-
-| # | Project | Date       | Technique applied                                          | Outcome | Notes                   |
-|---|---------|------------|------------------------------------------------------------|---------|-------------------------|
-| 1 | Lily Beach Swim L1 P1 | 2026-05-01 | After 4 fails with master+hero, switched to master-only ref + halter knot-front vocab + 3/4 turn-back pose | pass | Filter passed, identity preserved, bikini-cut wardrobe rendered correctly. v5 successful. |
-
 ## Cross-references
 
 - Related lessons: L13 (filter-vocab sweet spot — pairs with master-only to compensate for lost hero detail), L05 (back-view refs)

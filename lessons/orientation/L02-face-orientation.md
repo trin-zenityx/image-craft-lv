@@ -2,11 +2,8 @@
 id: L02
 title: Face orientation inside containers must be explicit
 theme: orientation
-tier: meso
-status: pending
-validation: 1/3
+added_at_lv: 1.0
 tags: [face-orientation, containers, window-mirror, explicit-direction]
-origin_project: DHYANA
 created: 2026-04-15
 last_updated: 2026-04-15
 supersedes: []
@@ -38,12 +35,6 @@ Always state face direction explicitly: "face turned UPWARD to the ceiling, body
 ## Broader rule
 
 Any time a face/body is seen through a window/mirror/transparent surface, specify (a) subject orientation, (b) camera position relative to subject, (c) what viewer sees through the glass.
-
-## Validation log
-
-| # | Project | Date       | Technique applied                             | Outcome | Notes |
-|---|---------|------------|-----------------------------------------------|---------|-------|
-| 1 | DHYANA  | 2026-04-15 | Explicit face-UP orientation in #7 v5         | pass    | —     |
 
 ## Cross-references
 

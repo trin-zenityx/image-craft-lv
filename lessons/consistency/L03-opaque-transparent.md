@@ -2,11 +2,8 @@
 id: L03
 title: Opaque vs transparent container surfaces must match across the set
 theme: consistency
-tier: meso
-status: pending
-validation: 1/3
+added_at_lv: 1.0
 tags: [design-language, containers, cross-shot, vocabulary]
-origin_project: DHYANA
 created: 2026-04-15
 last_updated: 2026-04-15
 supersedes: []
@@ -38,12 +35,6 @@ In any multi-shot prompt set, pick one unambiguous phrase for each surface treat
 ## Broader rule
 
 Design-language facts established in one shot must be stated the same way in every related shot. Vague wording = model re-decides per gen.
-
-## Validation log
-
-| # | Project | Date       | Technique applied                                    | Outcome | Notes         |
-|---|---------|------------|------------------------------------------------------|---------|---------------|
-| 1 | DHYANA  | 2026-04-15 | Opaque body + face-window phrase unified (#7 v4)     | pass    | Matched #6    |
 
 ## Cross-references
 

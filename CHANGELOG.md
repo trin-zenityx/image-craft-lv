@@ -1,8 +1,40 @@
-# image-craft-lv — Changelog & Leveling Protocol
+# image-craft-lv — Changelog
 
-> Full level history, promotion log, and the validation gate rules. SKILL.md carries only a short summary and links here.
+> Level history. The `level:` field in `SKILL.md` frontmatter is the single source of truth; this file tells the story.
+
+## 2026-05-12 — Skill structure simplified (no LV bump)
+
+Refactor only — no behavioral change. Removed:
+- Tier system (Micro/Meso/Macro) and validation counts.
+- "Session-end review" + level-up-prompt ritual.
+- Lesson statuses (`pending`/`validated`/`retired`) — replaced with simple `active` / `archive` distinction.
+- ARENA synthetic-validation subsystem (moved entire `arena/` folder to backup — see `~/.claude/skills/_backups/`).
+- `lessons-board.html` (stale viewer).
+
+Kept all 27 active lessons unchanged in content; only their frontmatter was simplified.
+L15 (already retired) moved to `lessons/archive/`. L24 was never assigned (gap in numbering — no action needed).
+
+---
 
 ## Level history
+
+- **LV 2.15** (2026-08-12) — **L31 added — extended footer band for logo + info on AI posters (guide, not a rule).** Surfaced on the ZenityX Hermes Catch-Up Class poster set (10 posters, 5 concepts × Nano Banana Pro / GPT-Image-2, 3:4). Both models pushed headline typography to 88–95% of frame height even when the prompt asked to keep the bottom 12–14% calm — they read "calm" as dark/low-detail, not empty. Extending the canvas by ~12.5% and placing the ZenityX logo + two-line Thai info block in the new band avoided every collision and gave the whole set one shared geometry; the near-black band also gave the red X a legal backdrop on the red brand poster. Technique details captured: trim the logo to its alpha bbox before scaling (the shipped PNGs carry heavy transparent padding), logo ≈50% of band height, real fonts for Thai (IBM Plex Sans Thai Bold + Sarabun SemiBold).
+
+  **Framed deliberately as a GUIDE, per Trin** (verbatim): *"วิธีนี้เวิร์คอยู่นะ แต่อยากให้เอาเป็นไกด์นะเพราะบางครั้งเราก็อาจจะอยากให้ไว้ที่อื่น ให้วิเคราะห์เป็นงานๆไป แต่ให้รู้ว่ามีเทคนิคนี้ และมันเวิร์ค"* — so the lesson states its own counter-cases (real calm zone in the art → place inside the composition and use `zenityx-pr-lv/scripts/find_logo_spot.py`; platform-locked ratio → overlay or regenerate; single hero piece → a band reads as a template). Placement stays a per-poster analysis; the band is a tool in the box, never the default.
+
+  **Files changed:** `lessons/delivery/L31-extended-footer-band.md` (new), `lessons/README.md` (Delivery roster + cheatsheet row), `SKILL.md` (frontmatter 2.14→2.15), `CHANGELOG.md` (this entry). Tier: Patch/Minor (one additive lesson). Validated on: `/Volumes/Studio/active/ทำภาพทั่วไป/hermes-catchup-poster/make_final.py`.
+
+- **LV 2.14** (2026-05-29) — **"Soft Veil" named style added (L30).** Filter-safe artistic-suggestive thin-fabric look, codified as an **ON-DEMAND named style** (invoke only when Trin says "Soft Veil" / "สไตล์ Soft Veil"; never auto-apply). Two keys, both filter-safe (no explicit words): (1) emergent suggestion — worn thin cotton + natural-bust focal + real-skin-not-plastic + Harley-Weir light across body; (2) single-layer rule — no inner-layer seams showing through the outer fabric (also avoids Tier-1 `bra/underwear`). Includes an intensity dial (light / fabric / background) with default "V2" level. Validated on the Ing-Dao Harley-Weir thin-fabric test (effect 5/5, 0 filter blocks). Filter-safe rationale cross-referenced in `filter-craft-lv/PRINCIPLE-text-not-ref.md`; trigger registered in the project `CLAUDE.md`. **Files changed:** `lessons/aesthetic/L30-soft-veil.md` (new), `SKILL.md` (frontmatter 2.13→2.14), `lessons/README.md` (Aesthetic roster + cheatsheet). Tier: Minor (additive named-style lesson). Co-design with Trin (named the style, supplied the single-layer insight).
+
+- **LV 2.13** (2026-05-29) — **Filter system extracted → standalone `filter-craft-lv` skill.** L13 (filter-word tier registry), L17 (filter triggers on prompt text, not refs), and L18 (R1→R5 escalation playbook) migrated out of image-craft-lv into a new cross-cutting skill so the filter system can grow on its own cadence — separate from the prompt-craft lessons — and be reused by kie-craft-lv (execution), seedance-craft-lv (video), and photobook-craft-lv (orchestration).
+
+  **Why standalone (not a leg of image/kie):** the filter system is cross-cutting — half is execution (error classification + retry mechanics, near kie-craft-lv) and half is prompt-craft (vocab tiers, near image-craft-lv). It belongs to neither alone, is used across all generation skills, and owns a growable artifact (the vocab tier table) that should version independently of the lessons library.
+
+  **New skill `filter-craft-lv` (LV 1.0):** `SKILL.md` (classify-first + R1→R5 + 3-layer model), `VOCAB.md` (from L13), `PLAYBOOK.md` (from L18), `PRINCIPLE-text-not-ref.md` (from L17), `ERROR-CODES.md` (KIE error → class → action taxonomy), `scripts/classify_fail.py` (one-command failure diagnosis).
+
+  **In image-craft-lv:** L13/L17/L18 lesson files replaced with `status: migrated` pointer stubs; lessons/README Filter section + Workflow/L18 row converted to migration pointers; cheatsheet rows (first-gen + sexy-wardrobe) now point to the skill; Core Principle #8 + root README #8 point to the skill. Soft `related:` cross-refs in L09/L14/L25 still resolve through the stubs (intentionally not rewritten).
+
+  **Files changed:** `SKILL.md` (frontmatter level 2.12→2.13 + updated date + Core Principle #8), `README.md` (#8), `lessons/README.md` (cheatsheet ×2 + Workflow/Filter roster + archived-L15 note), `lessons/filter/L13*.md` + `lessons/filter/L17*.md` + `lessons/workflow/L18*.md` (→ pointer stubs), `CHANGELOG.md` (this entry). New skill: `~/.claude/skills/filter-craft-lv/`. Tier: Major (cross-skill restructure; 3 lessons migrated out). Co-design with Trin.
 
 - **LV 2.12** (2026-05-07) — **Jira Wanderlust Vol 06 lesson pack · L26 + L27 + L28 + L29 added.** Four new lessons codified after the 5-anchor + J02 (Bangkok cafe) + J05 (coastal drive) photobook session (16 final plates published). The pack covers four distinct mistake-classes that surfaced in the same session — diversity discipline, detail-shot composition, face-pixel-budget mechanics, and recipe-vocabulary coherence.
 
@@ -234,64 +266,21 @@
 
 - **2026-05-05** · L15 · `pending (1/3)` → `needs-rerun · attribution unclear` · LV bump 2.6.2 → 2.7 · self · Reason: Lily L1 P1 v3→v5 trial changed 2 variables simultaneously (ref drop + pose change). Causal attribution between "drop hero ref" and "filter pass" not isolated. User field testing (Alisa, Jira, Mila) showed refs rarely trigger filter alone — pose change alone is sufficient to explain v5 pass. New L17 captures the corrected understanding. Validation reset 1→0/3 pending single-variable rerun.
 
-## Leveling Protocol
+## Leveling rule (simple)
 
-### Validation Gate
+- **New lesson** — Claude proposes (with reasoning); user decides yes/edit/no. No point system, no thresholds.
+- **LV bump** — Claude proposes a bump when active lessons have meaningfully changed behavior; user decides.
+- **Archive** — Lesson moved to `lessons/archive/` when superseded, false, or no longer relevant. Reason noted in `lessons/README.md`.
 
-Before a lesson can move from `pending` to `validated`, and before the level bumps, it must pass tiered validation:
+Patch / minor / major is a judgment call between Claude and the user. Rough guide:
+- Patch (x.y → x.y+1): one lesson added or refined.
+- Minor (x.y → (x+1).0): several lessons added, or a checklist section / workflow change.
+- Major: structural change (new model family, restructured surfaces, etc.).
 
-| Tier   | Definition                                                        | Required passes | Project spread                    |
-|--------|-------------------------------------------------------------------|-----------------|-----------------------------------|
-| Micro  | Small phrasing/naming/convention change, low blast radius         | 1               | 1 project                         |
-| Meso   | Technique affecting a single shot/image                           | 2 of 3 attempts | **≥2 distinct projects**          |
-| Macro  | Workflow-level change affecting whole projects                    | 3 of 5 attempts | **≥3 distinct projects** (or 3 passes + 1 deliberate counter-test) |
-
-Project-spread is the new (LV 2.1) requirement. It prevents a single origin project from self-validating all of its lessons.
-
-**Axis-diversity (LV 2.2 refinement):** "Distinct project" for arena
-trials means the scenario's axis fingerprint differs from every prior
-arena trial for the same lesson on ≥2 of 9 axes (defined in
-`arena/axes.md`). `DHYANA` and `arena:SXX` are always distinct.
-Trials whose fingerprints do NOT meet this bar can still be run for
-diagnostic value, but cannot be counted toward promotion.
-
-### Status field
-
-Lessons carry `status:` in their frontmatter.
-
-- `pending (X/Y)` — still being validated; X passes recorded out of Y required.
-- `validated` — threshold met; safe to rely on.
-- `retired` — superseded by a newer lesson or proven wrong. Keep the file for history; mark the reason in its body; list its ID in the superseding lesson's `supersedes: [LXX]` frontmatter field.
-
-### Process
-
-1. **Spot a new mistake → log a lesson immediately** as `pending (0/Y)`. Do not wait for certainty; the log forces investigation.
-2. **Apply the fix → record** in `VALIDATION_LEDGER.md` AND mirror the row into the lesson's own Validation log.
-3. **When X reaches Y** with the project-spread requirement met:
-   - If pass threshold met → promote `status: pending → validated`, bump LV, add an entry to this CHANGELOG.
-   - If not met → rewrite the lesson (what actually works differs from the first guess), reset validation counter to 0/Y, log the reset in the body.
-4. **Never bump LV** without at least one `pending → validated` promotion in the CHANGELOG for that LV.
-
-### Classifying a new lesson
-
-Blast radius = "if this fix is wrong, how many future generations break?"
-
-- Small single-prompt tweak = Micro.
-- Per-shot discipline = Meso.
-- Changes workflow = Macro.
-
-When unsure, pick the higher tier.
-
-### Rollback
-
-Skill is under git. To undo a bad promotion:
-```
-git log SKILL.md
-git revert <sha>
-```
-Document the rollback reason in a new CHANGELOG entry. Never silently edit old lessons or CHANGELOG entries — they are history. Use `retired` status or `git revert`.
+Rollback: this skill is under git — `git log SKILL.md` / `git revert <sha>`. Document the rollback in a new entry.
 
 ### Relationship to sister skills
 
 - `seedance-craft-lv` — video generation. Cross-pollinates with this skill via shared Tier-1 ref discipline (see L11).
 - `kie-nano-banana` — API execution layer. This skill is the *strategy* layer above it.
+- `internal-board-builder` — local HTML review boards (L16's home).

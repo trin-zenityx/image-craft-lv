@@ -2,11 +2,8 @@
 id: L28
 title: Distance + motion = face drift risk — when face occupies <15% of frame OR is in motion, expect identity loss
 theme: character
-tier: micro
-status: pending
-validation: 1/1
+added_at_lv: 2.12
 tags: [face-drift, identity, wide-shot, motion, framing-budget]
-origin_project: jira-wanderlust-vol06
 created: 2026-05-07
 last_updated: 2026-05-07
 supersedes: []
@@ -83,12 +80,6 @@ When a plate calls for wide framing OR motion:
 | Wide environmental (model 50%) | 8-12% | medium-high |
 | Very wide (model 30%) | <5% | **high** |
 | Motion + wide | <5% + blur | **catastrophic** |
-
-## Validation log
-
-| # | Project | Date | Technique | Outcome | Notes |
-|---|---------|------|-----------|---------|-------|
-| 1 | Jira Wanderlust Vol 06 J05-P6+P7 redesign | 2026-05-07 | P6 v2: brought model closer (45-50% of frame). P7 v2: stopped car motion (parked + leaning out window). Both v2s preserved Jira identity correctly. | pass | First instance — codified after Trin's two "หน้าเปลียนเป็นคนละคน" complaints. Both fixes worked first try at R1. |
 
 ## Cross-references
 

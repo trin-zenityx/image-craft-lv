@@ -2,11 +2,8 @@
 id: L20
 title: Camera body + film stock specificity beats lens-only spec for naturalness
 theme: camera
-tier: meso
-status: pending
-validation: 1/3
+added_at_lv: 2.7
 tags: [camera, lens, film-stock, naturalness, skin, prompt-engineering]
-origin_project: alisa-glamour-photobook
 created: 2026-05-05
 last_updated: 2026-05-05
 supersedes: []
@@ -56,12 +53,6 @@ The body + stock combination is a one-line aesthetic preset — choose it delibe
 ## Broader rule
 
 For any prompt where naturalness, skin quality, or specific photographic mood matters, specify camera body + lens + film stock together rather than lens alone. The combination anchors a coherent imaging signature that the AI renders consistently. Pair with positive skin / texture description to compound the effect.
-
-## Validation log
-
-| # | Project | Date       | Technique applied                                          | Outcome | Notes                   |
-|---|---------|------------|------------------------------------------------------------|---------|-------------------------|
-| 1 | Alisa Glamour Photobook v2-v4 + cross-validation against Jira / Mila prompt archives | 2026-05-05 | Switched from lens-only spec to body + lens + film stock + skin description per plate. Cross-checked Jira / Mila plates which use the same pattern. | pass | v1 (counter-example): plastic CGI skin from "85mm f/1.4". v2-v4 (validation): natural skin / warm rendering. Jira / Mila independently use body + stock specs. |
 
 ## Cross-references
 

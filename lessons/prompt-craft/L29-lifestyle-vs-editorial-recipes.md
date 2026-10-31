@@ -2,11 +2,8 @@
 id: L29
 title: Lifestyle vs Editorial recipes — choose ONE entire vocabulary set; never mix
 theme: prompt-craft
-tier: meso
-status: pending
-validation: 1/3
+added_at_lv: 2.12
 tags: [recipe-discipline, lifestyle, editorial, vocabulary-coherence, vibe]
-origin_project: jira-wanderlust-vol06
 created: 2026-05-07
 last_updated: 2026-05-07
 supersedes: []
@@ -92,13 +89,8 @@ Then commit to ALL ELEMENTS of that recipe. Never mix lens from editorial with e
 - ❌ Copying Mila/Tara editorial recipe to a Jira lifestyle project (or vice versa)
 - ❌ Editing prompts piecemeal until they're a Frankenstein of both recipes
 
-## Validation log
-
-| # | Project | Date | Technique | Outcome | Notes |
-|---|---------|------|-----------|---------|-------|
-| 1 | Jira Wanderlust Vol 06 (J01-J05 anchor + J02+J05 photobook) | 2026-05-07 | Caught the temptation to use editorial recipe; swapped to full lifestyle recipe at design time. 5/5 anchors R1 PASS, 14/14 photobook plates R1 PASS (1 R2). Lifestyle vibe preserved. | pass | First explicit codification — the recipe contrast with prior Mila/Tara editorial sessions made the distinction visible. Trin's "เสน่ห์ + sexy นิดๆ" instruction was the design constraint. |
-
 ## Cross-references
 
 - Related lessons: L20 (camera body + film stock specificity); L21 (designer / aesthetic reference choice)
+- **Filter note:** the editorial wardrobe vocab here (`DEEP V plunge`, `FULL voluminous décolletage`) is **Tier 2 in `filter-craft-lv/VOCAB.md`** — editorial recipes draw more filter blocks, so expect to lean on the `filter-craft-lv` R1→R5 playbook. The lifestyle vocab (`soft scoop neckline`, `naturally drapes`) is filter-clean. This lesson governs recipe *coherence*; `filter-craft-lv` governs the filter dimension of those same words.
 - Checklist items affected: pre-submit (entire) — add recipe-classification step before any vocabulary writing

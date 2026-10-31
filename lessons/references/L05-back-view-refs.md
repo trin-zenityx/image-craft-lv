@@ -2,11 +2,8 @@
 id: L05
 title: Back-view character refs cannot lock face identity
 theme: references
-tier: meso
-status: pending
-validation: 0/3
+added_at_lv: 1.0
 tags: [character, per-view-anchor, face-identity, wardrobe]
-origin_project: DHYANA
 created: 2026-04-16
 last_updated: 2026-04-16
 supersedes: []
@@ -38,12 +35,6 @@ For any character who will appear in multiple views (back, profile, front, in co
 ## Broader rule
 
 When planning ref chain, ask "what does this shot need to match — face? wardrobe? pose? location? light?" Then pick refs that actually contain that feature. Back-view refs cannot teach face; macro-light refs cannot teach composition.
-
-## Validation log
-
-| # | Project | Date       | Technique applied                                           | Outcome  | Notes                       |
-|---|---------|------------|-------------------------------------------------------------|----------|-----------------------------|
-| 1 | DHYANA  | 2026-04-16 | Identified in Tier 2 g20b failure; face anchor planned      | pending  | Anchor not yet created      |
 
 ## Cross-references
 
